@@ -31,12 +31,16 @@ export class UserloggedComponent implements OnInit, OnDestroy {
     id: '',
   });
 
-  public geo =
-    'https://tbconline.ge/tbcrd/assets/flag-switch2.98021754eb93859098c11d8bb08c5800.svg';
+  // public geo =
+  //   'https://tbconline.ge/tbcrd/assets/flag-switch2.98021754eb93859098c11d8bb08c5800.svg';
 
-  public eng =
-    'https://tbconline.ge/tbcrd/assets/flag-switch.0a3d7467a79326fee75b25ce4bb25f59.svg';
+  // public eng =
+  //   'https://tbconline.ge/tbcrd/assets/flag-switch.0a3d7467a79326fee75b25ce4bb25f59.svg';
 
+  // public lang = this.geo;
+  public geo = new BehaviorSubject('geo');
+  public eng = new BehaviorSubject('eng');
+  public changelang = new BehaviorSubject('');
   public lang = this.geo;
 
   public changeLang() {
@@ -56,6 +60,16 @@ export class UserloggedComponent implements OnInit, OnDestroy {
   ) {
     this.loginServ.loggedUserId.subscribe((id) => {
       this.loggedUserId = id;
+    });
+    this.loginServ.language.subscribe((language) => {
+      this.lang.next(language);
+      this.changelang.next(
+        `${
+          language == 'geo'
+            ? 'https://tbconline.ge/tbcrd/assets/flag-switch2.98021754eb93859098c11d8bb08c5800.svg'
+            : 'https://tbconline.ge/tbcrd/assets/flag-switch.0a3d7467a79326fee75b25ce4bb25f59.svg'
+        }`
+      );
     });
   }
 
