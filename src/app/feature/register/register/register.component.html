@@ -1,0 +1,158 @@
+<main>
+  <header>
+    <div class="container">
+      <img
+        src="{{
+          lang == geo
+            ? 'https://tbconline.ge/tbcrd/assets/img/homepage/Logo-ka.svg'
+            : 'https://tbconline.ge/tbcrd/assets/img/homepage/Logo-en.svg'
+        }}"
+        alt="bg-image"
+        routerLink="/"
+      />
+      <div class="contact">
+        <span>2 27 27 00</span>
+        <a href="https://chat.tbcbank.ge/client/" target="_blank">{{
+          lang == geo ? "ონლაინ კონსულტაცია" : "Chat now"
+        }}</a>
+      </div>
+    </div>
+  </header>
+  <div class="register">
+    <h1>{{ lang == geo ? "შემოგვიერთდი" : "Join us now" }}</h1>
+    <h4>
+      {{
+        lang == geo
+          ? "შეიყვანე შენი მონაცემები იდენტიფიკაციისთვის"
+          : "Tell us more about yourself"
+      }}
+    </h4>
+    <form [formGroup]="registerForm">
+      {{ lang == geo ? "სახელი:" : "Name:" }}
+      <input type="text" formControlName="name" placeholder="Required" />
+      {{ lang == geo ? "გვარი:" : "Surname:" }}
+      <input type="text" formControlName="surname" placeholder="Required" />
+      {{ lang == geo ? "პირადი ნომერი:" : "Personal number:" }}
+      <input
+        type="number"
+        formControlName="personalNumber"
+        placeholder="Required"
+      />
+      <p class="err" *ngIf="personalErr">
+        {{ lang == geo ? "11 ციფრი" : "11 number" }}
+      </p>
+      <p class="err" *ngIf="alreadyUsedPersonalNum">
+        {{
+          lang == geo
+            ? "პირადი ნომერი უკვე რეგისტირებულია"
+            : "Personal number is already registered"
+        }}
+      </p>
+      <br />
+      {{ lang == geo ? "მობილურის ნომერი:" : "Mobile number:" }} +995
+      <input
+        type="number"
+        formControlName="phoneNumber"
+        placeholder="Required"
+      />
+      <p class="err" *ngIf="phoneErr">
+        {{ lang == geo ? "9 ციფრი" : "9 number" }}
+      </p>
+      <p class="err" *ngIf="alreadyUsedPhoneNum">
+        {{
+          lang == geo
+            ? "მობილური ნომერი უკვე რეგისტირებულია"
+            : "Phone number is already registered"
+        }}
+      </p>
+      <br />
+      {{ lang == geo ? "მომხმარებლის სახელი:" : "Username:" }}
+      <input type="text" formControlName="username" placeholder="Required" />
+      <p class="err" *ngIf="usernameErr">
+        {{ lang == geo ? "მინიმუმ 5 სიმბოლო" : "Minimum 5 symbol" }}
+      </p>
+      <p class="err" *ngIf="alreadyUsedUsername">
+        {{
+          lang == geo
+            ? "მომხმარებლის სახელი უკვე რეგისტირებულია"
+            : "Username is already used"
+        }}
+      </p>
+      <br />
+      <ng-container formGroupName="passwordGroup">
+        {{ lang == geo ? "პაროლი:" : "Password:" }}
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Required"
+        />
+        <ng-container *ngIf="passwordErr">
+          <p class="err">
+            {{
+              lang == geo
+                ? "მინიმუმ 8 სიმბოლო, მინ 1 დიდი ასო, პატარა ასო და რიცხვი"
+                : "Minimum 8 symbol, min 1 uppercase, lowercase and number"
+            }}
+          </p>
+          <br />
+        </ng-container>
+        {{ lang == geo ? "გაიმეორე პაროლი:" : "Confirm Password:" }}
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Required"
+        />
+      </ng-container>
+      <ng-container *ngIf="confirmErr">
+        <p class="err">
+          {{ lang == geo ? "პაროლები არ ემთხვევა" : "Passwords don't match" }}
+        </p>
+        <br />
+      </ng-container>
+      <div class="check">
+        Terms:
+        <input class="check" type="checkbox" formControlName="terms" />
+      </div>
+    </form>
+    <button
+      class="register-button"
+      (click)="register()"
+      [disabled]="
+        registerForm.invalid ||
+        personalErr ||
+        phoneErr ||
+        alreadyUsedPersonalNum ||
+        alreadyUsedPhoneNum ||
+        alreadyUsedUsername
+      "
+      [ngClass]="{
+        'button-hover':
+          registerForm.valid &&
+          !personalErr &&
+          !phoneErr &&
+          !alreadyUsedPersonalNum &&
+          !alreadyUsedPhoneNum &&
+          !alreadyUsedUsername
+      }"
+    >
+      {{ lang == geo ? "რეგისტრაცია" : "Register" }}</button
+    ><br />
+    <button class="login-button" routerLink="/">
+      {{ lang == geo ? "ავტორიზაციის გავლა" : "Log In" }}
+    </button>
+  </div>
+</main>
+<div class="overlay" *ngIf="userRegistered">
+  <div class="registered">
+    <h1>
+      {{
+        lang == geo
+          ? "თქვენ წარმატებით დარეგისტრირდით!"
+          : "Successfully registered!"
+      }}
+    </h1>
+    <button (click)="registered()">
+      {{ lang == geo ? "ავტორიზაციის გავლა" : "Log In" }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<section class="header">
+  <h1 class="header-text" *ngIf="lang | async as language">
+    {{ language == "geo" ? "გამარჯობა" : "Welcome" }}
+  </h1>
+</section>
+<main>
+  <section class="main-section">
+    <div class="left-section">
+      <app-animation></app-animation>
+      <app-account
+        (showHideAmount)="showHideAmount()"
+        [geo]="geo"
+        [eng]="eng"
+        [lang]="lang"
+        [showAmount]="showAmount"
+        [userAccount]="userAccount"
+      ></app-account>
+      <section></section>
+      <section></section>
+    </div>
+    <div class="right-section">
+      <app-loan
+        class="right-comp"
+        [geo]="geo"
+        [eng]="eng"
+        [lang]="lang"
+        [showLoan]="showLoan"
+        (hideLoanButton)="showLoanButton()"
+        [sumLoan]="sumLoan"
+      ></app-loan>
+      <app-deposit
+        class="right-comp"
+        [geo]="geo"
+        [eng]="eng"
+        [lang]="lang"
+        [showDeposit]="showDeposit"
+        (hideDepositButton)="showDepositButton()"
+        [sumDeposit]="sumDeposit"
+      ></app-deposit>
+      <app-exchange
+        [geo]="geo"
+        [eng]="eng"
+        [lang]="lang"
+        [currencies]="currencies"
+        [amountOutputLeft]="amountOutputLeft"
+        [amountOutputRight]="amountOutputRight"
+        [leftInputNum]="leftInputNum"
+        [rightInputNum]="rightInputNum"
+        [leftNum]="leftNum"
+        [exchangeRate]="exchangeRate"
+        (selectedLeft)="onSelectedLeft($event)"
+        (selectedRight)="onSelectedRight($event)"
+      ></app-exchange>
+    </div>
+  </section>
+</main>

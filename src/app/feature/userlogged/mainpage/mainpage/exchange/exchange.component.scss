@@ -1,0 +1,13 @@
+.exchange-form {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  .currency,
+  input {
+    width: 50px;
+    height: 30px;
+  }
+}

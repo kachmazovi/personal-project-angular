@@ -1,0 +1,105 @@
+main {
+  height: 100vh;
+  background-color: #e6eaee;
+  header {
+    width: 100vw;
+    background-color: #00a3e0;
+    display: flex;
+    flex-direction: column;
+    .header {
+      width: 1280px;
+      min-width: 1280px;
+      margin: 0 auto;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        height: 32px;
+        cursor: pointer;
+      }
+      .user {
+        display: flex;
+        align-items: center;
+        .images {
+          margin-right: 30px;
+          img {
+            height: 20px;
+            margin-right: 10px;
+          }
+          .flag {
+            width: 16px;
+            border-radius: 50%;
+          }
+        }
+        h1 {
+          font-size: 25px;
+          color: white;
+        }
+        h1:after {
+          content: "";
+          display: inline-block;
+          background-image: url(../../../assets/main-page/userlogo.png);
+          width: 50px;
+          height: 50px;
+          background-position: center;
+          background-size: contain;
+          vertical-align: middle;
+          margin: 0 30px 0 10px;
+        }
+        .log-out {
+          transition: 0.7s;
+        }
+        .log-out:hover {
+          transform: scale(1.2);
+          cursor: pointer;
+        }
+      }
+    }
+    .navigation {
+      width: 100%;
+      background-color: rgba(51, 51, 51, 0.95);
+      nav {
+        display: block;
+        width: 1280px;
+        margin: 0 auto;
+        height: 50px;
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        position: relative;
+        color: white;
+        font-weight: bold;
+        li:first-child {
+          background-image: url(https://tbconline.ge/tbcrd/assets/tbc-home-icon-active.c906ecad2c4eb13adf87286df1ee2ad7.svg);
+          background-position: center;
+          background-size: contain;
+          width: 25px;
+          height: 25px;
+          background-repeat: no-repeat;
+        }
+        li:last-child {
+          background-image: url(https://tbconline.ge/tbcrd/assets/tbc-icon-settings.f02aaa403343f5866862ca0a2ef95271.svg);
+          background-position: center;
+          background-size: contain;
+          width: 25px;
+          height: 25px;
+          background-repeat: no-repeat;
+          position: absolute;
+          right: 0;
+        }
+        li {
+          margin-right: 40px;
+          transition: 0.5s;
+        }
+        li:hover {
+          cursor: pointer;
+          transform: scale(1.2);
+        }
+        .text:hover {
+          transform: translateY(2.5px);
+        }
+      }
+    }
+  }
+}

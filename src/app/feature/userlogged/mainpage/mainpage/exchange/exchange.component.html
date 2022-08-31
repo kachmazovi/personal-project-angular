@@ -1,0 +1,32 @@
+<div class="exchange-form">
+  <select
+    #currencyLeft
+    class="currency"
+    (change)="onSelectedLeft(currencyLeft.value)"
+  >
+    <option *ngFor="let curr of currencies">
+      {{ curr }}
+    </option>
+  </select>
+  <select
+    #currencyRight
+    class="currency"
+    (change)="onSelectedRight(currencyRight.value)"
+  >
+    <option *ngFor="let curr of currencies">
+      {{ curr }}
+    </option>
+  </select>
+  <input
+    type="number"
+    [formControl]="leftInputNum"
+    [value]="amountOutputLeft | async"
+    min="1"
+  />
+  <input
+    type="number"
+    [formControl]="rightInputNum"
+    [value]="amountOutputRight | async"
+    min="1"
+  />
+</div>

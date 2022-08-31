@@ -1,0 +1,86 @@
+<main>
+  <div class="container">
+    <header>
+      <img
+        src="{{
+          lang == geo
+            ? 'https://tbconline.ge/tbcrd/assets/img/homepage/Logo-ka.svg'
+            : 'https://tbconline.ge/tbcrd/assets/img/homepage/Logo-en.svg'
+        }}"
+        alt="bg-image"
+        routerLink="/"
+      />
+      <div class="navigation">
+        <nav>
+          <a href="https://www.tbcbank.ge/web/ka" target="_blank">tbcbank.ge</a>
+          <a
+            href="https://www.tbcbank.ge/web/ka/web/guest/internet-banking"
+            target="_blank"
+            >{{
+              lang == geo
+                ? "უსაფრთხოება და კონფიდენციალურობა"
+                : "Security & privacy"
+            }}</a
+          >
+          <a
+            href="https://www.tbcbank.ge/web/ka/web/guest/contact-us"
+            target="_blank"
+            >{{ lang == geo ? "დაგვიკავშირდით" : "Contact us" }}</a
+          >
+        </nav>
+        <div class="images">
+          <img
+            class="flag"
+            src="https://tbconline.ge/tbcrd/assets/flag-geo.68bac5b5d82e2d65a89bc907d80d020b.svg"
+            alt="geo"
+          />
+          <img (click)="changeLang()" src="{{ lang }}" alt="image" />
+          <img
+            class="flag"
+            src="https://tbconline.ge/tbcrd/assets/flag-gb.2e9c71c7514c4036f0122b1bdc202c17.svg"
+            alt="eng"
+          />
+        </div>
+        <button>
+          <img
+            src="https://tbconline.ge/tbcrd/assets/tbc-icon-corporate.eb182cdb593d01705b20d83a1a6e5905.png"
+            alt="business"
+          />
+          {{ lang == geo ? "ბიზნესი" : "Business" }}
+        </button>
+      </div>
+    </header>
+    <div class="login">
+      <div class="login-box">
+        <h1>{{ lang == geo ? "გამარჯობა" : "Welcome" }}</h1>
+        <form [formGroup]="loginForm">
+          <input
+            type="text"
+            formControlName="username"
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <ng-container *ngIf="wrongData">
+            <p class="err">
+              {{
+                lang == geo
+                  ? "მომხმარებლის სახელი ან პაროლი არასოწრია"
+                  : "Incorrect Username or Password"
+              }}
+            </p>
+          </ng-container>
+        </form>
+        <button class="login-button" (click)="login()">
+          {{ lang == geo ? "შესვლა" : "Log In" }}</button
+        ><br />
+        <button class="registration" routerLink="/register">
+          {{ lang == geo ? "რეგისტრაცია" : "Register" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

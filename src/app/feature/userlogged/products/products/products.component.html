@@ -1,0 +1,16 @@
+<section>
+  <nav *ngIf="lang | async as language">
+    <li routerLink="account" routerLinkActive="active">
+      {{ language == "geo" ? "ანგარიშები" : "Accounts" }}
+    </li>
+    <li routerLink="deposit" routerLinkActive="active">
+      {{ language == "geo" ? "ანაბრები" : "Deposits" }}
+    </li>
+    <li routerLink="loan" routerLinkActive="active">
+      {{ language == "geo" ? "სესხები" : "Loans" }}
+    </li>
+  </nav>
+</section>
+<main>
+  <router-outlet></router-outlet>
+</main>

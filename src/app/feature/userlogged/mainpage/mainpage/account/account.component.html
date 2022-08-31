@@ -1,0 +1,35 @@
+<div class="amount">
+  <div class="show-hide-amount">
+    <button (click)="showAmountButton()" *ngIf="lang | async as language">
+      {{ language == "geo" ? "ანგარიშები" : "Accounts" }}
+    </button>
+    <img
+      (click)="showAmountButton()"
+      [src]="
+        showAmount
+          ? 'https://tbconline.ge/tbcrd/assets/uncollapseIcon-hover.805112be86a15ab399e6691b9802fbbb.svg'
+          : 'https://tbconline.ge/tbcrd/assets/collapseIcon-hover.09de07c905b29a811e5d271320fd7dcc.svg'
+      "
+      alt=""
+    />
+  </div>
+  <ng-container *ngIf="!showAmount">
+    <div class="card" routerLink="/userlogged/products/account">
+      <div class="card-image">
+        <img src="../../../../../assets/main-page/card.png" alt="card" />
+        <h1>Visa Gold</h1>
+      </div>
+      <div class="balance" *ngIf="userAccount | async as data">
+        <h1 *ngIf="lang | async as language">
+          {{ language == "geo" ? "ანგარიშის ნომერი" : "Account Number" }} :
+          {{ data.account }}
+        </h1>
+        <h1 *ngIf="lang | async as language">
+          {{ language == "geo" ? "ბალანსი" : "Balance" }} :
+          {{ data.amount }}
+          {{ language == "geo" ? "ლარი" : "GEL" }}
+        </h1>
+      </div>
+    </div>
+  </ng-container>
+</div>

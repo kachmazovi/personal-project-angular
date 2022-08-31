@@ -1,0 +1,35 @@
+<main>
+  <div class="header" *ngIf="lang | async as language">
+    <h1 routerLink="/userlogged/products/deposit">
+      {{ language == "geo" ? "მიმდინარე ანაბრები" : "Current Deposits" }}:
+    </h1>
+    <h2 *ngIf="showDeposit" (click)="showDepositButton()">
+      {{ language == "geo" ? "ჩვენება" : "Show" }}
+    </h2>
+    <h2 *ngIf="!showDeposit" (click)="showDepositButton()">
+      {{ language == "geo" ? "დამალვა" : "Hide" }}
+    </h2>
+  </div>
+  <ng-container *ngIf="!showDeposit">
+    <div class="loan">
+      <hr />
+      <ng-container *ngIf="sumDeposit | async as amount">
+        <ng-container *ngIf="amount > 0">
+          <h1 *ngIf="lang | async as language">
+            {{ language == "geo" ? "ჯამური ანაბრები" : "All amount" }}:
+            {{ sumDeposit | async }} {{ language == "geo" ? "ლარი" : "GEL" }}
+          </h1>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="showAmount | async">
+        <h1 *ngIf="lang | async as language">
+          {{
+            language == "geo"
+              ? "თქვენ არ გაქვთ მიმდინარე ანაბრები"
+              : 'You don"t have deposit yet'
+          }}
+        </h1>
+      </ng-container>
+    </div>
+  </ng-container>
+</main>
