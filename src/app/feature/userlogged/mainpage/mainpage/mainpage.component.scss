@@ -21,13 +21,11 @@ main {
     overflow: hidden;
     .left-section {
       width: 900px;
-      height: 500px;
       display: flex;
       flex-direction: column;
     }
     .right-section {
       width: 350px;
-      height: 500px;
       // border: 1px solid black;
       display: flex;
       flex-direction: column;

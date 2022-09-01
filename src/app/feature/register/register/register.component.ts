@@ -185,16 +185,16 @@ export class RegisterComponent implements OnInit {
     this.request
       .addDeposit([
         {
-          name: 'deposit00000',
-          amount: '0',
+          date: '00000000000',
+          amount: 0,
         },
       ])
       .subscribe();
     this.request
       .addLoan([
         {
-          name: 'loan00000',
-          amount: '0',
+          date: '00000000000',
+          amount: 0,
         },
       ])
       .subscribe();

@@ -1,6 +1,6 @@
 export interface loa {
-  name: string;
-  amount: string;
+  date: string;
+  amount: number;
 }
 
 export interface loans {

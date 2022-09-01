@@ -1,0 +1,93 @@
+main {
+  width: 1280px;
+  margin: auto;
+  border-radius: 25px;
+  padding: 25px 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  .header {
+    height: 50px;
+    padding-left: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid gray;
+    margin-bottom: 50px;
+    .close {
+      width: 150px;
+      border: 1px solid #00a3e0;
+      border-radius: 15px;
+      margin-left: 65px;
+      font-size: 16px;
+      background-color: white;
+    }
+    .close:hover {
+      background-color: #00a3e0;
+      color: white;
+      cursor: pointer;
+    }
+    .cancel {
+      margin-left: 25px;
+      border: 1px solid;
+      background-color: white;
+      font-size: 16px;
+      border-color: red;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    .cancel:hover {
+      background-color: red;
+      color: white;
+    }
+  }
+  .deposit-container {
+    .deposit-header {
+      display: flex;
+      justify-content: space-around;
+      height: 30px;
+      align-items: center;
+      margin-bottom: 25px;
+      text-align: center;
+      h1 {
+        width: 30%;
+        font-size: 22px;
+        font-weight: bold;
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+      }
+    }
+    .deposits {
+      border: 1px solid gray;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+      padding: 10px 0;
+      .deposit {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        h1 {
+          width: 30%;
+          font-size: 20px;
+        }
+      }
+      .confirm {
+        width: 150px;
+        margin-left: 50px;
+        margin-top: 25px;
+        border: 1px solid;
+        background-color: white;
+        font-size: 16px;
+        border-radius: 15px;
+        cursor: pointer;
+        border-color: green;
+      }
+      .confirm:hover {
+        background-color: green;
+        color: white;
+      }
+    }
+  }
+}

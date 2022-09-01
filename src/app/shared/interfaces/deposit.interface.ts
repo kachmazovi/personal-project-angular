@@ -1,6 +1,6 @@
-interface dep {
-  name: string;
-  amount: string;
+export interface dep {
+  date: string;
+  amount: number;
 }
 
 export interface deposits {

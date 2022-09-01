@@ -76,7 +76,7 @@ export class MainpageComponent implements OnInit {
         tap((response: loanId) => {
           let sum = 0;
           response.loans.forEach((loan) => {
-            sum += Number(loan.amount);
+            sum += loan.amount;
           });
           this.sumLoan.next(sum);
         })
@@ -101,7 +101,7 @@ export class MainpageComponent implements OnInit {
         tap((response: depositId) => {
           let sum = 0;
           response.deposits.forEach((deposit) => {
-            sum += Number(deposit.amount);
+            sum += deposit.amount;
           });
           this.sumDeposit.next(sum);
         })

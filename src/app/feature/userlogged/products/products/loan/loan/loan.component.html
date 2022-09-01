@@ -1,1 +1,34 @@
-<p>loan works!</p>
+<main *ngIf="lang | async as language">
+  <h1 class="header">
+    {{ language == "geo" ? "მიმდინარე სესხები" : "Current loans" }}
+    <button class="close" (click)="close()">
+      {{ language == "geo" ? "სესხის დაფარვა" : "Close the loan" }}
+    </button>
+    <button class="cancel" (click)="cancel()" *ngIf="closeLoan">
+      {{ language == "geo" ? "გაუქმება" : "Cancel" }}
+    </button>
+  </h1>
+  <div *ngIf="userLoans | async as loans" class="loan-container">
+    <div class="loan-header">
+      <h1>{{ language == "geo" ? "სესხის სახელი" : "Name of loan" }}</h1>
+      <h1>
+        {{ language == "geo" ? "სესხის აღების თარიღი" : "Loan opening date" }}
+      </h1>
+      <h1>{{ language == "geo" ? "სესხის თანხა" : "Amount of loan" }}</h1>
+    </div>
+    <div *ngFor="let loan of loans; let index = index">
+      <div *ngIf="loan.amount > 0" class="loans">
+        <div class="loan">
+          <h1>
+            {{ language == "geo" ? "სამომხმარებლო სესხი" : "Consumer Loans" }}
+          </h1>
+          <h1>{{ loan.date }}</h1>
+          <h1>{{ loan.amount }} {{ language == "geo" ? "ლარი" : "GEL" }}</h1>
+        </div>
+        <button class="confirm" (click)="confirm(index)" *ngIf="closeLoan">
+          {{ language == "geo" ? "დადასტურება" : "Confirm" }}
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,1 +1,28 @@
-<p>account works!</p>
+<main *ngIf="lang | async as language">
+  <h1>{{ language == "geo" ? "სადებეტო ბარათები" : "Debit Cards" }}</h1>
+  <div class="header">
+    <div></div>
+    <div>
+      <h2>{{ language == "geo" ? "ანგარიშის ნომერი" : "Account number" }}</h2>
+    </div>
+    <div>
+      <h2>{{ language == "geo" ? "ხელმისაწვდომი ნაშთი" : "Balance" }}</h2>
+    </div>
+  </div>
+  <div class="account">
+    <div>
+      <img src="../../../../../assets/main-page/card.png" alt="card" />
+      <div>
+        <h3>{{ language == "geo" ? "ჩემი ანგარიში" : "My account" }}</h3>
+        <br />
+        <h4>VISA GOLD</h4>
+      </div>
+    </div>
+    <div *ngIf="userAccount | async as data" class="number">
+      <h5>{{ data.account }}</h5>
+    </div>
+    <div *ngIf="userAccount | async as data" class="amount">
+      <h5>{{ data.amount }} {{ language == "geo" ? "ლარი" : "GEL" }}</h5>
+    </div>
+  </div>
+</main>

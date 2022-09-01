@@ -1,132 +1,64 @@
 {
   "users": [
     {
-      "name": "Giorgi",
-      "surname": "Makara",
-      "personalNumber": 55454545554,
-      "phoneNumber": 459898989,
-      "username": "makara",
-      "password": "Makara123",
+      "name": "Giorgi ",
+      "surname": "Lezhava",
+      "personalNumber": 65959898995,
+      "phoneNumber": 598989898,
+      "username": "lezava",
+      "password": "Lezava123",
       "id": 1
-    },
-    {
-      "name": "Salome ",
-      "surname": "Pacia",
-      "personalNumber": 44544569878,
-      "phoneNumber": 598747478,
-      "username": "pacia",
-      "password": "Pacia123",
-      "id": 2
-    },
-    {
-      "name": "ყაზი",
-      "surname": "კაჩმაზოვი",
-      "personalNumber": 12312312312,
-      "phoneNumber": 577777777,
-      "username": "kazbegi",
-      "password": "Kazbegi123",
-      "id": 3
     }
   ],
   "accounts": [
     {
-      "name": "Giorgi",
-      "surname": "Makara",
-      "account": "GE00TB4189403393904939",
-      "amount": "1000",
+      "name": "Giorgi ",
+      "surname": "Lezhava",
+      "account": "GE00TB0712919499062850",
+      "amount": "2200",
       "id": 1
-    },
-    {
-      "name": "Salome ",
-      "surname": "Pacia",
-      "account": "GE00TB7576047075288088",
-      "amount": "1000",
-      "id": 2
-    },
-    {
-      "name": "ყაზი",
-      "surname": "კაჩმაზოვი",
-      "account": "GE00TB1490509707260178",
-      "amount": "1000",
-      "id": 3
     }
   ],
   "loans": [
     {
       "loans": [
         {
-          "name": "l1",
-          "amount": "100"
+          "date": "00000000000",
+          "amount": 0
         },
         {
-          "name": "l2",
-          "amount": "200"
+          "date": "00000000000",
+          "amount": 200
         },
         {
-          "name": "l3",
-          "amount": "1232"
+          "date": "00000000000",
+          "amount": 300
+        },
+        {
+          "date": "00000000000",
+          "amount": 500
         }
       ],
       "id": 1
-    },
-    {
-      "loans": [
-        {
-          "name": "loan00000",
-          "amount": "0"
-        }
-      ],
-      "id": 2
-    },
-    {
-      "loans": [
-        {
-          "name": "loan00000",
-          "amount": "0"
-        }
-      ],
-      "id": 3
     }
   ],
   "deposits": [
     {
       "deposits": [
         {
-          "name": "deposit00000",
-          "amount": "150"
+          "date": "00000000000",
+          "amount": 0
         },
         {
-          "name": "deposit00000",
-          "amount": "100"
+          "date": "00000000000",
+          "amount": 500
         },
         {
-          "name": "deposit00000",
-          "amount": "100"
-        },
-        {
-          "name": "deposit00000",
-          "amount": "150"
+          "date": "00000000000",
+          "amount": 900
         }
       ],
       "id": 1
-    },
-    {
-      "deposits": [
-        {
-          "name": "deposit00000",
-          "amount": "0"
-        }
-      ],
-      "id": 2
-    },
-    {
-      "deposits": [
-        {
-          "name": "deposit00000",
-          "amount": "0"
-        }
-      ],
-      "id": 3
     }
   ]
 }

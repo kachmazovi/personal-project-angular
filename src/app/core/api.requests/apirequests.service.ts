@@ -3,10 +3,11 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
   accountId,
+  accounts,
   registeredUser,
 } from 'src/app/shared/interfaces/register.interface';
-import { loans } from 'src/app/shared/interfaces/loan.interface';
-import { deposits } from 'src/app/shared/interfaces/deposit.interface';
+import { loa, loans } from 'src/app/shared/interfaces/loan.interface';
+import { dep, deposits } from 'src/app/shared/interfaces/deposit.interface';
 import { loanId } from 'src/app/shared/interfaces/loan.interface';
 import { depositId } from 'src/app/shared/interfaces/deposit.interface';
 
@@ -63,6 +64,16 @@ export class ApiRequestsService {
     return this.http.get<accountId>(`${this.baseUrl}/accounts/${id}`);
   }
 
+  updateAccount(userAccount: accountId) {
+    return this.http.put(`${this.baseUrl}/accounts/${userAccount.id}`, {
+      name: userAccount.name,
+      surname: userAccount.surname,
+      account: userAccount.account,
+      amount: userAccount.amount,
+      id: userAccount.id,
+    });
+  }
+
   // Loans
   addLoan<loans>(loan: loans) {
     return this.http.post<loans>(`${this.baseUrl}/loans`, {
@@ -73,9 +84,9 @@ export class ApiRequestsService {
     return this.http.get<loanId>(`${this.baseUrl}/loans/${id}`);
   }
 
-  updateLoan(loan: loans, id: string) {
+  updateLoan(loans: loa[], id: string) {
     return this.http.put(`${this.baseUrl}/loans/${id}`, {
-      loans: loan.loans,
+      loans: loans,
       id: id,
     });
   }
@@ -94,9 +105,9 @@ export class ApiRequestsService {
     return this.http.get<depositId>(`${this.baseUrl}/deposits/${id}`);
   }
 
-  updateDeposit(deposit: deposits, id: string) {
+  updateDeposit(deposit: dep[], id: string) {
     return this.http.put(`${this.baseUrl}/deposits/${id}`, {
-      deposit: deposit,
+      deposits: deposit,
       id: id,
     });
   }
