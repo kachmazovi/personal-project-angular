@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { OpendepositComponent } from './opendeposit/opendeposit.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { DepositAnimationComponent } from './opendeposit/deposit-animation/deposit-animation.component';
 
 @NgModule({
-  declarations: [OpendepositComponent],
+  declarations: [OpendepositComponent, DepositAnimationComponent],
   imports: [
     CommonModule,
     SharedModule,

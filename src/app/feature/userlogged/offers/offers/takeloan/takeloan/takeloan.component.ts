@@ -40,6 +40,7 @@ export class TakeloanComponent implements OnInit {
       .subscribe();
   }
 
+  public terms = true;
   public confirm = new BehaviorSubject(false);
   private getDate = new Date();
   private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
@@ -50,6 +51,12 @@ export class TakeloanComponent implements OnInit {
     amount: '',
     id: '',
   };
+
+  public term() {
+    if (this.terms) {
+      this.terms = false;
+    } else this.terms = true;
+  }
 
   private getUserLoan() {
     this.http

@@ -1,38 +1,73 @@
 <main *ngIf="lang | async as language">
-  <h1>
-    {{
-      language == "geo"
-        ? "გახსენი ანაბარი ახლა ნებისმიერი თანხით"
-        : "Open deposit now"
-    }}
-  </h1>
-  <div class="deposit">
-    <label for="amount">
-      {{ language == "geo" ? "ანაბრის თანხა" : "Deposit amount" }}:
-      <input type="number" [formControl]="inputAmount" />
-    </label>
-    <button
-      (click)="openDep()"
-      [disabled]="wrongAmount || inputAmount.invalid"
-      [ngClass]="{ 'not-allowed': wrongAmount || inputAmount.invalid }"
-    >
-      {{ language == "geo" ? "ანაბრის გახსნა" : "Open Deposit" }}
-    </button>
-    <h1 class="wrong-amount" *ngIf="wrongAmount">
+  <div class="image"></div>
+  <div class="skew"></div>
+  <div class="skew1"></div>
+  <div class="dep" *ngIf="!terms">
+    <h1>
       {{
         language == "geo"
-          ? "არასაკმარისი თანხა ანგარიშზე"
-          : "You don't have enough amount"
+          ? "გახსენი ანაბარი ახლა ნებისმიერი თანხით"
+          : "Open deposit now"
       }}
     </h1>
-    <ng-container *ngIf="confirm | async as tru">
-      <h1 class="confirm" *ngIf="true">
+    <div class="deposit">
+      <label for="amount">
+        {{ language == "geo" ? "ანაბრის თანხა" : "Deposit amount" }}:
+        <input type="number" [formControl]="inputAmount" />
+      </label>
+      <div class="buttons">
+        <button
+          (click)="openDep()"
+          [disabled]="wrongAmount || inputAmount.invalid"
+          [ngClass]="{ 'not-allowed': wrongAmount || inputAmount.invalid }"
+        >
+          {{ language == "geo" ? "ანაბრის გახსნა" : "Open Deposit" }}
+        </button>
+        <button (click)="term()">
+          {{ language == "geo" ? "პირობები" : "Terms" }}
+        </button>
+      </div>
+    </div>
+    <div class="messages">
+      <h1 class="wrong-amount" *ngIf="wrongAmount">
         {{
           language == "geo"
-            ? "გილოცავთ, თქვენ წარმატებით გახსენით ანაბარი"
-            : "Congrat, you opened deposit successfully"
+            ? "არასაკმარისი თანხა ანგარიშზე"
+            : "You don't have enough amount"
         }}
       </h1>
-    </ng-container>
+      <ng-container *ngIf="confirm | async as tru">
+        <h1 class="confirm" *ngIf="true">
+          {{
+            language == "geo"
+              ? "გილოცავთ, თქვენ წარმატებით გახსენით ანაბარი"
+              : "Congrat, you opened deposit successfully"
+          }}
+        </h1>
+      </ng-container>
+    </div>
+  </div>
+  <div class="terms" *ngIf="terms">
+    <h1>{{ language == "geo" ? "ვადიანი ანაბარი" : "Term Deposit" }}</h1>
+    <ul>
+      <li>
+        {{
+          language == "geo"
+            ? "შეინახე თავისუფალი თანხა და მიიღე მაღალი საპროცენტო სარგებელი."
+            : "Keep your free money and receive the high interest rate."
+        }}
+      </li>
+      <li>
+        {{
+          language == "geo"
+            ? "ანაბრის ინტერნეტ/მობაილ ბანკით გახსნის შემთხვევაში საპროცენტო სარგებელი გაიზრდება 0.3%-ით ეროვნულ ვალუტაში, ხოლო 0.15%-ით უცხოურ ვალუტაში."
+            : "Get an additional fixed-rate bonus of 0.3% on a GEL deposit and 0.15% on a foreign currency deposit if you open the deposit through internet/mobile banking."
+        }}
+      </li>
+    </ul>
+    <button (click)="term()">
+      {{ language == "geo" ? "გახსნა" : "Apply now" }}
+    </button>
   </div>
 </main>
+<app-deposit-animation></app-deposit-animation>

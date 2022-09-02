@@ -1,3 +1,16 @@
-<section *ngIf="lang | async as language">
-  <h1>{{ language == "geo" ? "გადარიცხვები" : "transfers" }}</h1>
+<section>
+  <nav *ngIf="lang | async as language">
+    <li routerLink="accountnumber" routerLinkActive="active">
+      {{ language == "geo" ? "ანგარიშის ნომრით" : "Via Account Number" }}
+    </li>
+    <li routerLink="personalnumber" routerLinkActive="active">
+      {{ language == "geo" ? "პირადი ნომრით" : "Via Personal Number" }}
+    </li>
+    <li routerLink="phonenumber" routerLinkActive="active">
+      {{ language == "geo" ? "მობილურის ნომრით" : "Via Mobile Number" }}
+    </li>
+  </nav>
 </section>
+<main>
+  <router-outlet></router-outlet>
+</main>

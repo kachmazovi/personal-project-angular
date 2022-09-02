@@ -1,0 +1,98 @@
+main {
+  width: 1280px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  .anime-1 {
+    background-image: url(../../../../../../../../assets/take-loan/anime1.png);
+    width: 400px;
+    height: 250px;
+    border: 5px solid white;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: anime 6s infinite;
+    border-radius: 25px;
+  }
+
+  @keyframes anime {
+    50% {
+      background-image: url(../../../../../../../../assets/take-loan/anime2.png);
+    }
+  }
+
+  .anime-2 {
+    width: 400px;
+    height: 250px;
+    border-radius: 25px;
+    border: 5px solid white;
+    position: relative;
+    overflow: hidden;
+    .img-1,
+    .img-2 {
+      width: 400px;
+      height: 250px;
+      margin: auto;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      //   margin-bottom: 20px;
+    }
+    .img-1 {
+      background-image: url(../../../../../../../../assets/take-loan/anime3.jpg);
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: image-1 10s infinite linear;
+    }
+    .img-2 {
+      background-image: url(../../../../../../../../assets/take-loan/anime4.jpg);
+      position: absolute;
+      top: -105%;
+      left: 0;
+      animation: image-2 10s infinite linear;
+    }
+  }
+
+  @keyframes image-1 {
+    0% {
+      top: 0;
+    }
+    50% {
+      top: 105%;
+      left: 0;
+    }
+    50.1% {
+      top: 105%;
+      left: -105%;
+    }
+    50.2% {
+      left: -105%;
+      top: -105%;
+    }
+    51% {
+      left: 0;
+      top: -105%;
+    }
+  }
+  @keyframes image-2 {
+    0% {
+      top: -105%;
+    }
+    50% {
+      top: 0;
+    }
+    99% {
+      top: 105%;
+      left: 0;
+    }
+    99.3% {
+      top: 105%;
+      left: -105%;
+    }
+    99.7% {
+      top: -105%;
+      left: -105%;
+    }
+  }
+}

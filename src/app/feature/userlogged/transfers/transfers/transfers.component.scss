@@ -3,11 +3,21 @@ section {
   height: 60px;
   padding-top: 15px;
   background-color: white;
-  h1 {
+  nav {
     width: 1280px;
     margin: auto;
-    color: black;
-    font-size: 25px;
-    font-weight: bold;
+    display: flex;
+    li {
+      color: black;
+      font-size: 25px;
+      list-style-type: none;
+      margin-right: 30px;
+      padding-bottom: 15px;
+      cursor: pointer;
+    }
+    .active {
+      color: #00a3e0;
+      border-bottom: 5px solid #00a3e0;
+    }
   }
 }

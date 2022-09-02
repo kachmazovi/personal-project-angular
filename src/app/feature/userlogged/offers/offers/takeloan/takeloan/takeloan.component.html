@@ -1,27 +1,62 @@
 <main *ngIf="lang | async as language">
-  <h1>
-    {{ language == "geo" ? "აიღე სესხი სასურველი თანხით" : "Take loan now" }}
-  </h1>
-  <div class="loan">
-    <label for="amount">
-      {{ language == "geo" ? "სესხის თანხა" : "Loan amount" }}:
-      <input type="number" [formControl]="inputAmount" />
-    </label>
-    <button
-      (click)="openLoan()"
-      [disabled]="inputAmount.invalid"
-      [ngClass]="{ 'not-allowed': inputAmount.invalid }"
-    >
-      {{ language == "geo" ? "სესხის აღება" : "Take Loan" }}
-    </button>
-    <ng-container *ngIf="confirm | async as true">
-      <h1 class="confirm" *ngIf="true">
+  <div class="image"></div>
+  <div class="skew"></div>
+  <div class="skew1"></div>
+  <div class="loa" *ngIf="!terms">
+    <h1>
+      {{ language == "geo" ? "აიღე სესხი სასურველი თანხით" : "Take loan now" }}
+    </h1>
+    <div class="loan">
+      <label for="amount">
+        {{ language == "geo" ? "სესხის თანხა" : "Loan amount" }}:
+        <input type="number" [formControl]="inputAmount" />
+      </label>
+      <div class="buttons">
+        <button
+          (click)="openLoan()"
+          [disabled]="inputAmount.invalid"
+          [ngClass]="{ 'not-allowed': inputAmount.invalid }"
+        >
+          {{ language == "geo" ? "სესხის აღება" : "Take Loan" }}
+        </button>
+        <button (click)="term()">
+          {{ language == "geo" ? "პირობები" : "Terms" }}
+        </button>
+      </div>
+    </div>
+    <div class="messages">
+      <ng-container *ngIf="confirm | async as true">
+        <h1 class="confirm" *ngIf="true">
+          {{
+            language == "geo"
+              ? "გილოცავთ, თქვენ წარმატებით აიღეთ სესხი"
+              : "Congrat, you take loan successfully"
+          }}
+        </h1>
+      </ng-container>
+    </div>
+  </div>
+  <div class="terms" *ngIf="terms">
+    <h1>{{ language == "geo" ? "სამომხმარებლო სესხი" : "Consumer Loan" }}</h1>
+    <ul>
+      <li>
         {{
           language == "geo"
-            ? "გილოცავთ, თქვენ წარმატებით აიღეთ სესხი"
-            : "Congrat, you take loan successfully"
+            ? "5%-მდე ფასდაკლება სამომხმარებლო სესხზე თიბისის ციფრულ არხებში, ეფექტური 16 %-დან."
+            : "Up to 5% discount on consumer loan in TBC digital channels, effective from 16%"
         }}
-      </h1>
-    </ng-container>
+      </li>
+      <li>
+        {{
+          language == "geo"
+            ? "საკომისიო საკუთარი სახსრებით და სხვა ბანკიდან წინსწრებით დაფარვისას 0%-2 % კრედიტის დასრულებამდე დარჩენილი ვადის შესაბამისად."
+            : "Commission for early repayment with own funds and from another bank 0%-2% depending on the remaining term of the loan."
+        }}
+      </li>
+    </ul>
+    <button (click)="term()">
+      {{ language == "geo" ? "სესხის მოთხოვნა" : "Apply now" }}
+    </button>
   </div>
 </main>
+<app-loan-animation></app-loan-animation>

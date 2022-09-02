@@ -13,6 +13,29 @@ import { SharedModule } from 'src/app/shared/shared.module';
       {
         path: '',
         component: TransfersComponent,
+        children: [
+          {
+            path: 'accountnumber',
+            loadChildren: () =>
+              import(
+                './transfers/viaaccountnumber/viaaccountnumber.module'
+              ).then((m) => m.ViaaccountnumberModule),
+          },
+          {
+            path: 'personalnumber',
+            loadChildren: () =>
+              import(
+                './transfers/viapersonalnumber/viapersonalnumber.module'
+              ).then((m) => m.ViapersonalnumberModule),
+          },
+          {
+            path: 'phonenumber',
+            loadChildren: () =>
+              import('./transfers/viaphonenumber/viaphonenumber.module').then(
+                (m) => m.ViaphonenumberModule
+              ),
+          },
+        ],
       },
     ]),
   ],

@@ -46,6 +46,7 @@ export class OpendepositComponent implements OnInit {
     });
   }
 
+  public terms = true;
   public wrongAmount = false;
   public confirm = new BehaviorSubject(false);
   private getDate = new Date();
@@ -57,6 +58,12 @@ export class OpendepositComponent implements OnInit {
   };
   private userDeposit: dep[] = [];
   public inputAmount = new FormControl('', Validators.required);
+
+  public term() {
+    if (this.terms) {
+      this.terms = false;
+    } else this.terms = true;
+  }
 
   private getUserDeposit() {
     this.http
