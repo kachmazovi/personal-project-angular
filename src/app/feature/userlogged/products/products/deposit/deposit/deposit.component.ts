@@ -30,8 +30,6 @@ export class DepositComponent implements OnInit {
   public closeDeposit = false;
   public depositArr: dep[] = [];
   private userAccount: accountId = {
-    name: '',
-    surname: '',
     account: '',
     amount: '',
     id: '',
@@ -70,7 +68,9 @@ export class DepositComponent implements OnInit {
     this.closeDeposit = false;
     const depAmount = this.depositArr.splice(value, 1);
     this.userAccount.amount = String(
-      Number(this.userAccount.amount) + depAmount[0].amount
+      Number(this.userAccount.amount) +
+        depAmount[0].amount +
+        depAmount[0].amount / 10
     );
     this.userDeposits.next(this.depositArr);
     this.http.updateDeposit(this.depositArr, this.loggedUserId).subscribe();

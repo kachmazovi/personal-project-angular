@@ -53,8 +53,6 @@ export class MainpageComponent implements OnInit {
   }
 
   public userAccount: BehaviorSubject<accountId> = new BehaviorSubject({
-    name: '',
-    surname: '',
     account: '',
     amount: '',
     id: '',

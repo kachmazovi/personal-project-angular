@@ -3,7 +3,7 @@
     {{ language == "geo" ? "მიმდინარე ანაბრები" : "Current deposits" }}
 
     <button class="close" (click)="close()">
-      {{ language == "geo" ? "ანაბრის დარღვევა" : "Close the deposit" }}
+      {{ language == "geo" ? "ანაბრის დარღვევა" : "Close deposit" }}
     </button>
 
     <button class="cancel" (click)="cancel()" *ngIf="closeDeposit">
@@ -11,8 +11,8 @@
     </button>
   </h1>
   <div *ngIf="userDeposits | async as deposit" class="deposit-container">
-    <div class="deposit-header">
-      <h1>{{ language == "geo" ? "ანაბრის სახელი" : "Name of deposit" }}</h1>
+    <div class="deposit-header" *ngIf="deposit.length > 1">
+      <h1>{{ language == "geo" ? "ანაბრის ტიპი" : "Type of deposit" }}</h1>
       <h1>
         {{
           language == "geo" ? "ანაბრის გახსნის თარიღი" : "Deposit opening date"
@@ -23,7 +23,10 @@
     <div *ngFor="let dep of deposit; let index = index">
       <div *ngIf="dep.amount > 0" class="deposits">
         <div class="deposit">
-          <h1>{{ language == "geo" ? "ვადიანი ანაბარი" : "Term Deposit" }}</h1>
+          <h1>
+            {{ language == "geo" ? "ვადიანი ანაბარი" : "Term Deposit" }}
+            {{ index }}
+          </h1>
           <h1>{{ dep.date }}</h1>
           <h1>{{ dep.amount }} {{ language == "geo" ? "ლარი" : "GEL" }}</h1>
         </div>

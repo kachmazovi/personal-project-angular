@@ -42,6 +42,18 @@ main {
     }
   }
   .loan-container {
+    height: 500px;
+    overflow: auto;
+    .wrong {
+      font-size: 20px;
+      color: red;
+      margin-left: 50px;
+    }
+    .no-loan {
+      width: 200px;
+      height: 10px;
+      background-color: red;
+    }
     .loan-header {
       display: flex;
       justify-content: space-around;
@@ -74,19 +86,29 @@ main {
         }
       }
       .confirm {
-        width: 150px;
-        margin-left: 50px;
-        margin-top: 25px;
-        border: 1px solid;
-        background-color: white;
-        font-size: 16px;
-        border-radius: 15px;
-        cursor: pointer;
-        border-color: green;
-      }
-      .confirm:hover {
-        background-color: green;
-        color: white;
+        display: flex;
+        padding: 25px 0 0 50px;
+
+        input {
+          margin-right: 50px;
+          height: 30px;
+        }
+        .confirm-button {
+          width: 150px;
+          border: 1px solid;
+          background-color: white;
+          font-size: 16px;
+          border-radius: 15px;
+          border-color: green;
+          cursor: pointer;
+        }
+        .confirm-button:hover {
+          background-color: green;
+          color: white;
+        }
+        .not-allowed:hover {
+          cursor: not-allowed;
+        }
       }
     }
   }

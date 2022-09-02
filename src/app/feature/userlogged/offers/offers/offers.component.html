@@ -1,3 +1,13 @@
-<section *ngIf="lang | async as language">
-  <h1>{{ language == "geo" ? "შეთავაზებები" : "offers" }}</h1>
+<section>
+  <nav *ngIf="lang | async as language">
+    <li routerLink="opendeposit" routerLinkActive="active">
+      {{ language == "geo" ? "ანაბრის გახსნა" : "Open deposit" }}
+    </li>
+    <li routerLink="takeloan" routerLinkActive="active">
+      {{ language == "geo" ? "სესხის აღება" : "Take loan" }}
+    </li>
+  </nav>
 </section>
+<main>
+  <router-outlet></router-outlet>
+</main>

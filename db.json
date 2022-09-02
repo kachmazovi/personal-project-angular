@@ -1,22 +1,34 @@
 {
   "users": [
     {
-      "name": "Giorgi ",
+      "name": "Giorgi",
       "surname": "Lezhava",
-      "personalNumber": 65959898995,
-      "phoneNumber": 598989898,
+      "personalNumber": 12365654565,
+      "phoneNumber": 577989896,
       "username": "lezava",
       "password": "Lezava123",
       "id": 1
+    },
+    {
+      "name": "სალომე",
+      "surname": "ფაცაცია",
+      "personalNumber": 12445645455,
+      "phoneNumber": 577989897,
+      "username": "pacia",
+      "password": "Pacia123",
+      "id": 2
     }
   ],
   "accounts": [
     {
-      "name": "Giorgi ",
-      "surname": "Lezhava",
-      "account": "GE00TB0712919499062850",
-      "amount": "2200",
+      "account": "GE00TB7174431172082191",
+      "amount": "24050",
       "id": 1
+    },
+    {
+      "account": "GE00TB6328151245637533",
+      "amount": "80630",
+      "id": 2
     }
   ],
   "loans": [
@@ -27,19 +39,72 @@
           "amount": 0
         },
         {
-          "date": "00000000000",
-          "amount": 200
+          "date": "2/8/2022",
+          "amount": 1550
         },
         {
-          "date": "00000000000",
-          "amount": 300
+          "date": "2/8/2022",
+          "amount": 900
         },
         {
-          "date": "00000000000",
-          "amount": 500
+          "date": "2/8/2022",
+          "amount": 1000
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 1200
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 700
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 1500
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 2100
         }
       ],
       "id": 1
+    },
+    {
+      "loans": [
+        {
+          "date": "00000000000",
+          "amount": 0
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 1000
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 1600
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 3100
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 2500
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 3100
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 2500
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 7000
+        }
+      ],
+      "id": 2
     }
   ],
   "deposits": [
@@ -50,15 +115,60 @@
           "amount": 0
         },
         {
-          "date": "00000000000",
-          "amount": 500
+          "date": "2/8/2022",
+          "amount": 520
         },
         {
-          "date": "00000000000",
-          "amount": 900
+          "date": "2/8/2022",
+          "amount": 1000
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 2000
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 2500
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 1000
         }
       ],
       "id": 1
+    },
+    {
+      "deposits": [
+        {
+          "date": "00000000000",
+          "amount": 0
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 1000
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 1300
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 2500
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 2500
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 5000
+        },
+        {
+          "date": "2/8/2022",
+          "amount": 7500
+        }
+      ],
+      "id": 2
     }
   ]
 }

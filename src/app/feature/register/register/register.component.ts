@@ -174,14 +174,7 @@ export class RegisterComponent implements OnInit {
         this.password.value
       )
       .subscribe();
-    this.request
-      .addAccount(
-        this.name.value,
-        this.surname.value,
-        this.generateAccount,
-        '1000'
-      )
-      .subscribe();
+    this.request.addAccount(this.generateAccount, '10000').subscribe();
     this.request
       .addDeposit([
         {

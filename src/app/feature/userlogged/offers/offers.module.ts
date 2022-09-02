@@ -13,6 +13,22 @@ import { SharedModule } from 'src/app/shared/shared.module';
       {
         path: '',
         component: OffersComponent,
+        children: [
+          {
+            path: 'opendeposit',
+            loadChildren: () =>
+              import('./offers/opendeposit/opendeposit.module').then(
+                (m) => m.OpendepositModule
+              ),
+          },
+          {
+            path: 'takeloan',
+            loadChildren: () =>
+              import('./offers/takeloan/takeloan.module').then(
+                (m) => m.TakeloanModule
+              ),
+          },
+        ],
       },
     ]),
   ],

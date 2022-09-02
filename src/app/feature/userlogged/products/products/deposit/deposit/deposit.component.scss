@@ -42,6 +42,8 @@ main {
     }
   }
   .deposit-container {
+    height: 500px;
+    overflow: auto;
     .deposit-header {
       display: flex;
       justify-content: space-around;

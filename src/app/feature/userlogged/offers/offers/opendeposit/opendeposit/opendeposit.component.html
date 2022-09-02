@@ -1,0 +1,38 @@
+<main *ngIf="lang | async as language">
+  <h1>
+    {{
+      language == "geo"
+        ? "გახსენი ანაბარი ახლა ნებისმიერი თანხით"
+        : "Open deposit now"
+    }}
+  </h1>
+  <div class="deposit">
+    <label for="amount">
+      {{ language == "geo" ? "ანაბრის თანხა" : "Deposit amount" }}:
+      <input type="number" [formControl]="inputAmount" />
+    </label>
+    <button
+      (click)="openDep()"
+      [disabled]="wrongAmount || inputAmount.invalid"
+      [ngClass]="{ 'not-allowed': wrongAmount || inputAmount.invalid }"
+    >
+      {{ language == "geo" ? "ანაბრის გახსნა" : "Open Deposit" }}
+    </button>
+    <h1 class="wrong-amount" *ngIf="wrongAmount">
+      {{
+        language == "geo"
+          ? "არასაკმარისი თანხა ანგარიშზე"
+          : "You don't have enough amount"
+      }}
+    </h1>
+    <ng-container *ngIf="confirm | async as tru">
+      <h1 class="confirm" *ngIf="true">
+        {{
+          language == "geo"
+            ? "გილოცავთ, თქვენ წარმატებით გახსენით ანაბარი"
+            : "Congrat, you opened deposit successfully"
+        }}
+      </h1>
+    </ng-container>
+  </div>
+</main>

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import { loa, loans } from 'src/app/shared/interfaces/loan.interface';
@@ -30,12 +31,13 @@ export class LoanComponent implements OnInit {
   public closeLoan = false;
   public loanArr: loa[] = [];
   private userAccount: accountId = {
-    name: '',
-    surname: '',
     account: '',
     amount: '',
     id: '',
   };
+  public inputAmount = new FormControl('', Validators.required);
+  public notEnoughAmount = false;
+  public wrongAmount = false;
 
   ngOnInit(): void {
     this.getLoan();
@@ -47,6 +49,10 @@ export class LoanComponent implements OnInit {
         })
       )
       .subscribe();
+    this.inputAmount.valueChanges.subscribe((v) => {
+      this.notEnoughAmount = false;
+      this.wrongAmount = false;
+    });
   }
 
   private getLoan() {
@@ -65,15 +71,41 @@ export class LoanComponent implements OnInit {
   }
   public cancel() {
     this.closeLoan = false;
+    this.wrongAmount = false;
+    this.notEnoughAmount = false;
   }
-  public confirm(value: number) {
-    this.closeLoan = false;
-    const depAmount = this.loanArr.splice(value, 1);
-    this.userAccount.amount = String(
-      Number(this.userAccount.amount) - depAmount[0].amount
-    );
-    this.userLoans.next(this.loanArr);
-    this.http.updateLoan(this.loanArr, this.loggedUserId).subscribe();
-    this.http.updateAccount(this.userAccount).subscribe();
+  public confirm(index: number) {
+    const inputAmount = Number(this.inputAmount.value);
+    if (inputAmount > this.loanArr[index].amount) {
+      this.wrongAmount = true;
+    } else if (
+      inputAmount <= this.loanArr[index].amount &&
+      inputAmount > Number(this.userAccount.amount)
+    ) {
+      this.notEnoughAmount = true;
+    } else if (
+      inputAmount <= this.loanArr[index].amount &&
+      inputAmount < Number(this.userAccount.amount)
+    ) {
+      if (inputAmount < this.loanArr[index].amount) {
+        this.loanArr[index].amount -= inputAmount;
+        this.userAccount.amount = String(
+          Number(this.userAccount.amount) - inputAmount - inputAmount / 5
+        );
+        this.userLoans.next(this.loanArr);
+        this.http.updateLoan(this.loanArr, this.loggedUserId).subscribe();
+        this.http.updateAccount(this.userAccount).subscribe();
+      } else if (inputAmount == this.loanArr[index].amount) {
+        this.loanArr.splice(index, 1);
+        this.userAccount.amount = String(
+          Number(this.userAccount.amount) - inputAmount - inputAmount / 5
+        );
+        this.userLoans.next(this.loanArr);
+        this.http.updateLoan(this.loanArr, this.loggedUserId).subscribe();
+        this.http.updateAccount(this.userAccount).subscribe();
+      }
+      this.closeLoan = false;
+      this.inputAmount.reset();
+    }
   }
 }

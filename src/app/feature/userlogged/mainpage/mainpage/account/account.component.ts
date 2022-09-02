@@ -16,8 +16,6 @@ export class AccountComponent implements OnInit {
   @Input() showAmount = false;
 
   @Input() userAccount: BehaviorSubject<accountId> = new BehaviorSubject({
-    name: '',
-    surname: '',
     account: '',
     amount: '',
     id: '',

@@ -46,15 +46,8 @@ export class ApiRequestsService {
   }
 
   // Acounts
-  addAccount<accounts>(
-    name: string,
-    surname: string,
-    account: string,
-    amount: string
-  ): Observable<accounts> {
+  addAccount<accounts>(account: string, amount: string): Observable<accounts> {
     return this.http.post<accounts>(`${this.baseUrl}/accounts`, {
-      name: name,
-      surname: surname,
       account: account,
       amount: amount,
     });
@@ -66,8 +59,6 @@ export class ApiRequestsService {
 
   updateAccount(userAccount: accountId) {
     return this.http.put(`${this.baseUrl}/accounts/${userAccount.id}`, {
-      name: userAccount.name,
-      surname: userAccount.surname,
       account: userAccount.account,
       amount: userAccount.amount,
       id: userAccount.id,

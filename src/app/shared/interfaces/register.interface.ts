@@ -17,8 +17,6 @@ export interface userData {
 
 // Account
 export interface accounts {
-  name: string;
-  surname: string;
   account: string;
   amount: string;
 }
