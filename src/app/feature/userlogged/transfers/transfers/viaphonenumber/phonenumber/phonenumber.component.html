@@ -1,1 +1,22 @@
-<p>phonenumber works!</p>
+<main *ngIf="lang | async as language">
+  <div class="check-box">
+    <h1>
+      {{
+        language == "geo"
+          ? "შეიყვანეთ მიმღების მობილურის ნომერი"
+          : "Enter the recipient's mobile number"
+      }}
+    </h1>
+    <input type="text" [formControl]="inputMobile" />
+    <h6>
+      <span *ngIf="wrongAccountNumber">{{
+        language == "geo" ? "არასწორი მობილურის ნომერი" : "Wrong mobile number"
+      }}</span>
+    </h6>
+    <button (click)="check()">
+      {{ language == "geo" ? "შემოწმება" : "Check" }}
+    </button>
+  </div>
+  <div class="user-box" [ngClass]="{ checked: checked }"></div>
+  <div class="confirm-box" [ngClass]="{ checked: checked }"></div>
+</main>

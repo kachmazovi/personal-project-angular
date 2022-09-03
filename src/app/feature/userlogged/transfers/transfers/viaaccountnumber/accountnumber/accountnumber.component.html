@@ -1,1 +1,53 @@
-<p>accountnumber works!</p>
+<main *ngIf="lang | async as language">
+  <div class="check-box">
+    <h1>
+      {{
+        language == "geo"
+          ? "შეიყვანეთ მიმღების ანგარიშის ნომერი"
+          : "Enter the recipient's account number"
+      }}
+    </h1>
+    <input type="text" [formControl]="inputAccount" />
+    <h6>
+      <span *ngIf="wrongAccountNumber">{{
+        language == "geo" ? "არასწორი ანგარიშის ნომერი" : "Wrong account number"
+      }}</span>
+    </h6>
+    <button
+      (click)="check()"
+      [ngClass]="{ 'not-allowed': inputAccount.invalid || wrongAccountNumber }"
+      [disabled]="inputAccount.invalid || wrongAccountNumber"
+    >
+      {{ language == "geo" ? "შემოწმება" : "Check" }}
+    </button>
+  </div>
+  <div
+    class="user-box"
+    [ngClass]="{ checked: checked }"
+    *ngIf="receiverData | async as user"
+  >
+    <img src="../../../../../../../assets/main-page/userlogo.png" alt="" />
+    <h1>{{ user.name }} {{ user.surname }}</h1>
+    <button (click)="nextClick()">
+      {{ language == "geo" ? "შემდეგი" : "Next" }}
+    </button>
+  </div>
+  <div class="confirm-box" [ngClass]="{ checked: checked, next: next }">
+    <h1>{{ language == "geo" ? "შეიყვანეთ თანხა" : "Enter Amoount" }}</h1>
+    <input type="number" [formControl]="inputAmount" />
+    <h6>
+      <span *ngIf="enoughAmount">{{
+        language == "geo"
+          ? "არასაკმარისი თანხა ანგარიშზე"
+          : "You don't have enough amount"
+      }}</span>
+    </h6>
+    <button
+      [disabled]="enoughAmount || inputAmount.invalid"
+      [ngClass]="{ 'not-allowed': enoughAmount || inputAmount.invalid }"
+      (click)="transfer()"
+    >
+      {{ language == "geo" ? "გადარიცხვა" : "Transfer" }}
+    </button>
+  </div>
+</main>

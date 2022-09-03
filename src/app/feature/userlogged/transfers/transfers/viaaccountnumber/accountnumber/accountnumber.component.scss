@@ -1,0 +1,88 @@
+main {
+  width: 1280px;
+  height: 300px;
+  margin: 50px auto;
+  overflow: hidden;
+  position: relative;
+  .check-box,
+  .user-box,
+  .confirm-box {
+    width: 33%;
+    height: 100%;
+    background-color: #005a96;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 25px;
+    transition: 0.5s linear;
+    animation: start 0.5s linear;
+    h1 {
+      font-size: 20px;
+      color: white;
+    }
+    button {
+      padding: 10px 30px;
+      border: 0;
+      font-size: 25px;
+      background-color: #92278f;
+      border-radius: 10px;
+      color: white;
+    }
+    button:hover {
+      background-color: #6a1c68;
+      cursor: pointer;
+    }
+  }
+  .check-box,
+  .confirm-box {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0;
+    input {
+      width: 300px;
+      height: 40px;
+    }
+    h6 {
+      width: 300px;
+      height: 25px;
+      text-align: center;
+      color: white;
+    }
+    .not-allowed:hover {
+      cursor: not-allowed;
+    }
+  }
+  .user-box {
+    z-index: 2;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .confirm-box {
+    z-index: 1;
+  }
+  .checked {
+    left: 33.5%;
+  }
+  .next {
+    left: 67%;
+  }
+}
+
+@keyframes start {
+  0% {
+    left: -33%;
+  }
+  100% {
+    left: 0;
+  }
+}

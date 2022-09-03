@@ -16,9 +16,7 @@ import { ExchangeService } from './exchange/services/exchange.service';
 })
 export class MainpageComponent implements OnInit {
   public loggedUserId = '';
-  public geo = new BehaviorSubject('geo');
-  public eng = new BehaviorSubject('eng');
-  public lang = this.geo;
+  public lang = new BehaviorSubject('geo');
 
   constructor(
     private loginServ: LoginService,

@@ -65,6 +65,10 @@ export class ApiRequestsService {
     });
   }
 
+  getUsersAccount(): Observable<accountId[]> {
+    return this.http.get<accountId[]>(`${this.baseUrl}/accounts`);
+  }
+
   // Loans
   addLoan<loans>(loan: loans) {
     return this.http.post<loans>(`${this.baseUrl}/loans`, {

@@ -1,1 +1,25 @@
-<p>personalnumber works!</p>
+<main *ngIf="lang | async as language">
+  <div class="check-box">
+    <h1>
+      {{
+        language == "geo"
+          ? "შეიყვანეთ მიმღების პირადი ნომერი"
+          : "Enter the recipient's personal number"
+      }}
+    </h1>
+    <input type="text" [formControl]="inputPersonal" />
+    <h6>
+      <span *ngIf="wrongAccountNumber">{{
+        language == "geo" ? "არასწორი პირადი ნომერი" : "Wrong personal number"
+      }}</span>
+    </h6>
+    <button (click)="check()">
+      {{ language == "geo" ? "შემოწმება" : "Check" }}
+    </button>
+  </div>
+  <div class="user-box" [ngClass]="{ checked: checked }">
+    <img src="../../../../../../../assets/main-page/userlogo.png" alt="" />
+    <h1></h1>
+  </div>
+  <div class="confirm-box" [ngClass]="{ checked: checked }"></div>
+</main>

@@ -9,8 +9,6 @@
       <app-animation></app-animation>
       <app-account
         (showHideAmount)="showHideAmount()"
-        [geo]="geo"
-        [eng]="eng"
         [lang]="lang"
         [showAmount]="showAmount"
         [userAccount]="userAccount"
@@ -21,8 +19,6 @@
     <div class="right-section">
       <app-loan
         class="right-comp"
-        [geo]="geo"
-        [eng]="eng"
         [lang]="lang"
         [showLoan]="showLoan"
         (hideLoanButton)="showLoanButton()"
@@ -30,16 +26,12 @@
       ></app-loan>
       <app-deposit
         class="right-comp"
-        [geo]="geo"
-        [eng]="eng"
         [lang]="lang"
         [showDeposit]="showDeposit"
         (hideDepositButton)="showDepositButton()"
         [sumDeposit]="sumDeposit"
       ></app-deposit>
       <app-exchange
-        [geo]="geo"
-        [eng]="eng"
         [lang]="lang"
         [currencies]="currencies"
         [amountOutputLeft]="amountOutputLeft"

@@ -9,9 +9,7 @@ import { loanId, loans } from 'src/app/shared/interfaces/loan.interface';
   styleUrls: ['./loan.component.scss'],
 })
 export class LoanComponent implements OnInit {
-  @Input() geo = new BehaviorSubject('geo');
-  @Input() eng = new BehaviorSubject('eng');
-  @Input() lang = this.geo;
+  @Input() lang = new BehaviorSubject('geo');
   @Input() showLoan = false;
   @Input() sumLoan = new BehaviorSubject(0);
   public showAmount = new BehaviorSubject(true);

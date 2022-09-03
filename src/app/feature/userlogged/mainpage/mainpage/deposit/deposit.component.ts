@@ -7,9 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./deposit.component.scss'],
 })
 export class DepositComponent implements OnInit {
-  @Input() geo = new BehaviorSubject('geo');
-  @Input() eng = new BehaviorSubject('eng');
-  @Input() lang = this.geo;
+  @Input() lang = new BehaviorSubject('geo');
   @Input() showDeposit = false;
   @Input() sumDeposit = new BehaviorSubject(0);
   public showAmount = new BehaviorSubject(true);

@@ -10,9 +10,7 @@ import { LoginService } from 'src/app/shared/services/login/login.service';
 })
 export class TransfersComponent implements OnInit {
   public loggedUserId = '';
-  public geo = new BehaviorSubject('geo');
-  public eng = new BehaviorSubject('eng');
-  public lang = this.geo;
+  public lang = new BehaviorSubject('eng');
 
   constructor(private loginServ: LoginService) {
     this.loginServ.loggedUserId.subscribe((id) => {

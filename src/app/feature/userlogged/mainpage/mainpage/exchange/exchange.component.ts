@@ -10,9 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ExchangeComponent implements OnInit {
   constructor() {}
 
-  @Input() geo = new BehaviorSubject('geo');
-  @Input() eng = new BehaviorSubject('eng');
-  @Input() lang = this.geo;
+  @Input() lang = new BehaviorSubject('geo');
   @Input() currencies: string[] = [];
   @Input() amountOutputLeft = new BehaviorSubject('');
   @Input() amountOutputRight = new BehaviorSubject('');

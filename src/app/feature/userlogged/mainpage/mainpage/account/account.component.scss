@@ -48,4 +48,9 @@
       }
     }
   }
+  .card:hover {
+    .balance {
+      color: #00a3e0;
+    }
+  }
 }

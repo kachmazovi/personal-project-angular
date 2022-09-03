@@ -10,9 +10,7 @@ import { accountId } from 'src/app/shared/interfaces/register.interface';
 export class AccountComponent implements OnInit {
   constructor() {}
 
-  @Input() geo = new BehaviorSubject('geo');
-  @Input() eng = new BehaviorSubject('eng');
-  @Input() lang = this.geo;
+  @Input() lang = new BehaviorSubject('geo');
   @Input() showAmount = false;
 
   @Input() userAccount: BehaviorSubject<accountId> = new BehaviorSubject({
