@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { accountId, registeredUser } from '../../interfaces/register.interface';
-import { depositId } from '../../interfaces/deposit.interface';
-import { loanId } from '../../interfaces/loan.interface';
+import { registeredUser } from '../../interfaces/register.interface';
 
 @Injectable({
   providedIn: 'root',

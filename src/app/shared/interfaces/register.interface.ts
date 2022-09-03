@@ -14,12 +14,3 @@ export interface userData {
   phoneNumber: string;
   username: string;
 }
-
-// Account
-export interface accounts {
-  account: string;
-  amount: string;
-}
-export interface accountId extends accounts {
-  id: string;
-}

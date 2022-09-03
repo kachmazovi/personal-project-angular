@@ -2,10 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
-import {
-  accountId,
-  registeredUser,
-} from 'src/app/shared/interfaces/register.interface';
+import { registeredUser } from 'src/app/shared/interfaces/register.interface';
+import { accountId } from 'src/app/shared/interfaces/account.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
 
 @Component({

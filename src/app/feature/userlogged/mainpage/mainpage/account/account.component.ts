@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { accountId } from 'src/app/shared/interfaces/register.interface';
+import { accountId } from 'src/app/shared/interfaces/account.interface';
 
 @Component({
   selector: 'app-account',

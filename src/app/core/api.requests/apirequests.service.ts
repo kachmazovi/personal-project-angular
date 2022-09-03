@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {
-  accountId,
-  accounts,
-  registeredUser,
-} from 'src/app/shared/interfaces/register.interface';
-import { loa, loans } from 'src/app/shared/interfaces/loan.interface';
-import { dep, deposits } from 'src/app/shared/interfaces/deposit.interface';
+import { registeredUser } from 'src/app/shared/interfaces/register.interface';
+import { accountId } from 'src/app/shared/interfaces/account.interface';
+import { loa } from 'src/app/shared/interfaces/loan.interface';
+import { dep } from 'src/app/shared/interfaces/deposit.interface';
 import { loanId } from 'src/app/shared/interfaces/loan.interface';
 import { depositId } from 'src/app/shared/interfaces/deposit.interface';
 
@@ -69,6 +66,8 @@ export class ApiRequestsService {
     return this.http.get<accountId[]>(`${this.baseUrl}/accounts`);
   }
 
+  // Transactions
+
   // Loans
   addLoan<loans>(loan: loans) {
     return this.http.post<loans>(`${this.baseUrl}/loans`, {
@@ -85,9 +84,6 @@ export class ApiRequestsService {
       id: id,
     });
   }
-  // deleteLoan(id: string) {
-  //   return this.http.delete(`${this.baseUrl}/loans/${id}`);
-  // }
 
   // Deposits
   addDeposit<deposits>(deposit: deposits) {
@@ -106,7 +102,4 @@ export class ApiRequestsService {
       id: id,
     });
   }
-  // deleteDeposit(id: string) {
-  //   return this.http.delete(`${this.baseUrl}/deposits/${id}`);
-  // }
 }

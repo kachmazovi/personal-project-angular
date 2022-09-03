@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import { depositId } from 'src/app/shared/interfaces/deposit.interface';
-import { loa, loanId, loans } from 'src/app/shared/interfaces/loan.interface';
-import { accountId } from 'src/app/shared/interfaces/register.interface';
+import { loanId } from 'src/app/shared/interfaces/loan.interface';
+import { accountId } from 'src/app/shared/interfaces/account.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
 import { ExchangeService } from './exchange/services/exchange.service';
 

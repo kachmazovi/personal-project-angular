@@ -3,12 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
-import { depositId } from 'src/app/shared/interfaces/deposit.interface';
-import { loanId } from 'src/app/shared/interfaces/loan.interface';
-import {
-  accountId,
-  registeredUser,
-} from 'src/app/shared/interfaces/register.interface';
+import { registeredUser } from 'src/app/shared/interfaces/register.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
 
 @Component({
