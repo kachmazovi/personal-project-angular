@@ -47,6 +47,10 @@ export class MainpageComponent implements OnInit {
       .pipe(
         tap((response: accountId) => {
           this.userAccount.next(response);
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
@@ -77,6 +81,10 @@ export class MainpageComponent implements OnInit {
             sum += loan.amount;
           });
           this.sumLoan.next(sum);
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
@@ -102,6 +110,10 @@ export class MainpageComponent implements OnInit {
             sum += deposit.amount;
           });
           this.sumDeposit.next(sum);
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
@@ -300,7 +312,7 @@ export class MainpageComponent implements OnInit {
         }),
         catchError((err) => {
           console.log(err.message);
-          return of();
+          return of('error');
         })
       )
       .subscribe();
@@ -319,7 +331,7 @@ export class MainpageComponent implements OnInit {
         }),
         catchError((err) => {
           console.log(err.message);
-          return of();
+          return of('error');
         })
       )
       .subscribe();

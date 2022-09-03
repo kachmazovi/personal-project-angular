@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import { loa, loans } from 'src/app/shared/interfaces/loan.interface';
 import { accountId } from 'src/app/shared/interfaces/register.interface';
@@ -28,7 +28,6 @@ export class LoanComponent implements OnInit {
   public loggedUserId = '';
   public lang = new BehaviorSubject('geo');
   public userLoans: BehaviorSubject<loa[]> = new BehaviorSubject<loa[]>([]);
-  public closeLoan = false;
   public loanArr: loa[] = [];
   private userAccount: accountId = {
     account: '',
@@ -46,6 +45,10 @@ export class LoanComponent implements OnInit {
       .pipe(
         tap((response) => {
           this.userAccount = response;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
@@ -62,17 +65,13 @@ export class LoanComponent implements OnInit {
         tap((response: loans) => {
           this.userLoans.next(response.loans);
           this.loanArr = response.loans;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
-  }
-  public close() {
-    this.closeLoan = true;
-  }
-  public cancel() {
-    this.closeLoan = false;
-    this.wrongAmount = false;
-    this.notEnoughAmount = false;
   }
   public confirm(index: number) {
     const inputAmount = Number(this.inputAmount.value);
@@ -93,18 +92,49 @@ export class LoanComponent implements OnInit {
           Number(this.userAccount.amount) - inputAmount - inputAmount / 5
         );
         this.userLoans.next(this.loanArr);
-        this.http.updateLoan(this.loanArr, this.loggedUserId).subscribe();
-        this.http.updateAccount(this.userAccount).subscribe();
+        this.http
+          .updateLoan(this.loanArr, this.loggedUserId)
+          .pipe(
+            catchError((err) => {
+              console.log(err.message);
+              return of('error');
+            })
+          )
+          .subscribe();
+        this.http
+          .updateAccount(this.userAccount)
+          .pipe(
+            catchError((err) => {
+              console.log(err.message);
+              return of('error');
+            })
+          )
+          .subscribe();
       } else if (inputAmount == this.loanArr[index].amount) {
         this.loanArr.splice(index, 1);
         this.userAccount.amount = String(
           Number(this.userAccount.amount) - inputAmount - inputAmount / 5
         );
         this.userLoans.next(this.loanArr);
-        this.http.updateLoan(this.loanArr, this.loggedUserId).subscribe();
-        this.http.updateAccount(this.userAccount).subscribe();
+        this.http
+          .updateLoan(this.loanArr, this.loggedUserId)
+          .pipe(
+            catchError((err) => {
+              console.log(err.message);
+              return of('error');
+            })
+          )
+          .subscribe();
+        this.http
+          .updateAccount(this.userAccount)
+          .pipe(
+            catchError((err) => {
+              console.log(err.message);
+              return of('error');
+            })
+          )
+          .subscribe();
       }
-      this.closeLoan = false;
       this.inputAmount.reset();
     }
   }

@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import {
   registeredUser,
@@ -72,6 +72,10 @@ export class UserloggedComponent implements OnInit, OnDestroy {
       .pipe(
         tap((response: registeredUser) => {
           this.loggedUser.next(response);
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();

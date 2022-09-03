@@ -24,26 +24,4 @@ export class OffersComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  // public loan: loans = {
-  //   loans: [
-  //     {
-  //       name: 'l1',
-  //       amount: '100',
-  //     },
-  //     {
-  //       name: 'l2',
-  //       amount: '200',
-  //     },
-  //     {
-  //       name: 'l3',
-  //       amount: '1232',
-  //     },
-  //   ],
-  // };
-  // @Output() click = new EventEmitter();
-  // public addLoan() {
-  //   this.http.updateLoan(this.loan, '1').subscribe();
-  //   this.click.emit();
-  // }
 }

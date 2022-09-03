@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
           });
           catchError((err) => {
             console.log(err.message);
-            return of();
+            return of('error');
           });
         })
       )
@@ -173,8 +173,22 @@ export class RegisterComponent implements OnInit {
         this.username.value,
         this.password.value
       )
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
       .subscribe();
-    this.request.addAccount(this.generateAccount, '10000').subscribe();
+    this.request
+      .addAccount(this.generateAccount, '10000')
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
     this.request
       .addDeposit([
         {
@@ -182,6 +196,12 @@ export class RegisterComponent implements OnInit {
           amount: 0,
         },
       ])
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
       .subscribe();
     this.request
       .addLoan([
@@ -190,6 +210,12 @@ export class RegisterComponent implements OnInit {
           amount: 0,
         },
       ])
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
       .subscribe();
     this.userRegistered = true;
   }

@@ -2,7 +2,7 @@
   <div class="image"></div>
   <div class="skew"></div>
   <div class="skew1"></div>
-  <div class="dep" *ngIf="!terms">
+  <div class="dep" [ngClass]="{ anime: !terms }">
     <h1>
       {{
         language == "geo"
@@ -47,7 +47,7 @@
       </ng-container>
     </div>
   </div>
-  <div class="terms" *ngIf="terms">
+  <div class="terms">
     <h1>{{ language == "geo" ? "ვადიანი ანაბარი" : "Term Deposit" }}</h1>
     <ul>
       <li>

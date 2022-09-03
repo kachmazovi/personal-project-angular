@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import { dep, deposits } from 'src/app/shared/interfaces/deposit.interface';
 import { accountId } from 'src/app/shared/interfaces/register.interface';
@@ -27,7 +27,6 @@ export class DepositComponent implements OnInit {
   public loggedUserId = '';
   public lang = new BehaviorSubject('geo');
   public userDeposits: BehaviorSubject<dep[]> = new BehaviorSubject<dep[]>([]);
-  public closeDeposit = false;
   public depositArr: dep[] = [];
   private userAccount: accountId = {
     account: '',
@@ -42,6 +41,10 @@ export class DepositComponent implements OnInit {
       .pipe(
         tap((response) => {
           this.userAccount = response;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
@@ -54,18 +57,15 @@ export class DepositComponent implements OnInit {
         tap((response: deposits) => {
           this.userDeposits.next(response.deposits);
           this.depositArr = response.deposits;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
   }
-  public close() {
-    this.closeDeposit = true;
-  }
-  public cancel() {
-    this.closeDeposit = false;
-  }
   public confirm(value: number) {
-    this.closeDeposit = false;
     const depAmount = this.depositArr.splice(value, 1);
     this.userAccount.amount = String(
       Number(this.userAccount.amount) +
@@ -73,7 +73,23 @@ export class DepositComponent implements OnInit {
         depAmount[0].amount / 10
     );
     this.userDeposits.next(this.depositArr);
-    this.http.updateDeposit(this.depositArr, this.loggedUserId).subscribe();
-    this.http.updateAccount(this.userAccount).subscribe();
+    this.http
+      .updateDeposit(this.depositArr, this.loggedUserId)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+    this.http
+      .updateAccount(this.userAccount)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
   }
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import { loa, loanId } from 'src/app/shared/interfaces/loan.interface';
 import { accountId } from 'src/app/shared/interfaces/register.interface';
@@ -35,6 +35,10 @@ export class TakeloanComponent implements OnInit {
       .pipe(
         tap((response: accountId) => {
           this.userAccount = response;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
@@ -64,6 +68,10 @@ export class TakeloanComponent implements OnInit {
       .pipe(
         tap((response: loanId) => {
           this.userLoan = response.loans;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
@@ -76,8 +84,24 @@ export class TakeloanComponent implements OnInit {
     this.userAccount.amount = String(
       Number(this.userAccount.amount) + Number(this.inputAmount.value)
     );
-    this.http.updateLoan(this.userLoan, this.loggedUserId).subscribe();
-    this.http.updateAccount(this.userAccount).subscribe();
+    this.http
+      .updateLoan(this.userLoan, this.loggedUserId)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+    this.http
+      .updateAccount(this.userAccount)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
     this.inputAmount.reset();
     this.confirm.next(true);
     setTimeout(() => {

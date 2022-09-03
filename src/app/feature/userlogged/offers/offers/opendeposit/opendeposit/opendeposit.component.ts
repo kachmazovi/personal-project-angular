@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import { dep, depositId } from 'src/app/shared/interfaces/deposit.interface';
 import { accountId } from 'src/app/shared/interfaces/register.interface';
@@ -71,6 +71,10 @@ export class OpendepositComponent implements OnInit {
       .pipe(
         tap((response: depositId) => {
           this.userDeposit = response.deposits;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();
@@ -84,8 +88,24 @@ export class OpendepositComponent implements OnInit {
     this.userAccount.amount = String(
       Number(this.userAccount.amount) - Number(this.inputAmount.value)
     );
-    this.http.updateDeposit(this.userDeposit, this.loggedUserId).subscribe();
-    this.http.updateAccount(this.userAccount).subscribe();
+    this.http
+      .updateDeposit(this.userDeposit, this.loggedUserId)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+    this.http
+      .updateAccount(this.userAccount)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
     this.inputAmount.reset();
     this.confirm.next(true);
     setTimeout(() => {

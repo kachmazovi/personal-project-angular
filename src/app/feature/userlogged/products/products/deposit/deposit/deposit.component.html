@@ -1,26 +1,9 @@
 <main *ngIf="lang | async as language">
   <h1 class="header">
     {{ language == "geo" ? "მიმდინარე ანაბრები" : "Current deposits" }}
-
-    <button class="close" (click)="close()">
-      {{ language == "geo" ? "ანაბრის დარღვევა" : "Close deposit" }}
-    </button>
-
-    <button class="cancel" (click)="cancel()" *ngIf="closeDeposit">
-      {{ language == "geo" ? "გაუქმება" : "Cancel" }}
-    </button>
   </h1>
   <div *ngIf="userDeposits | async as deposit" class="deposit-container">
-    <div class="deposit-header" *ngIf="deposit.length > 1">
-      <h1>{{ language == "geo" ? "ანაბრის ტიპი" : "Type of deposit" }}</h1>
-      <h1>
-        {{
-          language == "geo" ? "ანაბრის გახსნის თარიღი" : "Deposit opening date"
-        }}
-      </h1>
-      <h1>{{ language == "geo" ? "ანაბრის თანხა" : "Amount of deposit" }}</h1>
-    </div>
-    <div *ngFor="let dep of deposit; let index = index">
+    <ng-container *ngFor="let dep of deposit; let index = index">
       <div *ngIf="dep.amount > 0" class="deposits">
         <div class="deposit">
           <h1>
@@ -30,10 +13,10 @@
           <h1>{{ dep.date }}</h1>
           <h1>{{ dep.amount }} {{ language == "geo" ? "ლარი" : "GEL" }}</h1>
         </div>
-        <button class="confirm" (click)="confirm(index)" *ngIf="closeDeposit">
-          {{ language == "geo" ? "დადასტურება" : "Confirm" }}
+        <button class="confirm" (click)="confirm(index)">
+          {{ language == "geo" ? "ანაბრის დარღვევა" : "Close Deposit" }}
         </button>
       </div>
-    </div>
+    </ng-container>
   </div>
 </main>

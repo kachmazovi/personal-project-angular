@@ -61,6 +61,10 @@ main {
     }
   }
   .dep {
+    background-color: white;
+    transition: 1s linear;
+    position: absolute;
+    left: 1280px;
     width: 50%;
     height: 100%;
     display: flex;
@@ -123,5 +127,8 @@ main {
         cursor: not-allowed;
       }
     }
+  }
+  .anime {
+    margin-left: -625px;
   }
 }

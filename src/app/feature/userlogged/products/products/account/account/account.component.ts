@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import { accountId } from 'src/app/shared/interfaces/register.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
@@ -36,6 +36,10 @@ export class AccountComponent implements OnInit {
       .pipe(
         tap((response: accountId) => {
           this.userAccount.next(response);
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();

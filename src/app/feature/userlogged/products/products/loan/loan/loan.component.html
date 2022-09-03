@@ -1,22 +1,19 @@
 <main *ngIf="lang | async as language">
   <h1 class="header">
     {{ language == "geo" ? "მიმდინარე სესხები" : "Current loans" }}
-    <button class="close" (click)="close()">
-      {{ language == "geo" ? "სესხის დაფარვა" : "Close loan" }}
-    </button>
-    <button class="cancel" (click)="cancel()" *ngIf="closeLoan">
-      {{ language == "geo" ? "გაუქმება" : "Cancel" }}
-    </button>
+  </h1>
+  <h1 class="wrong" *ngIf="wrongAmount">
+    {{ language == "geo" ? "არასწორი თანხა" : "Wrong amount" }}
+  </h1>
+  <h1 class="wrong" *ngIf="notEnoughAmount">
+    {{
+      language == "geo"
+        ? "არ გაქვთ საკმარისი თანხა ანგარიშზე"
+        : "You don't have enough amount on your account"
+    }}
   </h1>
   <div *ngIf="userLoans | async as loans" class="loan-container">
-    <div class="loan-header" *ngIf="loans.length > 1">
-      <h1>{{ language == "geo" ? "სესხის ტიპი" : "Type of loan" }}</h1>
-      <h1>
-        {{ language == "geo" ? "სესხის აღების თარიღი" : "Loan opening date" }}
-      </h1>
-      <h1>{{ language == "geo" ? "სესხის თანხა" : "Amount of loan" }}</h1>
-    </div>
-    <div *ngFor="let loan of loans; let index = index">
+    <ng-container *ngFor="let loan of loans; let index = index">
       <div *ngIf="loan.amount > 0" class="loans">
         <div class="loan">
           <h1>
@@ -26,7 +23,7 @@
           <h1>{{ loan.date }}</h1>
           <h1>{{ loan.amount }} {{ language == "geo" ? "ლარი" : "GEL" }}</h1>
         </div>
-        <div class="confirm" *ngIf="closeLoan">
+        <div class="confirm">
           <input type="number" [formControl]="inputAmount" />
           <button
             class="confirm-button"
@@ -36,20 +33,10 @@
               'not-allowed': inputAmount.invalid
             }"
           >
-            {{ language == "geo" ? "დადასტურება" : "Confirm" }}
+            {{ language == "geo" ? "სესხის დაფარვა" : "Close Loan" }}
           </button>
         </div>
       </div>
-    </div>
-    <h1 class="wrong" *ngIf="wrongAmount">
-      {{ language == "geo" ? "არასწორი თანხა" : "Wrong amount" }}
-    </h1>
-    <h1 class="wrong" *ngIf="notEnoughAmount">
-      {{
-        language == "geo"
-          ? "არ გაქვთ საკმარისი თანხა ანგარიშზე"
-          : "You don't have enough amount on your account"
-      }}
-    </h1>
+    </ng-container>
   </div>
 </main>

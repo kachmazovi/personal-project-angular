@@ -12,7 +12,7 @@ main {
     padding-left: 25px;
     font-size: 24px;
     font-weight: bold;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #00a3e0;
     margin-bottom: 50px;
     .close {
       width: 150px;
@@ -44,31 +44,24 @@ main {
   .deposit-container {
     height: 500px;
     overflow: auto;
-    .deposit-header {
-      display: flex;
-      justify-content: space-around;
-      height: 30px;
-      align-items: center;
-      margin-bottom: 25px;
-      text-align: center;
-      h1 {
-        width: 30%;
-        font-size: 22px;
-        font-weight: bold;
-        border-bottom: 1px solid black;
-        padding-bottom: 10px;
-      }
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     .deposits {
-      border: 1px solid gray;
+      background-color: #00a3e0;
+      color: white;
+      font-weight: bold;
       border-radius: 25px;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 15px;
-      padding: 10px 0;
+      margin-bottom: 25px;
+      padding: 25px 0;
+      width: 45%;
+      height: 150px;
+      overflow: hidden;
+      transition: 0.5s linear;
       .deposit {
         display: flex;
         justify-content: space-around;
+        align-items: center;
         text-align: center;
         h1 {
           width: 30%;
@@ -76,7 +69,7 @@ main {
         }
       }
       .confirm {
-        width: 150px;
+        width: 170px;
         margin-left: 50px;
         margin-top: 25px;
         border: 1px solid;
@@ -84,11 +77,25 @@ main {
         font-size: 16px;
         border-radius: 15px;
         cursor: pointer;
-        border-color: green;
+        background-color: #00a3e0;
+        color: white;
+        margin-left: -170px;
+        transition: 0.5s linear;
+        padding: 5px 10px;
       }
       .confirm:hover {
-        background-color: green;
-        color: white;
+        background-color: white;
+        color: #00a3e0;
+        font-weight: bold;
+      }
+    }
+    .deposits:hover {
+      border: 5px solid #00a3e0;
+      background-color: white;
+      color: #00a3e0;
+      cursor: pointer;
+      .confirm {
+        margin-left: 50px;
       }
     }
   }

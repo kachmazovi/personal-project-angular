@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 import { depositId } from 'src/app/shared/interfaces/deposit.interface';
 import { loanId } from 'src/app/shared/interfaces/loan.interface';
@@ -43,6 +43,10 @@ export class LoginComponent implements OnInit {
               id: user.id,
             });
           });
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
         })
       )
       .subscribe();

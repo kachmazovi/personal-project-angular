@@ -2,7 +2,7 @@
   <div class="image"></div>
   <div class="skew"></div>
   <div class="skew1"></div>
-  <div class="loa" *ngIf="!terms">
+  <div class="loa" [ngClass]="{ anime: !terms }">
     <h1>
       {{ language == "geo" ? "აიღე სესხი სასურველი თანხით" : "Take loan now" }}
     </h1>
@@ -36,7 +36,7 @@
       </ng-container>
     </div>
   </div>
-  <div class="terms" *ngIf="terms">
+  <div class="terms">
     <h1>{{ language == "geo" ? "სამომხმარებლო სესხი" : "Consumer Loan" }}</h1>
     <ul>
       <li>
