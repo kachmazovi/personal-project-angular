@@ -7,6 +7,10 @@ import { loanId } from 'src/app/shared/interfaces/loan.interface';
 import { accountId } from 'src/app/shared/interfaces/account.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
 import { ExchangeService } from './exchange/services/exchange.service';
+import {
+  transactionsId,
+  transfers,
+} from 'src/app/shared/interfaces/transactions.interface';
 
 @Component({
   selector: 'app-mainpage',
@@ -35,6 +39,7 @@ export class MainpageComponent implements OnInit {
     this.getUserAccount();
     this.getLoans();
     this.getDeposits();
+    this.getUserTransactions();
   }
 
   //Acount
@@ -65,6 +70,41 @@ export class MainpageComponent implements OnInit {
     if (this.showAmount) {
       this.showAmount = false;
     } else this.showAmount = true;
+  }
+
+  // Transactions
+
+  public showTrans = true;
+  public haveTransfers = new BehaviorSubject(false);
+  public showTransactions() {
+    if (this.showTrans) {
+      this.showTrans = false;
+    } else this.showTrans = true;
+  }
+  public userTransactions: BehaviorSubject<transfers[]> = new BehaviorSubject([
+    {
+      date: '',
+      receiver: '',
+      transferror: '',
+      amount: 0,
+    },
+  ]);
+  private getUserTransactions() {
+    this.http
+      .getTransaction(this.loggedUserId)
+      .pipe(
+        tap((response: transactionsId) => {
+          this.userTransactions.next(response.transactions);
+          if (response.transactions.length > 1) {
+            this.haveTransfers.next(true);
+          }
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
   }
 
   //Loan

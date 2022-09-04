@@ -13,8 +13,14 @@
         [showAmount]="showAmount"
         [userAccount]="userAccount"
       ></app-account>
-      <section></section>
-      <section></section>
+      <app-transactions
+        [lang]="lang"
+        [showTrans]="showTrans"
+        [userTransactions]="userTransactions"
+        [haveTransfers]="haveTransfers"
+        [userAccount]="userAccount"
+        (showTransactions)="showTransactions()"
+      ></app-transactions>
     </div>
     <div class="right-section">
       <app-loan

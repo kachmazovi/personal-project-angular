@@ -43,8 +43,10 @@
       }}</span>
     </h6>
     <button
-      [disabled]="enoughAmount || inputAmount.invalid"
-      [ngClass]="{ 'not-allowed': enoughAmount || inputAmount.invalid }"
+      [disabled]="enoughAmount || inputAmount.invalid || wrongAmount"
+      [ngClass]="{
+        'not-allowed': enoughAmount || inputAmount.invalid || wrongAmount
+      }"
       (click)="transfer()"
     >
       {{ language == "geo" ? "გადარიცხვა" : "Transfer" }}

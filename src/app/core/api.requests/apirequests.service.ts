@@ -7,6 +7,11 @@ import { loa } from 'src/app/shared/interfaces/loan.interface';
 import { dep } from 'src/app/shared/interfaces/deposit.interface';
 import { loanId } from 'src/app/shared/interfaces/loan.interface';
 import { depositId } from 'src/app/shared/interfaces/deposit.interface';
+import {
+  transactions,
+  transactionsId,
+  transfers,
+} from 'src/app/shared/interfaces/transactions.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -67,6 +72,21 @@ export class ApiRequestsService {
   }
 
   // Transactions
+
+  addTransaction<transactions>(transaction: transactions) {
+    return this.http.post<transactions>(`${this.baseUrl}/transactions`, {
+      transactions: transaction,
+    });
+  }
+  getTransaction(id: string): Observable<transactionsId> {
+    return this.http.get<transactionsId>(`${this.baseUrl}/transactions/${id}`);
+  }
+  updateTransactions(transactions: transfers[], id: string) {
+    return this.http.put(`${this.baseUrl}/transactions/${id}`, {
+      transactions: transactions,
+      id: id,
+    });
+  }
 
   // Loans
   addLoan<loans>(loan: loans) {

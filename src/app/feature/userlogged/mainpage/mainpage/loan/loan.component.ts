@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
-import { loanId, loans } from 'src/app/shared/interfaces/loan.interface';
 
 @Component({
   selector: 'app-loan',

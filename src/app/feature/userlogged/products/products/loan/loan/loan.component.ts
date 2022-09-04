@@ -75,7 +75,7 @@ export class LoanComponent implements OnInit {
   }
   public confirm(index: number) {
     const inputAmount = Number(this.inputAmount.value);
-    if (inputAmount > this.loanArr[index].amount) {
+    if (inputAmount > this.loanArr[index].amount || Number(inputAmount) < 1) {
       this.wrongAmount = true;
     } else if (
       inputAmount <= this.loanArr[index].amount &&

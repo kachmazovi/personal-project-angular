@@ -190,6 +190,22 @@ export class RegisterComponent implements OnInit {
       )
       .subscribe();
     this.request
+      .addTransaction([
+        {
+          date: '00000000000',
+          receiver: '00000000000',
+          transferror: '00000000000',
+          amount: 0,
+        },
+      ])
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+    this.request
       .addDeposit([
         {
           date: '00000000000',

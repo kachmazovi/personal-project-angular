@@ -8,9 +8,10 @@ import { AccountComponent } from './mainpage/account/account.component';
 import { ExchangeComponent } from './mainpage/exchange/exchange.component';
 import { LoanComponent } from './mainpage/loan/loan.component';
 import { DepositComponent } from './mainpage/deposit/deposit.component';
+import { TransactionsComponent } from './mainpage/transactions/transactions.component';
 
 @NgModule({
-  declarations: [MainpageComponent, AnimationComponent, AccountComponent, ExchangeComponent, LoanComponent, DepositComponent],
+  declarations: [MainpageComponent, AnimationComponent, AccountComponent, ExchangeComponent, LoanComponent, DepositComponent, TransactionsComponent],
   imports: [
     CommonModule,
     SharedModule,

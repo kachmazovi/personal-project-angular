@@ -39,15 +39,20 @@ export class OpendepositComponent implements OnInit {
       )
       .subscribe();
     this.inputAmount.valueChanges.subscribe((amount) => {
+      this.amountZero = false;
       this.wrongAmount = false;
       if (Number(amount) > Number(this.userAccount.amount)) {
         this.wrongAmount = true;
+      }
+      if (Number(amount) < 1) {
+        this.amountZero = true;
       }
     });
   }
 
   public terms = true;
   public wrongAmount = false;
+  public amountZero = false;
   public confirm = new BehaviorSubject(false);
   private getDate = new Date();
   private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;

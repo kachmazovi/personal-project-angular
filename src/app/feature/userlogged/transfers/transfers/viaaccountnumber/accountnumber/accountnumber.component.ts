@@ -5,6 +5,10 @@ import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.servic
 import { registeredUser } from 'src/app/shared/interfaces/register.interface';
 import { accountId } from 'src/app/shared/interfaces/account.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
+import {
+  transactionsId,
+  transfers,
+} from 'src/app/shared/interfaces/transactions.interface';
 
 @Component({
   selector: 'app-accountnumber',
@@ -33,6 +37,8 @@ export class AccountnumberComponent implements OnInit {
 
     this.getUsersAccounts();
 
+    this.getTransferrorTransactions();
+
     this.inputAccount.valueChanges.subscribe((input) => {
       if (input?.length == 0) {
         this.wrongAccountNumber = false;
@@ -47,9 +53,13 @@ export class AccountnumberComponent implements OnInit {
     });
 
     this.inputAmount.valueChanges.subscribe((amount) => {
+      this.wrongAmount = false;
       this.enoughAmount = false;
       if (Number(amount) > Number(this.transferrorAccount.amount)) {
         this.enoughAmount = true;
+      }
+      if (Number(amount) < 1) {
+        this.wrongAmount = true;
       }
     });
   }
@@ -57,11 +67,15 @@ export class AccountnumberComponent implements OnInit {
   public checked = false;
   public next = false;
   public wrongAccountNumber = false;
+  public wrongAmount = false;
   public enoughAmount = false;
   public inputAmount = new FormControl('', Validators.required);
   public inputAccount = new FormControl('', Validators.required);
+  private getDate = new Date();
+  private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
+  private receiverId = '';
 
-  // Transferor account
+  // Transferror account
   private transferrorAccount: accountId = {
     account: '',
     amount: '',
@@ -73,6 +87,24 @@ export class AccountnumberComponent implements OnInit {
       .pipe(
         tap((response: accountId) => {
           this.transferrorAccount = response;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+
+  // Transferror transactions
+
+  private transferrorTransactions: transfers[] = [];
+  private getTransferrorTransactions() {
+    this.http
+      .getTransaction(this.loggedUserId)
+      .pipe(
+        tap((response: transactionsId) => {
+          this.transferrorTransactions = response.transactions;
         }),
         catchError((err) => {
           console.log(err.message);
@@ -118,25 +150,49 @@ export class AccountnumberComponent implements OnInit {
     id: '',
   });
 
+  private getReceiverData() {
+    this.http
+      .getUserID(this.receiverId)
+      .pipe(
+        tap((response: registeredUser) => {
+          this.receiverData.next(response);
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+
+  // Receiver transactions
+
+  private receiverTransactions: transfers[] = [];
+  private getReceiverTransactions() {
+    this.http
+      .getTransaction(this.receiverId)
+      .pipe(
+        tap((response: transactionsId) => {
+          this.receiverTransactions = response.transactions;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+
   // Methods
 
   public check() {
     this.usersAccounts.some((user) => {
       if (user.account == this.inputAccount.value) {
+        this.receiverId = user.id;
         this.receiverAccount = user;
         this.checked = true;
-        this.http
-          .getUserID(user.id)
-          .pipe(
-            tap((response: registeredUser) => {
-              this.receiverData.next(response);
-            }),
-            catchError((err) => {
-              console.log(err.message);
-              return of('error');
-            })
-          )
-          .subscribe();
+        this.getReceiverData();
+        this.getReceiverTransactions();
       }
     });
   }
@@ -152,6 +208,24 @@ export class AccountnumberComponent implements OnInit {
     this.receiverAccount.amount = String(
       Number(this.receiverAccount.amount) + Number(this.inputAmount.value)
     );
+    this.transferrorTransactions.push({
+      date: this.today,
+      receiver: this.receiverAccount.account,
+      transferror: this.transferrorAccount.account,
+      amount: Number(this.inputAmount.value),
+    });
+    this.receiverTransactions.push({
+      date: this.today,
+      receiver: this.receiverAccount.account,
+      transferror: this.transferrorAccount.account,
+      amount: Number(this.inputAmount.value),
+    });
+    this.http
+      .updateTransactions(this.transferrorTransactions, this.loggedUserId)
+      .subscribe();
+    this.http
+      .updateTransactions(this.receiverTransactions, this.receiverId)
+      .subscribe();
     this.http.updateAccount(this.receiverAccount).subscribe();
     this.http.updateAccount(this.transferrorAccount).subscribe();
     this.inputAccount.reset();

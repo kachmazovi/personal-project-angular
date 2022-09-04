@@ -18,8 +18,10 @@
       <div class="buttons">
         <button
           (click)="openDep()"
-          [disabled]="wrongAmount || inputAmount.invalid"
-          [ngClass]="{ 'not-allowed': wrongAmount || inputAmount.invalid }"
+          [disabled]="wrongAmount || inputAmount.invalid || amountZero"
+          [ngClass]="{
+            'not-allowed': wrongAmount || inputAmount.invalid || amountZero
+          }"
         >
           {{ language == "geo" ? "ანაბრის გახსნა" : "Open Deposit" }}
         </button>
