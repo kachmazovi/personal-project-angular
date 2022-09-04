@@ -40,6 +40,14 @@ export class LoanComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoan();
+    this.getAccount();
+    this.inputAmount.valueChanges.subscribe((v) => {
+      this.notEnoughAmount = false;
+      this.wrongAmount = false;
+    });
+  }
+
+  private getAccount() {
     this.http
       .getAccount(this.loggedUserId)
       .pipe(
@@ -52,10 +60,6 @@ export class LoanComponent implements OnInit {
         })
       )
       .subscribe();
-    this.inputAmount.valueChanges.subscribe((v) => {
-      this.notEnoughAmount = false;
-      this.wrongAmount = false;
-    });
   }
 
   private getLoan() {
@@ -92,50 +96,41 @@ export class LoanComponent implements OnInit {
           Number(this.userAccount.amount) - inputAmount - inputAmount / 5
         );
         this.userLoans.next(this.loanArr);
-        this.http
-          .updateLoan(this.loanArr, this.loggedUserId)
-          .pipe(
-            catchError((err) => {
-              console.log(err.message);
-              return of('error');
-            })
-          )
-          .subscribe();
-        this.http
-          .updateAccount(this.userAccount)
-          .pipe(
-            catchError((err) => {
-              console.log(err.message);
-              return of('error');
-            })
-          )
-          .subscribe();
+        this.updateLoan();
+        this.updateAccount();
       } else if (inputAmount == this.loanArr[index].amount) {
         this.loanArr.splice(index, 1);
         this.userAccount.amount = String(
           Number(this.userAccount.amount) - inputAmount - inputAmount / 5
         );
         this.userLoans.next(this.loanArr);
-        this.http
-          .updateLoan(this.loanArr, this.loggedUserId)
-          .pipe(
-            catchError((err) => {
-              console.log(err.message);
-              return of('error');
-            })
-          )
-          .subscribe();
-        this.http
-          .updateAccount(this.userAccount)
-          .pipe(
-            catchError((err) => {
-              console.log(err.message);
-              return of('error');
-            })
-          )
-          .subscribe();
+        this.updateLoan();
+        this.updateAccount();
       }
       this.inputAmount.reset();
     }
+  }
+
+  private updateLoan() {
+    this.http
+      .updateLoan(this.loanArr, this.loggedUserId)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+  private updateAccount() {
+    this.http
+      .updateAccount(this.userAccount)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
   }
 }

@@ -1,3 +1,128 @@
-<section *ngIf="lang | async as language">
-  <h1>{{ language == "geo" ? "პარამეტრები" : "parameters" }}</h1>
-</section>
+<main *ngIf="lang | async as language">
+  <section class="header">
+    <h1>{{ language == "geo" ? "პარამეტრები" : "Parameters" }}</h1>
+  </section>
+  <section class="parameters">
+    <div class="menu">
+      <ul>
+        <li (click)="clickPersonal()" [ngClass]="{ active: personal }">
+          {{ language == "geo" ? "პირადი ინფორმაცია" : "Personal Info" }}
+        </li>
+        <li (click)="clickUsername()" [ngClass]="{ active: username }">
+          {{
+            language == "geo"
+              ? "მომხმარებლის სახელის შეცვლა"
+              : "Change Username"
+          }}
+        </li>
+        <li (click)="clickPassword()" [ngClass]="{ active: password }">
+          {{ language == "geo" ? "პაროლის შეცვლა" : "Change Password" }}
+        </li>
+      </ul>
+    </div>
+    <div class="data" *ngIf="userData | async as user">
+      <div class="personal-info" [ngClass]="personal ? 'show' : 'hide'">
+        <div class="user">
+          <img src="../../../../../assets/main-page/userlogo.png" alt="user" />
+          <h1>{{ user.name }} {{ user.surname }}</h1>
+        </div>
+        <label for="personal number">
+          {{ language == "geo" ? "პირადი ნომერი" : "Personal Number" }}:
+          <br /><br />
+          <input type="text" value=" {{ user.personalNumber }} " disabled />
+        </label>
+        <label for="personal number">
+          {{ language == "geo" ? "მობილურის ნომერი" : "Mobile Number" }}:
+          <br /><br />
+          <input
+            type="text"
+            value=" {{ user.phoneNumber }} "
+            disabled="disabled"
+          />
+        </label>
+      </div>
+      <div class="change-username" [ngClass]="username ? 'show' : 'hide'">
+        <label for="">
+          {{
+            language == "geo"
+              ? "მიმდინარე მომხმარებლის სახელი"
+              : "Current Username"
+          }}: <br /><br />
+          <input type="text" value=" {{ user.username }} " disabled />
+        </label>
+        <label for="">
+          {{
+            language == "geo"
+              ? "შეიყვანეთ ახალი მომხმარებლის სახელი"
+              : "Enter new username"
+          }}: <br /><br />
+          <input type="text" [formControl]="inputUsername" />
+        </label>
+        <h1>
+          <span *ngIf="!acceptableUsername">
+            {{
+              language == "geo"
+                ? "მომხმარებლის სახელი უკვე გამოყენებულია"
+                : "Username is already used"
+            }}
+          </span>
+          <span *ngIf="inputUsername.hasError('minlength')">
+            {{ language == "geo" ? "მინიმუმ 5 სიმბოლო" : "Minimum 5 symbol" }}
+          </span>
+          <ng-container *ngIf="saved | async as saved">
+            <span *ngIf="saved" class="green">
+              {{
+                language == "geo"
+                  ? "მომხმარებლის სახელი შეცვლილია"
+                  : "Username changed"
+              }}
+            </span></ng-container
+          >
+        </h1>
+        <button
+          (click)="saveUsername()"
+          class="save"
+          [disabled]="!acceptableUsername || inputUsername.invalid"
+          [ngClass]="{
+            'not-allowed': !acceptableUsername || inputUsername.invalid
+          }"
+        >
+          {{ language == "geo" ? "შენახვა" : "Save" }}
+        </button>
+      </div>
+      <div class="change-password" [ngClass]="password ? 'show' : 'hide'">
+        <label for="">
+          {{
+            language == "geo" ? "შეიყვანეთ ახალი პაროლი" : "Enter new password"
+          }}
+          <br /><br />
+          <input type="password" [formControl]="inputPassword" />
+        </label>
+        <h1>
+          <span *ngIf="inputPassword.hasError('pattern')">
+            {{
+              language == "geo"
+                ? "მინიმუმ 8 სიმბოლო, მინ 1 დიდი ასო, პატარა ასო და რიცხვი"
+                : "Minimum 8 symbol, min 1 uppercase, lowercase and number"
+            }}
+          </span>
+          <ng-container *ngIf="saved | async as saved">
+            <span *ngIf="saved" class="green">
+              {{ language == "geo" ? "პაროლი შეცვლილია" : "Password changed" }}
+            </span></ng-container
+          >
+        </h1>
+        <button
+          class="save"
+          (click)="savePassword()"
+          [disabled]="inputPassword.invalid"
+          [ngClass]="{
+            'not-allowed': inputPassword.invalid
+          }"
+        >
+          {{ language == "geo" ? "შენახვა" : "Save" }}
+        </button>
+      </div>
+    </div>
+  </section>
+</main>

@@ -30,14 +30,7 @@ export class OpendepositComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserDeposit();
-    this.http
-      .getAccount(this.loggedUserId)
-      .pipe(
-        tap((response: accountId) => {
-          this.userAccount = response;
-        })
-      )
-      .subscribe();
+    this.getUserAccount();
     this.inputAmount.valueChanges.subscribe((amount) => {
       this.amountZero = false;
       this.wrongAmount = false;
@@ -70,6 +63,20 @@ export class OpendepositComponent implements OnInit {
     } else this.terms = true;
   }
 
+  private getUserAccount() {
+    this.http
+      .getAccount(this.loggedUserId)
+      .pipe(
+        tap((response: accountId) => {
+          this.userAccount = response;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
   private getUserDeposit() {
     this.http
       .getDeposit(this.loggedUserId)
@@ -93,6 +100,16 @@ export class OpendepositComponent implements OnInit {
     this.userAccount.amount = String(
       Number(this.userAccount.amount) - Number(this.inputAmount.value)
     );
+    this.updateDeposit();
+    this.updateAccount();
+    this.inputAmount.reset();
+    this.confirm.next(true);
+    setTimeout(() => {
+      this.confirm.next(false);
+    }, 3000);
+  }
+
+  private updateDeposit() {
     this.http
       .updateDeposit(this.userDeposit, this.loggedUserId)
       .pipe(
@@ -102,6 +119,9 @@ export class OpendepositComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+
+  private updateAccount() {
     this.http
       .updateAccount(this.userAccount)
       .pipe(
@@ -111,10 +131,5 @@ export class OpendepositComponent implements OnInit {
         })
       )
       .subscribe();
-    this.inputAmount.reset();
-    this.confirm.next(true);
-    setTimeout(() => {
-      this.confirm.next(false);
-    }, 3000);
   }
 }

@@ -30,18 +30,7 @@ export class TakeloanComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserLoan();
-    this.http
-      .getAccount(this.loggedUserId)
-      .pipe(
-        tap((response: accountId) => {
-          this.userAccount = response;
-        }),
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
-      .subscribe();
+    this.getAccount();
     this.inputAmount.valueChanges.subscribe((amount) => {
       this.amountZero = false;
       if (Number(amount) < 1) {
@@ -69,6 +58,21 @@ export class TakeloanComponent implements OnInit {
     } else this.terms = true;
   }
 
+  private getAccount() {
+    this.http
+      .getAccount(this.loggedUserId)
+      .pipe(
+        tap((response: accountId) => {
+          this.userAccount = response;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+
   private getUserLoan() {
     this.http
       .getLoan(this.loggedUserId)
@@ -91,6 +95,16 @@ export class TakeloanComponent implements OnInit {
     this.userAccount.amount = String(
       Number(this.userAccount.amount) + Number(this.inputAmount.value)
     );
+    this.updateLoan();
+    this.updateAccount();
+    this.inputAmount.reset();
+    this.confirm.next(true);
+    setTimeout(() => {
+      this.confirm.next(false);
+    }, 3000);
+  }
+
+  private updateLoan() {
     this.http
       .updateLoan(this.userLoan, this.loggedUserId)
       .pipe(
@@ -100,6 +114,8 @@ export class TakeloanComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+  private updateAccount() {
     this.http
       .updateAccount(this.userAccount)
       .pipe(
@@ -109,10 +125,5 @@ export class TakeloanComponent implements OnInit {
         })
       )
       .subscribe();
-    this.inputAmount.reset();
-    this.confirm.next(true);
-    setTimeout(() => {
-      this.confirm.next(false);
-    }, 3000);
   }
 }

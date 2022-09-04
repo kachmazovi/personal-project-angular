@@ -1,13 +1,121 @@
-section {
-  width: 100%;
-  height: 60px;
-  padding-top: 15px;
-  background-color: white;
-  h1 {
+main {
+  .header {
+    width: 100%;
+    height: 60px;
+    padding-top: 15px;
+    background-color: white;
+    margin-bottom: 50px;
+    h1 {
+      width: 1280px;
+      margin: auto;
+      color: black;
+      font-size: 25px;
+      font-weight: bold;
+    }
+  }
+  .parameters {
     width: 1280px;
+    height: 550px;
     margin: auto;
-    color: black;
-    font-size: 25px;
-    font-weight: bold;
+    border-radius: 25px;
+    background-color: white;
+    display: flex;
+    border: 0.5px solid rgb(190, 190, 190);
+    overflow: hidden;
+    .menu {
+      width: 27%;
+      height: 100%;
+      background-color: #f7f8f9;
+      border-right: 0.5px solid rgb(190, 190, 190);
+      padding: 43px 25px;
+      color: #999;
+      li {
+        font-size: 17px;
+        margin-bottom: 25px;
+        transition: 0.5s linear;
+      }
+      li:hover {
+        cursor: pointer;
+        color: #333;
+      }
+    }
+    .data {
+      width: 73%;
+      display: flex;
+      flex-direction: column;
+      padding: 35px;
+      div {
+        width: 100%;
+        border-radius: 25px;
+        padding-left: 25px;
+        transition: 0.5s linear;
+        overflow: hidden;
+      }
+
+      ///////////////////
+
+      .personal-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        // border: 0.5px solid rgb(190, 190, 190);
+        .user {
+          display: flex;
+          align-items: center;
+          font-size: 30px;
+          img {
+            width: 50px;
+            margin-right: 35px;
+          }
+        }
+      }
+
+      //////////////////
+
+      .change-username,
+      .change-password {
+        // border: 0.5px solid rgb(190, 190, 190);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        h1 {
+          height: 20px;
+          color: red;
+        }
+      }
+      .change-password {
+        label {
+          padding-top: 50px;
+        }
+      }
+      .save {
+        width: 100px;
+        background-color: #741f71;
+        color: white;
+        border: 0;
+        padding: 5px 15px;
+        border-radius: 10px;
+      }
+      .save:hover {
+        cursor: pointer;
+        background-color: #6a1c68;
+        transform: translateY(3px);
+      }
+      .not-allowed:hover {
+        cursor: not-allowed;
+      }
+      .green {
+        color: green;
+      }
+    }
+  }
+  .show {
+    height: 250px;
+  }
+  .hide {
+    height: 0;
+  }
+  .active {
+    color: #333;
   }
 }

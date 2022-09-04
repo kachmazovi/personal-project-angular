@@ -1,9 +1,9 @@
-<main>
+<main *ngIf="lang | async as language">
   <header>
     <div class="container">
       <img
         src="{{
-          lang == geo
+          language == 'geo'
             ? 'https://tbconline.ge/tbcrd/assets/img/homepage/Logo-ka.svg'
             : 'https://tbconline.ge/tbcrd/assets/img/homepage/Logo-en.svg'
         }}"
@@ -13,90 +13,92 @@
       <div class="contact">
         <span>2 27 27 00</span>
         <a href="https://chat.tbcbank.ge/client/" target="_blank">{{
-          lang == geo ? "ონლაინ კონსულტაცია" : "Chat now"
+          language == "geo" ? "ონლაინ კონსულტაცია" : "Chat now"
         }}</a>
       </div>
     </div>
   </header>
   <div class="register">
-    <h1>{{ lang == geo ? "შემოგვიერთდი" : "Join us now" }}</h1>
+    <h1>{{ language == "geo" ? "შემოგვიერთდი" : "Join us now" }}</h1>
     <h4>
       {{
-        lang == geo
+        language == "geo"
           ? "შეიყვანე შენი მონაცემები იდენტიფიკაციისთვის"
           : "Tell us more about yourself"
       }}
     </h4>
     <form [formGroup]="registerForm">
-      {{ lang == geo ? "სახელი:" : "Name:" }}
+      {{ language == "geo" ? "სახელი:" : "Name:" }}
       <input type="text" formControlName="name" placeholder="Required" />
-      {{ lang == geo ? "გვარი:" : "Surname:" }}
+      {{ language == "geo" ? "გვარი:" : "Surname:" }}
       <input type="text" formControlName="surname" placeholder="Required" />
-      {{ lang == geo ? "პირადი ნომერი:" : "Personal number:" }}
+      {{ language == "geo" ? "პირადი ნომერი:" : "Personal number:" }}
       <input
         type="number"
         formControlName="personalNumber"
         placeholder="Required"
       />
-      <p class="err" *ngIf="personalErr">
-        {{ lang == geo ? "11 ციფრი" : "11 number" }}
+      <p class="err" *ngIf="personalNumber.hasError('pattern')">
+        {{ language == "geo" ? "11 ციფრი" : "11 number" }}
       </p>
       <p class="err" *ngIf="alreadyUsedPersonalNum">
         {{
-          lang == geo
+          language == "geo"
             ? "პირადი ნომერი უკვე რეგისტირებულია"
             : "Personal number is already registered"
         }}
       </p>
       <br />
-      {{ lang == geo ? "მობილურის ნომერი:" : "Mobile number:" }} +995
+      {{ language == "geo" ? "მობილურის ნომერი:" : "Mobile number:" }} +995
       <input
         type="number"
         formControlName="phoneNumber"
         placeholder="Required"
       />
-      <p class="err" *ngIf="phoneErr">
-        {{ lang == geo ? "9 ციფრი" : "9 number" }}
-      </p>
+      <div *ngIf="phoneNumber.hasError('pattern')">
+        <p class="err">
+          {{ language == "geo" ? "9 ციფრი" : "9 number" }}
+        </p>
+      </div>
       <p class="err" *ngIf="alreadyUsedPhoneNum">
         {{
-          lang == geo
+          language == "geo"
             ? "მობილური ნომერი უკვე რეგისტირებულია"
             : "Phone number is already registered"
         }}
       </p>
       <br />
-      {{ lang == geo ? "მომხმარებლის სახელი:" : "Username:" }}
+      {{ language == "geo" ? "მომხმარებლის სახელი:" : "Username:" }}
       <input type="text" formControlName="username" placeholder="Required" />
-      <p class="err" *ngIf="usernameErr">
-        {{ lang == geo ? "მინიმუმ 5 სიმბოლო" : "Minimum 5 symbol" }}
+      <p class="err" *ngIf="username.hasError('minlength')">
+        {{ language == "geo" ? "მინიმუმ 5 სიმბოლო" : "Minimum 5 symbol" }}
       </p>
       <p class="err" *ngIf="alreadyUsedUsername">
         {{
-          lang == geo
+          language == "geo"
             ? "მომხმარებლის სახელი უკვე რეგისტირებულია"
             : "Username is already used"
         }}
       </p>
       <br />
       <ng-container formGroupName="passwordGroup">
-        {{ lang == geo ? "პაროლი:" : "Password:" }}
+        {{ language == "geo" ? "პაროლი:" : "Password:" }}
         <input
           type="password"
           formControlName="password"
           placeholder="Required"
         />
-        <ng-container *ngIf="passwordErr">
+        <ng-container *ngIf="password.hasError('pattern')">
           <p class="err">
             {{
-              lang == geo
+              language == "geo"
                 ? "მინიმუმ 8 სიმბოლო, მინ 1 დიდი ასო, პატარა ასო და რიცხვი"
                 : "Minimum 8 symbol, min 1 uppercase, lowercase and number"
             }}
           </p>
           <br />
         </ng-container>
-        {{ lang == geo ? "გაიმეორე პაროლი:" : "Confirm Password:" }}
+        {{ language == "geo" ? "გაიმეორე პაროლი:" : "Confirm Password:" }}
         <input
           type="password"
           formControlName="confirmPassword"
@@ -105,7 +107,9 @@
       </ng-container>
       <ng-container *ngIf="confirmErr">
         <p class="err">
-          {{ lang == geo ? "პაროლები არ ემთხვევა" : "Passwords don't match" }}
+          {{
+            language == "geo" ? "პაროლები არ ემთხვევა" : "Passwords don't match"
+          }}
         </p>
         <br />
       </ng-container>
@@ -119,8 +123,6 @@
       (click)="register()"
       [disabled]="
         registerForm.invalid ||
-        personalErr ||
-        phoneErr ||
         alreadyUsedPersonalNum ||
         alreadyUsedPhoneNum ||
         alreadyUsedUsername
@@ -128,31 +130,29 @@
       [ngClass]="{
         'button-hover':
           registerForm.valid &&
-          !personalErr &&
-          !phoneErr &&
           !alreadyUsedPersonalNum &&
           !alreadyUsedPhoneNum &&
           !alreadyUsedUsername
       }"
     >
-      {{ lang == geo ? "რეგისტრაცია" : "Register" }}</button
+      {{ language == "geo" ? "რეგისტრაცია" : "Register" }}</button
     ><br />
     <button class="login-button" routerLink="/">
-      {{ lang == geo ? "ავტორიზაციის გავლა" : "Log In" }}
+      {{ language == "geo" ? "ავტორიზაციის გავლა" : "Log In" }}
     </button>
   </div>
 </main>
 <div class="overlay" *ngIf="userRegistered">
-  <div class="registered">
+  <div class="registered" *ngIf="lang | async as language">
     <h1>
       {{
-        lang == geo
+        language == "geo"
           ? "თქვენ წარმატებით დარეგისტრირდით!"
           : "Successfully registered!"
       }}
     </h1>
     <button (click)="registered()">
-      {{ lang == geo ? "ავტორიზაციის გავლა" : "Log In" }}
+      {{ language == "geo" ? "ავტორიზაციის გავლა" : "Log In" }}
     </button>
   </div>
 </div>

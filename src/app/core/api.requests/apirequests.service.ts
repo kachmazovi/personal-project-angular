@@ -8,7 +8,6 @@ import { dep } from 'src/app/shared/interfaces/deposit.interface';
 import { loanId } from 'src/app/shared/interfaces/loan.interface';
 import { depositId } from 'src/app/shared/interfaces/deposit.interface';
 import {
-  transactions,
   transactionsId,
   transfers,
 } from 'src/app/shared/interfaces/transactions.interface';
@@ -20,6 +19,8 @@ export class ApiRequestsService {
   constructor(private http: HttpClient) {}
 
   private baseUrl = 'http://localhost:3000';
+
+  //Users
 
   registerUser<user>(
     name: string,
@@ -47,7 +48,20 @@ export class ApiRequestsService {
     return this.http.get<registeredUser>(`${this.baseUrl}/users/${id}`);
   }
 
+  updateUser(user: registeredUser) {
+    return this.http.put(`${this.baseUrl}/users/${user.id}`, {
+      name: user.name,
+      surname: user.surname,
+      personalNumber: user.personalNumber,
+      phoneNumber: user.phoneNumber,
+      username: user.username,
+      password: user.password,
+      id: user.id,
+    });
+  }
+
   // Acounts
+
   addAccount<accounts>(account: string, amount: string): Observable<accounts> {
     return this.http.post<accounts>(`${this.baseUrl}/accounts`, {
       account: account,
@@ -89,6 +103,7 @@ export class ApiRequestsService {
   }
 
   // Loans
+
   addLoan<loans>(loan: loans) {
     return this.http.post<loans>(`${this.baseUrl}/loans`, {
       loans: loan,
@@ -106,6 +121,7 @@ export class ApiRequestsService {
   }
 
   // Deposits
+
   addDeposit<deposits>(deposit: deposits) {
     return this.http.post<deposits>(`${this.baseUrl}/deposits`, {
       deposits: deposit,

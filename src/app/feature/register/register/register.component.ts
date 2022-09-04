@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
-import { userData } from '../../../shared/interfaces/register.interface';
+import {
+  registeredUser,
+  userData,
+} from '../../../shared/interfaces/register.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
 import { matchValidator } from '../validators/validator';
-import { catchError, of, tap } from 'rxjs';
-import { loans } from 'src/app/shared/interfaces/loan.interface';
+import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -14,14 +16,8 @@ import { loans } from 'src/app/shared/interfaces/loan.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent implements OnInit {
-  public geo = 'geo';
-  public eng = 'eng';
-  public lang = '';
+  public lang = new BehaviorSubject('geo');
 
-  public personalErr = false;
-  public phoneErr = false;
-  public usernameErr = false;
-  public passwordErr = false;
   public confirmErr = false;
 
   public alreadyUsedPersonalNum = false;
@@ -37,37 +33,17 @@ export class RegisterComponent implements OnInit {
   constructor(
     private loginServ: LoginService,
     private request: ApiRequestsService
-  ) {}
+  ) {
+    this.loginServ.language.subscribe((language) => {
+      this.lang.next(language);
+    });
+  }
 
   ngOnInit(): void {
     for (let i = 0; i < 16; i++) {
       this.generateAccount += Math.floor(Math.random() * 10);
     }
-    this.request
-      .getUsers()
-      .pipe(
-        tap((response) => {
-          response.forEach((user) => {
-            this.registeredUsers.push({
-              personalNumber: user.personalNumber,
-              phoneNumber: user.phoneNumber,
-              username: user.username,
-            });
-          });
-          catchError((err) => {
-            console.log(err.message);
-            return of('error');
-          });
-        })
-      )
-      .subscribe();
-    this.loginServ.language.subscribe((v) => {
-      if (v == 'geo') {
-        this.lang = this.geo;
-      } else {
-        this.lang = this.eng;
-      }
-    });
+    this.getUsers();
     this.personalNumber.valueChanges.subscribe((num) => {
       this.alreadyUsedPersonalNum = false;
       this.registeredUsers.forEach((user) => {
@@ -75,11 +51,6 @@ export class RegisterComponent implements OnInit {
           this.alreadyUsedPersonalNum = true;
         }
       });
-      if (num == null || String(num).length == 11) {
-        this.personalErr = false;
-      } else if (String(num).length != 0 && String(num).length != 11) {
-        this.personalErr = true;
-      }
     });
     this.phoneNumber.valueChanges.subscribe((num) => {
       this.alreadyUsedPhoneNum = false;
@@ -88,11 +59,6 @@ export class RegisterComponent implements OnInit {
           this.alreadyUsedPhoneNum = true;
         }
       });
-      if (num == null || String(num).length == 9) {
-        this.phoneErr = false;
-      } else if (String(num).length != 0 && String(num).length != 9) {
-        this.phoneErr = true;
-      }
     });
     this.username.valueChanges.subscribe((username) => {
       this.alreadyUsedUsername = false;
@@ -101,16 +67,8 @@ export class RegisterComponent implements OnInit {
           this.alreadyUsedUsername = true;
         }
       });
-      if (String(username).length < 5 && String(username).length != 0) {
-        this.usernameErr = true;
-      } else {
-        this.usernameErr = false;
-      }
     });
     this.password.valueChanges.subscribe((password) => {
-      if (this.password.invalid && String(password).length != 0) {
-        this.passwordErr = true;
-      } else this.passwordErr = false;
       if (
         password != this.confirmPassword.value &&
         String(password).length != 0
@@ -128,18 +86,18 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  // RegisterForm
+
   public registerForm = new FormGroup({
     name: new FormControl<string>('', [Validators.required]),
     surname: new FormControl<string>('', [Validators.required]),
     personalNumber: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(11),
-      Validators.maxLength(11),
+      Validators.pattern('^[0-9]{11}$'),
     ]),
     phoneNumber: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(9),
-      Validators.maxLength(9),
+      Validators.pattern('^[0-9]{9}$'),
     ]),
     username: new FormControl<string>('', [
       Validators.required,
@@ -163,76 +121,14 @@ export class RegisterComponent implements OnInit {
     }),
   });
 
+  // Register Button
+
   public register() {
-    this.request
-      .registerUser(
-        this.name.value,
-        this.surname.value,
-        this.personalNumber.value,
-        this.phoneNumber.value,
-        this.username.value,
-        this.password.value
-      )
-      .pipe(
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
-      .subscribe();
-    this.request
-      .addAccount(this.generateAccount, '10000')
-      .pipe(
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
-      .subscribe();
-    this.request
-      .addTransaction([
-        {
-          date: '00000000000',
-          receiver: '00000000000',
-          transferror: '00000000000',
-          amount: 0,
-        },
-      ])
-      .pipe(
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
-      .subscribe();
-    this.request
-      .addDeposit([
-        {
-          date: '00000000000',
-          amount: 0,
-        },
-      ])
-      .pipe(
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
-      .subscribe();
-    this.request
-      .addLoan([
-        {
-          date: '00000000000',
-          amount: 0,
-        },
-      ])
-      .pipe(
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
-      .subscribe();
+    this.registerUser();
+    this.addAccount();
+    this.addTransaction();
+    this.addDeposit();
+    this.addLoan();
     this.userRegistered = true;
   }
 
@@ -268,5 +164,112 @@ export class RegisterComponent implements OnInit {
   }
   get term() {
     return this.registerForm.get('terms') as FormControl;
+  }
+
+  // Http requests
+
+  private getUsers() {
+    this.request
+      .getUsers()
+      .pipe(
+        tap((response: registeredUser[]) => {
+          response.forEach((user) => {
+            this.registeredUsers.push({
+              personalNumber: user.personalNumber,
+              phoneNumber: user.phoneNumber,
+              username: user.username,
+            });
+          });
+          catchError((err) => {
+            console.log(err.message);
+            return of('error');
+          });
+        })
+      )
+      .subscribe();
+  }
+
+  private registerUser() {
+    this.request
+      .registerUser(
+        this.name.value,
+        this.surname.value,
+        this.personalNumber.value,
+        this.phoneNumber.value,
+        this.username.value,
+        this.password.value
+      )
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+
+  private addAccount() {
+    this.request
+      .addAccount(this.generateAccount, '10000')
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+
+  private addTransaction() {
+    this.request
+      .addTransaction([
+        {
+          date: '00000000000',
+          receiver: '00000000000',
+          transferror: '00000000000',
+          amount: 0,
+        },
+      ])
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+
+  private addDeposit() {
+    this.request
+      .addDeposit([
+        {
+          date: '00000000000',
+          amount: 0,
+        },
+      ])
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+
+  private addLoan() {
+    this.request
+      .addLoan([
+        {
+          date: '00000000000',
+          amount: 0,
+        },
+      ])
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
   }
 }
