@@ -15,22 +15,26 @@ main {
     height: 400px;
     margin-top: 20px;
     transition: 1s;
-    overflow: auto;
+    overflow: hidden;
     h2:first-child {
-      width: 10%;
+      width: 85px;
     }
     h2:nth-child(2) {
-      width: 27%;
+      width: 240px;
     }
     h2:nth-child(3) {
-      width: 27%;
+      width: 240px;
+    }
+    h2:nth-child(4) {
+      width: 120px;
     }
     h2:last-child {
-      width: 15%;
+      width: 120px;
     }
     .header {
       display: flex;
       justify-content: space-between;
+      width: 98%;
       font-size: 20px;
       color: black;
       font-weight: bold;
@@ -38,19 +42,25 @@ main {
       padding-bottom: 5px;
       border-bottom: 3px solid gray;
     }
-    .transfer {
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
-      color: #00a3e0;
-      margin: 15px 0;
-      padding-bottom: 5px;
-      border-bottom: 1px solid gray;
-      .green {
-        color: green;
-      }
-      .red {
-        color: red;
+    .ng-for {
+      height: 350px;
+      overflow: auto;
+      .transfer {
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        margin: 15px 0;
+        padding-bottom: 5px;
+        border-bottom: 1px solid gray;
+        .blue {
+          color: #00a3e0;
+        }
+        .green {
+          color: green;
+        }
+        .red {
+          color: red;
+        }
       }
     }
   }

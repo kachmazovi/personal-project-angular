@@ -6,25 +6,43 @@
     <div class="transactions" [ngClass]="{ hide: !showTrans }">
       <div class="header" *ngIf="have">
         <h2>{{ language == "geo" ? "თარიღი" : "Date" }}</h2>
-        <h2>{{ language == "geo" ? "მიმღები" : "Receiver" }}</h2>
         <h2>{{ language == "geo" ? "გადამრიცხავი" : "Transferror" }}</h2>
-        <h2>{{ language == "geo" ? "თანხა" : "Amount" }}</h2>
+        <h2>{{ language == "geo" ? "მიმღები" : "Receiver" }}</h2>
+        <h2>{{ language == "geo" ? "გადარიცხვა" : "Debited" }}</h2>
+        <h2>{{ language == "geo" ? "ჩარიცხვა" : "Credited" }}</h2>
       </div>
       <ng-container *ngIf="userTransactions | async as transactions">
-        <ng-container *ngFor="let transfer of transactions">
-          <div class="transfer" *ngIf="transfer.amount > 0">
-            <ng-container *ngIf="userAccount | async as user">
-              <h2>{{ transfer.date }}</h2>
-              <h2>{{ transfer.receiver }}</h2>
-              <h2>{{ transfer.transferror }}</h2>
-              <h2
-                [ngClass]="user.account == transfer.receiver ? 'green' : 'red'"
-              >
-                {{ transfer.amount }} {{ language == "geo" ? "ლარი" : "GEL" }}
-              </h2>
-            </ng-container>
-          </div>
-        </ng-container>
+        <div class="ng-for">
+          <ng-container *ngFor="let transfer of transactions">
+            <div class="transfer" *ngIf="transfer.amount > 0">
+              <ng-container *ngIf="userAccount | async as user">
+                <h2 class="blue">{{ transfer.date }}</h2>
+                <h2 [ngClass]="{ blue: user.account == transfer.transferror }">
+                  {{ transfer.transferror }}
+                </h2>
+                <h2
+                  [ngClass]="{
+                    blue: user.account == transfer.receiver
+                  }"
+                >
+                  {{ transfer.receiver }}
+                </h2>
+                <h2 [ngClass]="{ red: user.account == transfer.transferror }">
+                  <span *ngIf="user.account == transfer.transferror">
+                    {{ transfer.amount }}
+                    {{ language == "geo" ? "ლარი" : "GEL" }}</span
+                  >
+                </h2>
+                <h2 [ngClass]="{ green: user.account == transfer.receiver }">
+                  <span *ngIf="user.account == transfer.receiver">
+                    {{ transfer.amount }}
+                    {{ language == "geo" ? "ლარი" : "GEL" }}</span
+                  >
+                </h2>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
       </ng-container>
     </div>
   </ng-container>

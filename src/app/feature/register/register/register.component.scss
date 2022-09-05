@@ -17,33 +17,28 @@ header {
     }
     .contact {
       color: white;
-      span::before {
-        content: "";
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        background-image: url(https://tbconline.ge/tbcrd/assets/img/tbc-icon-phone.svg);
-        background-position: center;
-        background-size: contain;
-        margin-right: 5px;
-      }
-      span::after {
-        content: "|";
-        display: inline-block;
-        font-weight: bold;
-        margin-left: 15px;
-      }
+      // span::before,
+      // a::before {
+      //   content: "";
+      //   display: inline-block;
+      //   width: 16px;
+      //   height: 16px;
+      //   background-image: url(https://tbconline.ge/tbcrd/assets/img/tbc-icon-phone.svg);
+      //   background-position: center;
+      //   background-size: contain;
+      //   margin-right: 5px;
+      // }
+      // span::after {
+      //   content: "|";
+      //   display: inline-block;
+      //   font-weight: bold;
+      //   margin-left: 15px;
+      // }
       a {
         color: white;
       }
       a::before {
-        content: "";
-        display: inline-block;
-        width: 16px;
-        height: 16px;
         background-image: url(https://tbconline.ge/tbcrd/assets/img/main/tbc-icon-chat.svg);
-        background-position: center;
-        background-size: contain;
         margin: 0 10px 0 15px;
       }
     }
@@ -90,7 +85,8 @@ main {
       margin: -10px 0 0 15px;
     }
   }
-  .register-button {
+  .register-button,
+  .login-button {
     width: 100px;
     height: 35px;
     background-color: #00a3e0;
@@ -109,11 +105,6 @@ main {
 
   .login-button {
     width: 125px;
-    height: 40px;
-    background-color: #00a3e0;
-    border: 0;
-    color: white;
-    border-radius: 10px;
   }
 }
 .overlay {

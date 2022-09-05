@@ -44,6 +44,11 @@ export class ParametersComponent implements OnInit {
         }
       });
     });
+    this.inputCurrentPassword.valueChanges.subscribe((input) => {
+      if (input?.length == 0 || input == this.userDataObj.password) {
+        this.wrongCurrentPassword = false;
+      } else this.wrongCurrentPassword = true;
+    });
   }
 
   private allUsers: user[] = [];
@@ -63,8 +68,9 @@ export class ParametersComponent implements OnInit {
       .subscribe();
   }
 
-  public acceptableUsername = true;
   public saved = new BehaviorSubject(false);
+
+  // Menu
 
   public personal = true;
   public username = false;
@@ -86,15 +92,13 @@ export class ParametersComponent implements OnInit {
     this.password = true;
   }
 
+  // change-username
+
+  public acceptableUsername = true;
+
   public inputUsername = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
-  ]);
-  public inputPassword = new FormControl('', [
-    Validators.required,
-    Validators.pattern(
-      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^ws]).{8,}$'
-    ),
   ]);
 
   public userDataObj: registeredUser = {
@@ -126,6 +130,19 @@ export class ParametersComponent implements OnInit {
       this.saved.next(false);
     }, 2000);
   }
+
+  // change-password
+
+  public wrongCurrentPassword = false;
+  public inputCurrentPassword = new FormControl('', Validators.required);
+
+  public inputPassword = new FormControl('', [
+    Validators.required,
+    Validators.pattern(
+      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^ws]).{8,}$'
+    ),
+  ]);
+
   public savePassword() {
     this.userDataObj.password = String(this.inputPassword.value);
     this.http.updateUser(this.userDataObj).subscribe();

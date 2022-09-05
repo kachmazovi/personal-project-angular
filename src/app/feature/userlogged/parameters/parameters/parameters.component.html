@@ -93,6 +93,28 @@
       <div class="change-password" [ngClass]="password ? 'show' : 'hide'">
         <label for="">
           {{
+            language == "geo"
+              ? "შეიყვანეთ მიმდინარე პაროლი"
+              : "Enter current password"
+          }}
+          <br /><br />
+          <input
+            type="password"
+            [formControl]="inputCurrentPassword"
+            placeholder="Required"
+          />
+        </label>
+        <h1>
+          <span *ngIf="wrongCurrentPassword">
+            {{
+              language == "geo"
+                ? "მიმდინარე პაროლი არასწორია"
+                : "Current password incorrect"
+            }}
+          </span>
+        </h1>
+        <label for="">
+          {{
             language == "geo" ? "შეიყვანეთ ახალი პაროლი" : "Enter new password"
           }}
           <br /><br />
@@ -115,9 +137,9 @@
         <button
           class="save"
           (click)="savePassword()"
-          [disabled]="inputPassword.invalid"
+          [disabled]="inputPassword.invalid || wrongCurrentPassword"
           [ngClass]="{
-            'not-allowed': inputPassword.invalid
+            'not-allowed': inputPassword.invalid || wrongCurrentPassword
           }"
         >
           {{ language == "geo" ? "შენახვა" : "Save" }}

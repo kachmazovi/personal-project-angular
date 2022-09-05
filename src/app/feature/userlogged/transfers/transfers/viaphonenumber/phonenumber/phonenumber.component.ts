@@ -40,9 +40,7 @@ export class PhonenumberComponent implements OnInit {
     this.getTransferrorTransactions();
 
     this.inputMobile.valueChanges.subscribe((input) => {
-      if (input?.length == 0) {
-        this.wrongMobileNumber = false;
-      } else this.wrongMobileNumber = true;
+      this.wrongMobileNumber = true;
       this.checked = false;
       this.next = false;
       this.usersData.forEach((user) => {

@@ -49,7 +49,7 @@
   "accounts": [
     {
       "account": "GE00TB2232814783096579",
-      "amount": "216180",
+      "amount": "313180",
       "id": 1
     },
     {
@@ -59,17 +59,17 @@
     },
     {
       "account": "GE00TB3557186155547580",
-      "amount": "29000",
+      "amount": "108000",
       "id": 3
     },
     {
       "account": "GE00TB9411295507505239",
-      "amount": "10923",
+      "amount": "25923",
       "id": 4
     },
     {
       "account": "GE00TB2754709713443863",
-      "amount": "201297",
+      "amount": "228297",
       "id": 5
     }
   ],
@@ -169,6 +169,14 @@
         {
           "date": "4/8/2022",
           "amount": 1500
+        },
+        {
+          "date": "5/8/2022",
+          "amount": 27000
+        },
+        {
+          "date": "5/8/2022",
+          "amount": 191000
         }
       ],
       "id": 3
@@ -397,6 +405,12 @@
           "receiver": "GE00TB3557186155547580",
           "transferror": "GE00TB2232814783096579",
           "amount": 19000
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB2232814783096579",
+          "transferror": "GE00TB3557186155547580",
+          "amount": 97000
         }
       ],
       "id": 1
@@ -521,6 +535,24 @@
           "receiver": "GE00TB3557186155547580",
           "transferror": "GE00TB2232814783096579",
           "amount": 19000
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB2754709713443863",
+          "transferror": "GE00TB3557186155547580",
+          "amount": 27000
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB9411295507505239",
+          "transferror": "GE00TB3557186155547580",
+          "amount": 15000
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB2232814783096579",
+          "transferror": "GE00TB3557186155547580",
+          "amount": 97000
         }
       ],
       "id": 3
@@ -538,6 +570,12 @@
           "receiver": "GE00TB9411295507505239",
           "transferror": "GE00TB2232814783096579",
           "amount": 923
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB9411295507505239",
+          "transferror": "GE00TB3557186155547580",
+          "amount": 15000
         }
       ],
       "id": 4
@@ -555,6 +593,12 @@
           "receiver": "GE00TB2754709713443863",
           "transferror": "GE00TB2232814783096579",
           "amount": 191297
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB2754709713443863",
+          "transferror": "GE00TB3557186155547580",
+          "amount": 27000
         }
       ],
       "id": 5

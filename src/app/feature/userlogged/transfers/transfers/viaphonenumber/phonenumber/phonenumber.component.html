@@ -7,7 +7,7 @@
           : "Enter the recipient's mobile number"
       }}
     </h1>
-    <input type="text" [formControl]="inputMobile" />
+    <input type="number" [formControl]="inputMobile" />
     <h6>
       <span *ngIf="wrongMobileNumber">{{
         language == "geo" ? "არასწორი მობილურის ნომერი" : "Wrong mobile number"

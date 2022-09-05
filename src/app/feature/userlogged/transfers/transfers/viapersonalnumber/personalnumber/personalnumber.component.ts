@@ -40,9 +40,7 @@ export class PersonalnumberComponent implements OnInit {
     this.getTransferrorTransactions();
 
     this.inputPersonal.valueChanges.subscribe((input) => {
-      if (input?.length == 0) {
-        this.wrongPersonalNumber = false;
-      } else this.wrongPersonalNumber = true;
+      this.wrongPersonalNumber = true;
       this.checked = false;
       this.next = false;
       this.usersData.forEach((user) => {
