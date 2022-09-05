@@ -1,0 +1,63 @@
+main {
+  width: 1280px;
+  height: 650px;
+  margin: 50px auto;
+  border-radius: 25px;
+  background-color: white;
+  border: 1px solid rgb(190, 190, 190);
+  display: flex;
+  .left-section {
+    width: 30%;
+    border-right: 1px solid rgb(190, 190, 190);
+    padding: 100px 25px;
+    li {
+      margin-bottom: 25px;
+      font-size: 25px;
+      transition: 0.5s linear;
+      cursor: pointer;
+    }
+    .active {
+      color: #00a3e0;
+      font-size: 30px;
+    }
+  }
+  .right-section {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    .transfers-images {
+      width: 80%;
+      display: flex;
+      justify-content: space-around;
+      .bg-image {
+        width: 200px;
+        height: 100px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+      .wu {
+        background-image: url(../../../../../../../assets/moneytransfers/wu/black.png);
+      }
+      .wu-active {
+        background-image: url(../../../../../../../assets/moneytransfers/wu/color.jpg);
+      }
+      .ria {
+        background-image: url(../../../../../../../assets/moneytransfers/ria/black.jpg);
+      }
+      .ria-active {
+        background-image: url(../../../../../../../assets/moneytransfers/ria/color.jpg);
+      }
+      .gram {
+        background-image: url(../../../../../../../assets/moneytransfers/moneygram/black.jpg);
+      }
+      .gram-active {
+        background-image: url(../../../../../../../assets/moneytransfers/moneygram/color.png);
+      }
+    }
+  }
+}

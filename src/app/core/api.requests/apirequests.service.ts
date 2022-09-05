@@ -11,6 +11,10 @@ import {
   transactionsId,
   transfers,
 } from 'src/app/shared/interfaces/transactions.interface';
+import {
+  getMoneytransfers,
+  addMoneytransfers,
+} from 'src/app/shared/interfaces/moneytransfers.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -137,5 +141,40 @@ export class ApiRequestsService {
       deposits: deposit,
       id: id,
     });
+  }
+
+  // Money Transfers
+
+  addWestern(transfers: addMoneytransfers[]) {
+    return this.http.put(`${this.baseUrl}/moneytransfers/1`, {
+      transfers: transfers,
+      id: '1',
+    });
+  }
+
+  getWestern(): Observable<getMoneytransfers> {
+    return this.http.get<getMoneytransfers>(`${this.baseUrl}/moneytransfers/1`);
+  }
+
+  addRia(transfers: addMoneytransfers[]) {
+    return this.http.put(`${this.baseUrl}/moneytransfers/2`, {
+      transfers: transfers,
+      id: '2',
+    });
+  }
+
+  getRia(): Observable<getMoneytransfers> {
+    return this.http.get<getMoneytransfers>(`${this.baseUrl}/moneytransfers/2`);
+  }
+
+  addGram(transfers: addMoneytransfers[]) {
+    return this.http.put(`${this.baseUrl}/moneytransfers/3`, {
+      transfers: transfers,
+      id: '3',
+    });
+  }
+
+  getGram(): Observable<getMoneytransfers> {
+    return this.http.get<getMoneytransfers>(`${this.baseUrl}/moneytransfers/3`);
   }
 }

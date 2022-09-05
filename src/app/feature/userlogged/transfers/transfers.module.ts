@@ -35,6 +35,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
                 (m) => m.ViaphonenumberModule
               ),
           },
+          {
+            path: 'moneytransfer',
+            loadChildren: () =>
+              import('./transfers/moneytransfers/moneytransfers.module').then(
+                (m) => m.MoneytransfersModule
+              ),
+          },
         ],
       },
     ]),

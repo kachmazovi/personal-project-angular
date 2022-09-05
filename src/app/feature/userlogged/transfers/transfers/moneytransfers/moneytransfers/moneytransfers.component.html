@@ -1,1 +1,33 @@
-<p>moneytransfers works!</p>
+<main *ngIf="lang | async as language">
+  <section class="left-section">
+    <ul>
+      <li [ngClass]="{ active: sentTransfer }" (click)="sendHeader()">
+        {{ language == "geo" ? "გზავნილის გაგზავნა" : "Send Money Transfer" }}
+      </li>
+      <li [ngClass]="{ active: !sentTransfer }" (click)="receiveHeader()">
+        {{ language == "geo" ? "გზავნილის მიღება" : "Receive Money Transfer" }}
+      </li>
+    </ul>
+  </section>
+  <section class="right-section">
+    <div class="transfers-images">
+      <div
+        class="bg-image wu"
+        [ngClass]="{ 'wu-active': western }"
+        (click)="clickWestern()"
+      ></div>
+      <div
+        class="bg-image ria"
+        [ngClass]="{ 'ria-active': ria }"
+        (click)="clickRia()"
+      ></div>
+      <div
+        class="bg-image gram"
+        [ngClass]="{ 'gram-active': moneygram }"
+        (click)="clickGram()"
+      ></div>
+    </div>
+    <div class="input"></div>
+    <button (click)="click()">click</button>
+  </section>
+</main>
