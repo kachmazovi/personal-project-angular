@@ -13,13 +13,6 @@
         language == "geo" ? "არასწორი მობილურის ნომერი" : "Wrong mobile number"
       }}</span>
     </h6>
-    <button
-      (click)="check()"
-      [ngClass]="{ 'not-allowed': inputMobile.invalid || wrongMobileNumber }"
-      [disabled]="inputMobile.invalid || wrongMobileNumber"
-    >
-      {{ language == "geo" ? "შემოწმება" : "Check" }}
-    </button>
   </div>
   <div
     class="user-box"
@@ -43,9 +36,9 @@
       }}</span>
     </h6>
     <button
-      [disabled]="enoughAmount || inputAmount.invalid || wrongAmount"
+      [disabled]="enoughAmount || inputAmount.invalid"
       [ngClass]="{
-        'not-allowed': enoughAmount || inputAmount.invalid || wrongAmount
+        'not-allowed': enoughAmount || inputAmount.invalid
       }"
       (click)="transfer()"
     >

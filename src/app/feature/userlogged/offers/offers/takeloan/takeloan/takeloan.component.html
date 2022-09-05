@@ -14,8 +14,8 @@
       <div class="buttons">
         <button
           (click)="openLoan()"
-          [disabled]="inputAmount.invalid || amountZero"
-          [ngClass]="{ 'not-allowed': inputAmount.invalid || amountZero }"
+          [disabled]="inputAmount.invalid"
+          [ngClass]="{ 'not-allowed': inputAmount.invalid }"
         >
           {{ language == "geo" ? "სესხის აღება" : "Take Loan" }}
         </button>

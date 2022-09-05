@@ -48,18 +48,19 @@ export class PhonenumberComponent implements OnInit {
       this.usersData.forEach((user) => {
         if (user.phoneNumber == input) {
           this.wrongMobileNumber = false;
+          this.receiverId = user.id;
+          this.receiverData.next(user);
+          this.checked = true;
+          this.getReceiverAccount();
+          this.getReceiverTransactions();
         }
       });
     });
 
     this.inputAmount.valueChanges.subscribe((amount) => {
-      this.wrongAmount = false;
       this.enoughAmount = false;
       if (Number(amount) > Number(this.transferrorAccount.amount)) {
         this.enoughAmount = true;
-      }
-      if (Number(amount) < 1) {
-        this.wrongAmount = true;
       }
     });
   }
@@ -67,10 +68,15 @@ export class PhonenumberComponent implements OnInit {
   public checked = false;
   public next = false;
   public wrongMobileNumber = false;
-  public wrongAmount = false;
   public enoughAmount = false;
-  public inputAmount = new FormControl('', Validators.required);
-  public inputMobile = new FormControl('', Validators.required);
+  public inputAmount = new FormControl('', [
+    Validators.required,
+    Validators.min(1),
+  ]);
+  public inputMobile = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^[0-9]{11}$'),
+  ]);
   private getDate = new Date();
   private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
   private receiverId = '';
@@ -185,18 +191,6 @@ export class PhonenumberComponent implements OnInit {
   }
 
   // Methods
-
-  public check() {
-    this.usersData.some((user) => {
-      if (user.phoneNumber == this.inputMobile.value) {
-        this.receiverId = user.id;
-        this.receiverData.next(user);
-        this.checked = true;
-        this.getReceiverAccount();
-        this.getReceiverTransactions();
-      }
-    });
-  }
 
   public nextClick() {
     this.next = true;

@@ -41,15 +41,15 @@
       "surname": "პაპიძე",
       "personalNumber": 12545657894,
       "phoneNumber": 597898980,
-      "username": "solomon",
-      "password": "Solomon123",
+      "username": "sollo",
+      "password": "Sollo123",
       "id": 5
     }
   ],
   "accounts": [
     {
       "account": "GE00TB2232814783096579",
-      "amount": "391520",
+      "amount": "216180",
       "id": 1
     },
     {
@@ -59,17 +59,17 @@
     },
     {
       "account": "GE00TB3557186155547580",
-      "amount": "9700",
+      "amount": "29000",
       "id": 3
     },
     {
       "account": "GE00TB9411295507505239",
-      "amount": "10000",
+      "amount": "10923",
       "id": 4
     },
     {
       "account": "GE00TB2754709713443863",
-      "amount": "10000",
+      "amount": "201297",
       "id": 5
     }
   ],
@@ -82,7 +82,7 @@
         },
         {
           "date": "4/8/2022",
-          "amount": 12000
+          "amount": 9900
         },
         {
           "date": "4/8/2022",
@@ -111,6 +111,10 @@
         {
           "date": "4/8/2022",
           "amount": 3100
+        },
+        {
+          "date": "5/8/2022",
+          "amount": 15000
         }
       ],
       "id": 1
@@ -220,8 +224,8 @@
           "amount": 12000
         },
         {
-          "date": "4/8/2022",
-          "amount": 31000
+          "date": "5/8/2022",
+          "amount": 10400
         }
       ],
       "id": 1
@@ -369,6 +373,30 @@
           "receiver": "GE00TB2232814783096579",
           "transferror": "GE00TB3557186155547580",
           "amount": 500
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB2754709713443863",
+          "transferror": "GE00TB2232814783096579",
+          "amount": 191297
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB3557186155547580",
+          "transferror": "GE00TB2232814783096579",
+          "amount": 300
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB9411295507505239",
+          "transferror": "GE00TB2232814783096579",
+          "amount": 923
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB3557186155547580",
+          "transferror": "GE00TB2232814783096579",
+          "amount": 19000
         }
       ],
       "id": 1
@@ -481,6 +509,18 @@
           "receiver": "GE00TB2232814783096579",
           "transferror": "GE00TB3557186155547580",
           "amount": 500
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB3557186155547580",
+          "transferror": "GE00TB2232814783096579",
+          "amount": 300
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB3557186155547580",
+          "transferror": "GE00TB2232814783096579",
+          "amount": 19000
         }
       ],
       "id": 3
@@ -492,6 +532,12 @@
           "receiver": "00000000000",
           "transferror": "00000000000",
           "amount": 0
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB9411295507505239",
+          "transferror": "GE00TB2232814783096579",
+          "amount": 923
         }
       ],
       "id": 4
@@ -503,6 +549,12 @@
           "receiver": "00000000000",
           "transferror": "00000000000",
           "amount": 0
+        },
+        {
+          "date": "5/8/2022",
+          "receiver": "GE00TB2754709713443863",
+          "transferror": "GE00TB2232814783096579",
+          "amount": 191297
         }
       ],
       "id": 5

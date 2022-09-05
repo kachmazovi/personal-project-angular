@@ -31,20 +31,16 @@ export class TakeloanComponent implements OnInit {
   ngOnInit(): void {
     this.getUserLoan();
     this.getAccount();
-    this.inputAmount.valueChanges.subscribe((amount) => {
-      this.amountZero = false;
-      if (Number(amount) < 1) {
-        this.amountZero = true;
-      }
-    });
   }
 
   public terms = true;
-  public amountZero = false;
   public confirm = new BehaviorSubject(false);
   private getDate = new Date();
   private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
-  public inputAmount = new FormControl('', Validators.required);
+  public inputAmount = new FormControl('', [
+    Validators.required,
+    Validators.min(1),
+  ]);
   private userLoan: loa[] = [];
   private userAccount: accountId = {
     account: '',

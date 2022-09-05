@@ -48,18 +48,19 @@ export class AccountnumberComponent implements OnInit {
       this.usersAccounts.forEach((user) => {
         if (user.account == input) {
           this.wrongAccountNumber = false;
+          this.receiverId = user.id;
+          this.receiverAccount = user;
+          this.checked = true;
+          this.getReceiverData();
+          this.getReceiverTransactions();
         }
       });
     });
 
     this.inputAmount.valueChanges.subscribe((amount) => {
-      this.wrongAmount = false;
       this.enoughAmount = false;
       if (Number(amount) > Number(this.transferrorAccount.amount)) {
         this.enoughAmount = true;
-      }
-      if (Number(amount) < 1) {
-        this.wrongAmount = true;
       }
     });
   }
@@ -67,15 +68,21 @@ export class AccountnumberComponent implements OnInit {
   public checked = false;
   public next = false;
   public wrongAccountNumber = false;
-  public wrongAmount = false;
   public enoughAmount = false;
-  public inputAmount = new FormControl('', Validators.required);
-  public inputAccount = new FormControl('', Validators.required);
+  public inputAmount = new FormControl('', [
+    Validators.required,
+    Validators.min(1),
+  ]);
+  public inputAccount = new FormControl('', [
+    Validators.required,
+    Validators.minLength(22),
+  ]);
   private getDate = new Date();
   private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
   private receiverId = '';
 
   // Transferror account
+
   private transferrorAccount: accountId = {
     account: '',
     amount: '',
@@ -184,18 +191,6 @@ export class AccountnumberComponent implements OnInit {
   }
 
   // Methods
-
-  public check() {
-    this.usersAccounts.some((user) => {
-      if (user.account == this.inputAccount.value) {
-        this.receiverId = user.id;
-        this.receiverAccount = user;
-        this.checked = true;
-        this.getReceiverData();
-        this.getReceiverTransactions();
-      }
-    });
-  }
 
   public nextClick() {
     this.next = true;

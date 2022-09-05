@@ -7,21 +7,12 @@
           : "Enter the recipient's personal number"
       }}
     </h1>
-    <input type="text" [formControl]="inputPersonal" />
+    <input type="number" [formControl]="inputPersonal" />
     <h6>
       <span *ngIf="wrongPersonalNumber">{{
         language == "geo" ? "არასწორი პირადი ნომერი" : "Wrong personal number"
       }}</span>
     </h6>
-    <button
-      (click)="check()"
-      [ngClass]="{
-        'not-allowed': inputPersonal.invalid || wrongPersonalNumber
-      }"
-      [disabled]="inputPersonal.invalid || wrongPersonalNumber"
-    >
-      {{ language == "geo" ? "შემოწმება" : "Check" }}
-    </button>
   </div>
   <div
     class="user-box"
@@ -45,9 +36,9 @@
       }}</span>
     </h6>
     <button
-      [disabled]="enoughAmount || inputAmount.invalid || wrongAmount"
+      [disabled]="enoughAmount || inputAmount.invalid"
       [ngClass]="{
-        'not-allowed': enoughAmount || inputAmount.invalid || wrongAmount
+        'not-allowed': enoughAmount || inputAmount.invalid
       }"
       (click)="transfer()"
     >
