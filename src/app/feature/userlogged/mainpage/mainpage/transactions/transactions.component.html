@@ -14,7 +14,7 @@
       <ng-container *ngIf="userTransactions | async as transactions">
         <div class="ng-for">
           <ng-container *ngFor="let transfer of transactions">
-            <div class="transfer" *ngIf="transfer.amount > 0">
+            <div class="transfer">
               <ng-container *ngIf="userAccount | async as user">
                 <h2 class="blue">{{ transfer.date }}</h2>
                 <h2 [ngClass]="{ blue: user.account == transfer.transferror }">

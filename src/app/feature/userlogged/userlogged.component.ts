@@ -21,15 +21,6 @@ import { LoginService } from 'src/app/shared/services/login/login.service';
 })
 export class UserloggedComponent implements OnInit, OnDestroy {
   private loggedUserId = '';
-  public loggedUser: BehaviorSubject<registeredUser> = new BehaviorSubject({
-    name: '',
-    surname: '',
-    personalNumber: '',
-    phoneNumber: '',
-    username: '',
-    password: '',
-    id: '',
-  });
 
   public geo = new BehaviorSubject('geo');
   public eng = new BehaviorSubject('eng');
@@ -67,6 +58,22 @@ export class UserloggedComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getUser();
+  }
+
+  ngOnDestroy(): void {}
+
+  public loggedUser: BehaviorSubject<registeredUser> = new BehaviorSubject({
+    name: '',
+    surname: '',
+    personalNumber: '',
+    phoneNumber: '',
+    username: '',
+    password: '',
+    id: '',
+  });
+
+  private getUser() {
     this.http
       .getUserID(this.loggedUserId)
       .pipe(
@@ -80,8 +87,6 @@ export class UserloggedComponent implements OnInit, OnDestroy {
       )
       .subscribe();
   }
-
-  ngOnDestroy(): void {}
 
   public logOut() {
     this.loginServ.userLogged.next(false);

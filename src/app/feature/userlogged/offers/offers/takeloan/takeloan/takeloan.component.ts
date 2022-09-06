@@ -5,6 +5,10 @@ import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.servic
 import { loa, loanId } from 'src/app/shared/interfaces/loan.interface';
 import { accountId } from 'src/app/shared/interfaces/account.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
+import {
+  transactionsId,
+  transfers,
+} from 'src/app/shared/interfaces/transactions.interface';
 
 @Component({
   selector: 'app-takeloan',
@@ -29,6 +33,7 @@ export class TakeloanComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserTransactions();
     this.getUserLoan();
     this.getAccount();
   }
@@ -52,6 +57,22 @@ export class TakeloanComponent implements OnInit {
     if (this.terms) {
       this.terms = false;
     } else this.terms = true;
+  }
+
+  private userTransactions: transfers[] = [];
+  private getUserTransactions() {
+    this.http
+      .getTransaction(this.loggedUserId)
+      .pipe(
+        tap((response: transactionsId) => {
+          this.userTransactions = response.transactions;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
   }
 
   private getAccount() {
@@ -91,13 +112,21 @@ export class TakeloanComponent implements OnInit {
     this.userAccount.amount = String(
       Number(this.userAccount.amount) + Number(this.inputAmount.value)
     );
+    this.userTransactions.push({
+      date: this.today,
+      receiver: this.userAccount.account,
+      transferror: 'Take Loan',
+      amount: Number(this.inputAmount.value),
+    });
     this.updateLoan();
     this.updateAccount();
+    this.updateTransactions();
     this.inputAmount.reset();
     this.confirm.next(true);
     setTimeout(() => {
       this.confirm.next(false);
-    }, 3000);
+      this.terms = true;
+    }, 2000);
   }
 
   private updateLoan() {
@@ -114,6 +143,17 @@ export class TakeloanComponent implements OnInit {
   private updateAccount() {
     this.http
       .updateAccount(this.userAccount)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+  private updateTransactions() {
+    this.http
+      .updateTransactions(this.userTransactions, this.loggedUserId)
       .pipe(
         catchError((err) => {
           console.log(err.message);

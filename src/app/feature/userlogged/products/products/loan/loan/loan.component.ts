@@ -5,6 +5,10 @@ import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.servic
 import { loa, loans } from 'src/app/shared/interfaces/loan.interface';
 import { accountId } from 'src/app/shared/interfaces/account.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
+import {
+  transactionsId,
+  transfers,
+} from 'src/app/shared/interfaces/transactions.interface';
 
 @Component({
   selector: 'app-loan',
@@ -29,6 +33,8 @@ export class LoanComponent implements OnInit {
   public lang = new BehaviorSubject('geo');
   public userLoans: BehaviorSubject<loa[]> = new BehaviorSubject<loa[]>([]);
   public loanArr: loa[] = [];
+  private getDate = new Date();
+  private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
   private userAccount: accountId = {
     account: '',
     amount: '',
@@ -41,10 +47,27 @@ export class LoanComponent implements OnInit {
   ngOnInit(): void {
     this.getLoan();
     this.getAccount();
+    this.getUserTransactions();
     this.inputAmount.valueChanges.subscribe((v) => {
       this.notEnoughAmount = false;
       this.wrongAmount = false;
     });
+  }
+
+  private userTransactions: transfers[] = [];
+  private getUserTransactions() {
+    this.http
+      .getTransaction(this.loggedUserId)
+      .pipe(
+        tap((response: transactionsId) => {
+          this.userTransactions = response.transactions;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
   }
 
   private getAccount() {
@@ -96,17 +119,22 @@ export class LoanComponent implements OnInit {
           Number(this.userAccount.amount) - inputAmount - inputAmount / 5
         );
         this.userLoans.next(this.loanArr);
-        this.updateLoan();
-        this.updateAccount();
       } else if (inputAmount == this.loanArr[index].amount) {
         this.loanArr.splice(index, 1);
         this.userAccount.amount = String(
           Number(this.userAccount.amount) - inputAmount - inputAmount / 5
         );
         this.userLoans.next(this.loanArr);
-        this.updateLoan();
-        this.updateAccount();
       }
+      this.userTransactions.push({
+        date: this.today,
+        receiver: 'Pay Loan',
+        transferror: this.userAccount.account,
+        amount: inputAmount + inputAmount / 5,
+      });
+      this.updateLoan();
+      this.updateAccount();
+      this.updateTransactions();
       this.inputAmount.reset();
     }
   }
@@ -125,6 +153,17 @@ export class LoanComponent implements OnInit {
   private updateAccount() {
     this.http
       .updateAccount(this.userAccount)
+      .pipe(
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
+  }
+  private updateTransactions() {
+    this.http
+      .updateTransactions(this.userTransactions, this.loggedUserId)
       .pipe(
         catchError((err) => {
           console.log(err.message);

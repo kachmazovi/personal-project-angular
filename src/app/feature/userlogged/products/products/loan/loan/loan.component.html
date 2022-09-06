@@ -14,11 +14,11 @@
   </h1>
   <div *ngIf="userLoans | async as loans" class="loan-container">
     <ng-container *ngFor="let loan of loans; let index = index">
-      <div *ngIf="loan.amount > 0" class="loans">
+      <div class="loans">
         <div class="loan">
           <h1>
             {{ language == "geo" ? "სამომხმარებლო სესხი" : "Consumer Loans" }}
-            {{ index }}
+            {{ index + 1 }}
           </h1>
           <h1>{{ loan.date }}</h1>
           <h1>{{ loan.amount }} {{ language == "geo" ? "ლარი" : "GEL" }}</h1>

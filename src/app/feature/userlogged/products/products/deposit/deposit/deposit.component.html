@@ -4,11 +4,11 @@
   </h1>
   <div *ngIf="userDeposits | async as deposit" class="deposit-container">
     <ng-container *ngFor="let dep of deposit; let index = index">
-      <div *ngIf="dep.amount > 0" class="deposits">
+      <div class="deposits">
         <div class="deposit">
           <h1>
             {{ language == "geo" ? "ვადიანი ანაბარი" : "Term Deposit" }}
-            {{ index }}
+            {{ index + 1 }}
           </h1>
           <h1>{{ dep.date }}</h1>
           <h1>{{ dep.amount }} {{ language == "geo" ? "ლარი" : "GEL" }}</h1>

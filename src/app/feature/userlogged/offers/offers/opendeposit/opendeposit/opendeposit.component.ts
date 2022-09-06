@@ -5,6 +5,10 @@ import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.servic
 import { dep, depositId } from 'src/app/shared/interfaces/deposit.interface';
 import { accountId } from 'src/app/shared/interfaces/account.interface';
 import { LoginService } from 'src/app/shared/services/login/login.service';
+import {
+  transactionsId,
+  transfers,
+} from 'src/app/shared/interfaces/transactions.interface';
 
 @Component({
   selector: 'app-opendeposit',
@@ -31,6 +35,7 @@ export class OpendepositComponent implements OnInit {
   ngOnInit(): void {
     this.getUserDeposit();
     this.getUserAccount();
+    this.getUserTransactions();
     this.inputAmount.valueChanges.subscribe((amount) => {
       this.wrongAmount = false;
       if (Number(amount) > Number(this.userAccount.amount)) {
@@ -59,6 +64,22 @@ export class OpendepositComponent implements OnInit {
     if (this.terms) {
       this.terms = false;
     } else this.terms = true;
+  }
+
+  private userTransactions: transfers[] = [];
+  private getUserTransactions() {
+    this.http
+      .getTransaction(this.loggedUserId)
+      .pipe(
+        tap((response: transactionsId) => {
+          this.userTransactions = response.transactions;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
   }
 
   private getUserAccount() {
@@ -98,36 +119,37 @@ export class OpendepositComponent implements OnInit {
     this.userAccount.amount = String(
       Number(this.userAccount.amount) - Number(this.inputAmount.value)
     );
+    this.userTransactions.push({
+      date: this.today,
+      receiver: 'Open Deposit',
+      transferror: this.userAccount.account,
+      amount: Number(this.inputAmount.value),
+    });
     this.updateDeposit();
     this.updateAccount();
+    this.updateTransactions();
     this.inputAmount.reset();
     this.confirm.next(true);
     setTimeout(() => {
       this.confirm.next(false);
-    }, 3000);
+      this.terms = true;
+    }, 2000);
   }
 
   private updateDeposit() {
     this.http
       .updateDeposit(this.userDeposit, this.loggedUserId)
-      .pipe(
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
+      .pipe()
       .subscribe();
   }
 
   private updateAccount() {
+    this.http.updateAccount(this.userAccount).pipe().subscribe();
+  }
+
+  private updateTransactions() {
     this.http
-      .updateAccount(this.userAccount)
-      .pipe(
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
+      .updateTransactions(this.userTransactions, this.loggedUserId)
       .subscribe();
   }
 }

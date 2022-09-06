@@ -3,8 +3,8 @@
     {
       "name": "გიორგი",
       "surname": "ლეჟავა",
-      "personalNumber": 45654545455,
-      "phoneNumber": 598878787,
+      "personalNumber": 12326564598,
+      "phoneNumber": 577989869,
       "username": "lezava",
       "password": "Lezava123",
       "id": 1
@@ -12,109 +12,39 @@
     {
       "name": "სალომე",
       "surname": "ფაცაცია",
-      "personalNumber": 45454979898,
-      "phoneNumber": 556598989,
+      "personalNumber": 54549887845,
+      "phoneNumber": 577489898,
       "username": "pacia",
       "password": "Pacia123",
       "id": 2
-    },
-    {
-      "name": "პაპა",
-      "surname": "კარლო",
-      "personalNumber": 12326564546,
-      "phoneNumber": 598787898,
-      "username": "karlo",
-      "password": "Karlo123",
-      "id": 3
-    },
-    {
-      "name": "ნათია",
-      "surname": "მაჭარაძე",
-      "personalNumber": 32465698988,
-      "phoneNumber": 574989878,
-      "username": "machara",
-      "password": "Machara123",
-      "id": 4
-    },
-    {
-      "name": "სოლომონ",
-      "surname": "პაპიძე",
-      "personalNumber": 12545657894,
-      "phoneNumber": 597898980,
-      "username": "sollo",
-      "password": "Sollo123",
-      "id": 5
     }
   ],
   "accounts": [
     {
-      "account": "GE00TB2232814783096579",
-      "amount": "313180",
+      "account": "GE00TB1379052388894895",
+      "amount": "16180",
       "id": 1
     },
     {
-      "account": "GE00TB5034105028823141",
-      "amount": "219900",
+      "account": "GE00TB6774351212363410",
+      "amount": "10920",
       "id": 2
-    },
-    {
-      "account": "GE00TB3557186155547580",
-      "amount": "108000",
-      "id": 3
-    },
-    {
-      "account": "GE00TB9411295507505239",
-      "amount": "25923",
-      "id": 4
-    },
-    {
-      "account": "GE00TB2754709713443863",
-      "amount": "228297",
-      "id": 5
     }
   ],
   "loans": [
     {
       "loans": [
         {
-          "date": "00000000000",
-          "amount": 0
+          "date": "6/8/2022",
+          "amount": 2500
         },
         {
-          "date": "4/8/2022",
-          "amount": 9900
+          "date": "6/8/2022",
+          "amount": 2000
         },
         {
-          "date": "4/8/2022",
-          "amount": 21000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 4500
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 4500
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 13000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 23000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 91000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 3100
-        },
-        {
-          "date": "5/8/2022",
-          "amount": 15000
+          "date": "6/8/2022",
+          "amount": 2500
         }
       ],
       "id": 1
@@ -122,295 +52,88 @@
     {
       "loans": [
         {
-          "date": "00000000000",
-          "amount": 0
+          "date": "6/8/2022",
+          "amount": 2000
         },
         {
-          "date": "4/8/2022",
-          "amount": 8000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 21000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 4500
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 4500
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 13000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 23000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 91000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 3100
+          "date": "6/8/2022",
+          "amount": 1700
         }
       ],
       "id": 2
-    },
-    {
-      "loans": [
-        {
-          "date": "00000000000",
-          "amount": 0
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 1500
-        },
-        {
-          "date": "5/8/2022",
-          "amount": 27000
-        },
-        {
-          "date": "5/8/2022",
-          "amount": 191000
-        }
-      ],
-      "id": 3
-    },
-    {
-      "loans": [
-        {
-          "date": "00000000000",
-          "amount": 0
-        }
-      ],
-      "id": 4
-    },
-    {
-      "loans": [
-        {
-          "date": "00000000000",
-          "amount": 0
-        }
-      ],
-      "id": 5
     }
   ],
   "deposits": [
     {
-      "deposits": [
-        {
-          "date": "00000000000",
-          "amount": 0
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 1700
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 2500
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 25000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 2100
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 6300
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 12000
-        },
-        {
-          "date": "5/8/2022",
-          "amount": 10400
-        }
-      ],
+      "deposits": [],
       "id": 1
     },
     {
       "deposits": [
         {
-          "date": "00000000000",
-          "amount": 0
+          "date": "6/8/2022",
+          "amount": 1500
         },
         {
-          "date": "4/8/2022",
-          "amount": 10000
+          "date": "6/8/2022",
+          "amount": 500
         },
         {
-          "date": "4/8/2022",
-          "amount": 1000
+          "date": "6/8/2022",
+          "amount": 1200
         },
         {
-          "date": "4/8/2022",
-          "amount": 2500
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 25000
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 2100
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 6300
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 3200
-        },
-        {
-          "date": "4/8/2022",
-          "amount": 12000
+          "date": "6/8/2022",
+          "amount": 700
         }
       ],
       "id": 2
-    },
-    {
-      "deposits": [
-        {
-          "date": "00000000000",
-          "amount": 0
-        }
-      ],
-      "id": 3
-    },
-    {
-      "deposits": [
-        {
-          "date": "00000000000",
-          "amount": 0
-        }
-      ],
-      "id": 4
-    },
-    {
-      "deposits": [
-        {
-          "date": "00000000000",
-          "amount": 0
-        }
-      ],
-      "id": 5
     }
   ],
   "transactions": [
     {
       "transactions": [
         {
-          "date": "00000000000",
-          "receiver": "00000000000",
-          "transferror": "00000000000",
-          "amount": 0
+          "date": "6/8/2022",
+          "receiver": "GE00TB6774351212363410",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 1000
         },
         {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 900
+          "date": "6/8/2022",
+          "receiver": "GE00TB6774351212363410",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 150
         },
         {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 1900
+          "date": "6/8/2022",
+          "receiver": "Open Deposit",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 1500
         },
         {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 11900
+          "date": "6/8/2022",
+          "receiver": "GE00TB1379052388894895",
+          "transferror": "Take Loan",
+          "amount": 2500
         },
         {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 11500
+          "date": "6/8/2022",
+          "receiver": "Pay Loan",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 840
         },
         {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 7300
+          "date": "6/8/2022",
+          "receiver": "GE00TB1379052388894895",
+          "transferror": "Close Deposit",
+          "amount": 1650
         },
         {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 15000
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 3700
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 2100
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 17000
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 2700
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 500
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB2754709713443863",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 191297
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB3557186155547580",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 300
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB9411295507505239",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 923
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB3557186155547580",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 19000
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 97000
+          "date": "6/8/2022",
+          "receiver": "GE00TB1379052388894895",
+          "transferror": "Close Deposit",
+          "amount": 1650
         }
       ],
       "id": 1
@@ -418,251 +141,20 @@
     {
       "transactions": [
         {
-          "date": "00000000000",
-          "receiver": "00000000000",
-          "transferror": "00000000000",
-          "amount": 0
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 900
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 1900
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 11900
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 11500
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 7300
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 15000
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 10000
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB5034105028823141",
+          "date": "6/8/2022",
+          "receiver": "GE00TB6774351212363410",
+          "transferror": "GE00TB1379052388894895",
           "amount": 1000
         },
         {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 3700
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 2100
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 17000
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB5034105028823141",
-          "amount": 2700
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 1000
+          "date": "6/8/2022",
+          "receiver": "GE00TB6774351212363410",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 150
         }
       ],
       "id": 2
-    },
-    {
-      "transactions": [
-        {
-          "date": "00000000000",
-          "receiver": "00000000000",
-          "transferror": "00000000000",
-          "amount": 0
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB5034105028823141",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 1000
-        },
-        {
-          "date": "4/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 500
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB3557186155547580",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 300
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB3557186155547580",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 19000
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB2754709713443863",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 27000
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB9411295507505239",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 15000
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB2232814783096579",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 97000
-        }
-      ],
-      "id": 3
-    },
-    {
-      "transactions": [
-        {
-          "date": "00000000000",
-          "receiver": "00000000000",
-          "transferror": "00000000000",
-          "amount": 0
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB9411295507505239",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 923
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB9411295507505239",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 15000
-        }
-      ],
-      "id": 4
-    },
-    {
-      "transactions": [
-        {
-          "date": "00000000000",
-          "receiver": "00000000000",
-          "transferror": "00000000000",
-          "amount": 0
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB2754709713443863",
-          "transferror": "GE00TB2232814783096579",
-          "amount": 191297
-        },
-        {
-          "date": "5/8/2022",
-          "receiver": "GE00TB2754709713443863",
-          "transferror": "GE00TB3557186155547580",
-          "amount": 27000
-        }
-      ],
-      "id": 5
     }
   ],
-  "moneytransfers": [
-    {
-      "transfers": [
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        }
-      ],
-      "id": 1
-    },
-    {
-      "transfers": [
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        },
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        },
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        },
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        },
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        }
-      ],
-      "id": 2
-    },
-    {
-      "transfers": [
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        },
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        },
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        },
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        },
-        {
-          "code": "dsfsdfsd",
-          "amount": 122
-        }
-      ],
-      "id": 3
-    }
-  ]
+  "moneytransfers": []
 }

@@ -23,28 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginServ.language.next('geo');
-    this.http
-      .getUsers()
-      .pipe(
-        tap((response) => {
-          response.forEach((user) => {
-            this.loggedUser.push({
-              name: user.name,
-              surname: user.surname,
-              personalNumber: user.personalNumber,
-              phoneNumber: user.phoneNumber,
-              username: user.username,
-              password: user.password,
-              id: user.id,
-            });
-          });
-        }),
-        catchError((err) => {
-          console.log(err.message);
-          return of('error');
-        })
-      )
-      .subscribe();
+    this.getUsers();
     this.loginForm.valueChanges.subscribe((v) => {
       this.wrongData = false;
     });
@@ -92,5 +71,20 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/userlogged/mainpage');
       } else this.wrongData = true;
     });
+  }
+
+  private getUsers() {
+    this.http
+      .getUsers()
+      .pipe(
+        tap((response) => {
+          this.loggedUser = response;
+        }),
+        catchError((err) => {
+          console.log(err.message);
+          return of('error');
+        })
+      )
+      .subscribe();
   }
 }

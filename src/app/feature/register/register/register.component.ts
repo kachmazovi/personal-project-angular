@@ -222,14 +222,7 @@ export class RegisterComponent implements OnInit {
 
   private addTransaction() {
     this.request
-      .addTransaction([
-        {
-          date: '00000000000',
-          receiver: '00000000000',
-          transferror: '00000000000',
-          amount: 0,
-        },
-      ])
+      .addTransaction([])
       .pipe(
         catchError((err) => {
           console.log(err.message);
@@ -241,12 +234,7 @@ export class RegisterComponent implements OnInit {
 
   private addDeposit() {
     this.request
-      .addDeposit([
-        {
-          date: '00000000000',
-          amount: 0,
-        },
-      ])
+      .addDeposit([])
       .pipe(
         catchError((err) => {
           console.log(err.message);
@@ -258,12 +246,7 @@ export class RegisterComponent implements OnInit {
 
   private addLoan() {
     this.request
-      .addLoan([
-        {
-          date: '00000000000',
-          amount: 0,
-        },
-      ])
+      .addLoan([])
       .pipe(
         catchError((err) => {
           console.log(err.message);

@@ -95,7 +95,7 @@ export class MainpageComponent implements OnInit {
       .pipe(
         tap((response: transactionsId) => {
           this.userTransactions.next(response.transactions);
-          if (response.transactions.length > 1) {
+          if (response.transactions.length > 0) {
             this.haveTransfers.next(true);
           }
         }),
