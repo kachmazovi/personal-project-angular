@@ -22,12 +22,12 @@
   "accounts": [
     {
       "account": "GE00TB1379052388894895",
-      "amount": "16180",
+      "amount": "125981",
       "id": 1
     },
     {
       "account": "GE00TB6774351212363410",
-      "amount": "10920",
+      "amount": "13125",
       "id": 2
     }
   ],
@@ -40,11 +40,15 @@
         },
         {
           "date": "6/8/2022",
-          "amount": 2000
+          "amount": 2500
         },
         {
-          "date": "6/8/2022",
+          "date": "8/8/2022",
           "amount": 2500
+        },
+        {
+          "date": "8/8/2022",
+          "amount": 170000
         }
       ],
       "id": 1
@@ -65,7 +69,16 @@
   ],
   "deposits": [
     {
-      "deposits": [],
+      "deposits": [
+        {
+          "date": "8/8/2022",
+          "amount": 50000
+        },
+        {
+          "date": "8/8/2022",
+          "amount": 1700
+        }
+      ],
       "id": 1
     },
     {
@@ -134,6 +147,60 @@
           "receiver": "GE00TB1379052388894895",
           "transferror": "Close Deposit",
           "amount": 1650
+        },
+        {
+          "date": "7/8/2022",
+          "receiver": "Pay Loan",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 2400
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "Western - 37490732905",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 1515
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "Ria - 11265629187",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 2727
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "GE00TB1379052388894895",
+          "transferror": "Moneygram",
+          "amount": 1400
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "Moneygram - 86279211959",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 707
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "GE00TB1379052388894895",
+          "transferror": "Take Loan",
+          "amount": 2500
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "GE00TB1379052388894895",
+          "transferror": "Take Loan",
+          "amount": 170000
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "Open Deposit",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 50000
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "Open Deposit",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 1700
         }
       ],
       "id": 1
@@ -151,10 +218,45 @@
           "receiver": "GE00TB6774351212363410",
           "transferror": "GE00TB1379052388894895",
           "amount": 150
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "Moneygram - 78230719741",
+          "transferror": "GE00TB6774351212363410",
+          "amount": 1414
+        },
+        {
+          "date": "8/8/2022",
+          "receiver": "GE00TB6774351212363410",
+          "transferror": "Ria",
+          "amount": 2700
         }
       ],
       "id": 2
     }
   ],
-  "moneytransfers": []
+  "moneytransfers": [
+    {
+      "transfers": [
+        {
+          "code": "37490732905",
+          "amount": 1500
+        }
+      ],
+      "id": 1
+    },
+    {
+      "transfers": [],
+      "id": 2
+    },
+    {
+      "transfers": [
+        {
+          "code": "86279211959",
+          "amount": 700
+        }
+      ],
+      "id": 3
+    }
+  ]
 }

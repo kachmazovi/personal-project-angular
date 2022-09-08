@@ -27,7 +27,52 @@
         (click)="clickGram()"
       ></div>
     </div>
-    <div class="input"></div>
-    <button (click)="click()">click</button>
+    <div class="input">
+      <ng-container *ngIf="sentTransfer">
+        {{
+          language == "geo"
+            ? "შეიყვანეთ გზავნილის თანხა"
+            : "Enter amount of transfer"
+        }}:
+      </ng-container>
+      <ng-container *ngIf="!sentTransfer">
+        {{
+          language == "geo"
+            ? "შეიყვანეთ გზავნილის კოდი"
+            : "Enter code of transfer"
+        }}:
+      </ng-container>
+      <input type="number" [formControl]="inputValue" />
+    </div>
+    <button
+      [ngClass]="{
+        'not-allowed': inputValue.invalid || (!western && !ria && !moneygram)
+      }"
+      [disabled]="inputValue.invalid || (!western && !ria && !moneygram)"
+      *ngIf="sentTransfer"
+      (click)="send()"
+    >
+      {{ language == "geo" ? "გაგზავნა" : "Send" }}
+    </button>
+    <button
+      [ngClass]="{
+        'not-allowed': inputValue.invalid || (!western && !ria && !moneygram)
+      }"
+      [disabled]="inputValue.invalid || (!western && !ria && !moneygram)"
+      *ngIf="!sentTransfer"
+      (click)="receive()"
+    >
+      {{ language == "geo" ? "მიღება" : "Receive" }}
+    </button>
+    <h3 *ngIf="transferSent">
+      {{
+        language == "geo" ? "წარმატებული გზავნილი" : "Successfully transferred"
+      }}!
+    </h3>
+    <h3 *ngIf="transferReceived">
+      {{
+        language == "geo" ? "გზავნილი განაღდებულია" : "Successfully received"
+      }}!
+    </h3>
   </section>
 </main>
