@@ -106,12 +106,12 @@ export class LoanComponent implements OnInit {
       this.wrongAmount = true;
     } else if (
       inputAmount <= this.loanArr[index].amount &&
-      inputAmount > Number(this.userAccount.amount)
+      inputAmount + inputAmount / 5 > Number(this.userAccount.amount)
     ) {
       this.notEnoughAmount = true;
     } else if (
       inputAmount <= this.loanArr[index].amount &&
-      inputAmount < Number(this.userAccount.amount)
+      inputAmount + inputAmount / 5 <= Number(this.userAccount.amount)
     ) {
       if (inputAmount < this.loanArr[index].amount) {
         this.loanArr[index].amount -= inputAmount;

@@ -42,7 +42,7 @@ export class MoneytransfersComponent implements OnInit {
     this.getRia();
     this.getGram();
     this.inputAmount.valueChanges.subscribe((v) => {
-      if (Number(v) > Number(this.userAccount.amount)) {
+      if (Number(v) + Number(v) / 100 > Number(this.userAccount.amount)) {
         this.notAnoughAmount = true;
       } else this.notAnoughAmount = false;
     });
