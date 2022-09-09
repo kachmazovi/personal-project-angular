@@ -22,12 +22,12 @@
   "accounts": [
     {
       "account": "GE00TB1379052388894895",
-      "amount": "160928",
+      "amount": "122490.1",
       "id": 1
     },
     {
       "account": "GE00TB6774351212363410",
-      "amount": "164948",
+      "amount": "200948",
       "id": 2
     }
   ],
@@ -48,7 +48,7 @@
         },
         {
           "date": "8/8/2022",
-          "amount": 170000
+          "amount": 168800
         },
         {
           "date": "9/8/2022",
@@ -101,10 +101,6 @@
         {
           "date": "9/8/2022",
           "amount": 15000
-        },
-        {
-          "date": "9/8/2022",
-          "amount": 981
         },
         {
           "date": "9/8/2022",
@@ -417,6 +413,30 @@
           "receiver": "GE00TB1379052388894895",
           "transferror": "Moneygram",
           "amount": 17500
+        },
+        {
+          "date": "9/8/2022",
+          "receiver": "Pay Loan",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 1440
+        },
+        {
+          "date": "9/8/2022",
+          "receiver": "GE00TB1379052388894895",
+          "transferror": "Close Deposit",
+          "amount": 1079.1
+        },
+        {
+          "date": "9/8/2022",
+          "receiver": "Western - 27933493670",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 2727
+        },
+        {
+          "date": "9/8/2022",
+          "receiver": "Ria - 22547835021",
+          "transferror": "GE00TB1379052388894895",
+          "amount": 35350
         }
       ],
       "id": 1
@@ -512,6 +532,18 @@
           "receiver": "Moneygram - 22292407069",
           "transferror": "GE00TB6774351212363410",
           "amount": 25250
+        },
+        {
+          "date": "9/8/2022",
+          "receiver": "GE00TB6774351212363410",
+          "transferror": "Western",
+          "amount": 1000
+        },
+        {
+          "date": "9/8/2022",
+          "receiver": "GE00TB6774351212363410",
+          "transferror": "Ria",
+          "amount": 35000
         }
       ],
       "id": 2
@@ -529,8 +561,8 @@
           "amount": 3200
         },
         {
-          "code": "21292570060",
-          "amount": 1000
+          "code": "27933493670",
+          "amount": 2700
         }
       ],
       "id": 1

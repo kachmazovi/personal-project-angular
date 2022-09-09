@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
@@ -6,6 +13,7 @@ import { BehaviorSubject } from 'rxjs';
   selector: 'app-exchange',
   templateUrl: './exchange.component.html',
   styleUrls: ['./exchange.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExchangeComponent implements OnInit {
   constructor() {}

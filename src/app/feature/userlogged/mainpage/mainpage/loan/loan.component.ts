@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
 
@@ -6,6 +13,7 @@ import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.servic
   selector: 'app-loan',
   templateUrl: './loan.component.html',
   styleUrls: ['./loan.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoanComponent implements OnInit {
   @Input() lang = new BehaviorSubject('geo');
