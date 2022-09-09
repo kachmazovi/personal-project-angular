@@ -147,6 +147,7 @@ export class ParametersComponent implements OnInit {
     this.userDataObj.password = String(this.inputPassword.value);
     this.http.updateUser(this.userDataObj).subscribe();
     this.inputPassword.reset();
+    this.inputCurrentPassword.reset();
     this.saved.next(true);
     setTimeout(() => {
       this.saved.next(false);

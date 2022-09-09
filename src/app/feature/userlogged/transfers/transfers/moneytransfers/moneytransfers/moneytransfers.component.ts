@@ -2,16 +2,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, catchError, of, tap } from 'rxjs';
 import { ApiRequestsService } from 'src/app/core/api.requests/apirequests.service';
-import {
-  accountId,
-  accounts,
-} from 'src/app/shared/interfaces/account.interface';
+import { accountId } from 'src/app/shared/interfaces/account.interface';
 import {
   getMoneytransfers,
   addMoneytransfers,
 } from 'src/app/shared/interfaces/moneytransfers.interface';
 import {
-  transactions,
   transactionsId,
   transfers,
 } from 'src/app/shared/interfaces/transactions.interface';
@@ -45,8 +41,13 @@ export class MoneytransfersComponent implements OnInit {
     this.getWu();
     this.getRia();
     this.getGram();
-    this.inputValue.valueChanges.subscribe((v) => {
-      this.transferSent = false;
+    this.inputAmount.valueChanges.subscribe((v) => {
+      if (Number(v) > Number(this.userAccount.amount)) {
+        this.notAnoughAmount = true;
+      } else this.notAnoughAmount = false;
+    });
+    this.inputTransferCode.valueChanges.subscribe((v) => {
+      this.wrongTransferCode = false;
     });
   }
 
@@ -62,7 +63,8 @@ export class MoneytransfersComponent implements OnInit {
     this.western = false;
     this.ria = false;
     this.moneygram = false;
-    this.inputValue.reset();
+    this.inputAmount.reset();
+    this.inputTransferCode.reset();
     this.transferSent = false;
   }
   public receiveHeader() {
@@ -70,7 +72,8 @@ export class MoneytransfersComponent implements OnInit {
     this.western = false;
     this.ria = false;
     this.moneygram = false;
-    this.inputValue.reset();
+    this.inputAmount.reset();
+    this.inputTransferCode.reset();
     this.transferSent = false;
   }
 
@@ -82,6 +85,8 @@ export class MoneytransfersComponent implements OnInit {
     this.moneygram = false;
     this.western = true;
     this.transferSent = false;
+    this.inputTransferCode.reset();
+    this.inputAmount.reset();
   }
   public ria = false;
   public clickRia() {
@@ -89,6 +94,8 @@ export class MoneytransfersComponent implements OnInit {
     this.moneygram = false;
     this.ria = true;
     this.transferSent = false;
+    this.inputTransferCode.reset();
+    this.inputAmount.reset();
   }
   public moneygram = false;
   public clickGram() {
@@ -96,9 +103,12 @@ export class MoneytransfersComponent implements OnInit {
     this.ria = false;
     this.moneygram = true;
     this.transferSent = false;
+    this.inputTransferCode.reset();
+    this.inputAmount.reset();
   }
 
-  public inputValue = new FormControl('', Validators.required);
+  public inputAmount = new FormControl('', Validators.required);
+  public inputTransferCode = new FormControl('', Validators.required);
 
   // User Account
 
@@ -197,6 +207,8 @@ export class MoneytransfersComponent implements OnInit {
 
   public transferSent = false;
   public transferReceived = false;
+  public notAnoughAmount = false;
+  public wrongTransferCode = false;
 
   public send() {
     for (let i = 0; i < 11; i++) {
@@ -205,7 +217,7 @@ export class MoneytransfersComponent implements OnInit {
     if (this.western) {
       this.wuTransfers.push({
         code: this.transferCode,
-        amount: Number(this.inputValue.value),
+        amount: Number(this.inputAmount.value),
       });
       this.addWu();
       this.userTransactions.push({
@@ -213,12 +225,12 @@ export class MoneytransfersComponent implements OnInit {
         receiver: `Western - ${this.transferCode}`,
         transferror: this.userAccount.account,
         amount:
-          Number(this.inputValue.value) + Number(this.inputValue.value) / 100,
+          Number(this.inputAmount.value) + Number(this.inputAmount.value) / 100,
       });
     } else if (this.ria) {
       this.riaTransfers.push({
         code: this.transferCode,
-        amount: Number(this.inputValue.value),
+        amount: Number(this.inputAmount.value),
       });
       this.addRia();
       this.userTransactions.push({
@@ -226,12 +238,12 @@ export class MoneytransfersComponent implements OnInit {
         receiver: `Ria - ${this.transferCode}`,
         transferror: this.userAccount.account,
         amount:
-          Number(this.inputValue.value) + Number(this.inputValue.value) / 100,
+          Number(this.inputAmount.value) + Number(this.inputAmount.value) / 100,
       });
     } else if (this.moneygram) {
       this.gramTransfers.push({
         code: this.transferCode,
-        amount: Number(this.inputValue.value),
+        amount: Number(this.inputAmount.value),
       });
       this.addGram();
       this.userTransactions.push({
@@ -239,14 +251,14 @@ export class MoneytransfersComponent implements OnInit {
         receiver: `Moneygram - ${this.transferCode}`,
         transferror: this.userAccount.account,
         amount:
-          Number(this.inputValue.value) + Number(this.inputValue.value) / 100,
+          Number(this.inputAmount.value) + Number(this.inputAmount.value) / 100,
       });
     }
 
     this.userAccount.amount = String(
       Number(this.userAccount.amount) -
-        Number(this.inputValue.value) -
-        Number(this.inputValue.value) / 100
+        Number(this.inputAmount.value) -
+        Number(this.inputAmount.value) / 100
     );
     this.updateAccount();
 
@@ -255,13 +267,21 @@ export class MoneytransfersComponent implements OnInit {
     this.western = false;
     this.ria = false;
     this.moneygram = false;
-    this.inputValue.reset();
+    this.inputAmount.reset();
     this.transferSent = true;
+    this.transferCode = '';
   }
+
   public receive() {
+    const checker = (transfer: addMoneytransfers) => {
+      transfer.code == String(this.inputTransferCode.value);
+    };
     if (this.western) {
-      this.wuTransfers.some((transfer, index) => {
-        if (transfer.code == String(this.inputValue.value)) {
+      if (!this.wuTransfers.some(checker)) {
+        this.wrongTransferCode = true;
+      }
+      this.wuTransfers.forEach((transfer, index) => {
+        if (transfer.code == String(this.inputTransferCode.value)) {
           const received = this.wuTransfers.splice(index, 1);
           this.addWu();
           this.userAccount.amount = String(
@@ -275,11 +295,17 @@ export class MoneytransfersComponent implements OnInit {
             amount: received[0].amount,
           });
           this.updateTransactions();
+          this.western = false;
+          this.inputTransferCode.reset();
+          this.transferReceived = true;
         }
       });
     } else if (this.ria) {
-      this.riaTransfers.some((transfer, index) => {
-        if (transfer.code == String(this.inputValue.value)) {
+      if (!this.riaTransfers.some(checker)) {
+        this.wrongTransferCode = true;
+      }
+      this.riaTransfers.forEach((transfer, index) => {
+        if (transfer.code == String(this.inputTransferCode.value)) {
           const received = this.riaTransfers.splice(index, 1);
           this.addRia();
           this.userAccount.amount = String(
@@ -293,11 +319,17 @@ export class MoneytransfersComponent implements OnInit {
             amount: received[0].amount,
           });
           this.updateTransactions();
+          this.ria = false;
+          this.inputTransferCode.reset();
+          this.transferReceived = true;
         }
       });
     } else if (this.moneygram) {
-      this.gramTransfers.some((transfer, index) => {
-        if (transfer.code == String(this.inputValue.value)) {
+      if (!this.riaTransfers.some(checker)) {
+        this.wrongTransferCode = true;
+      }
+      this.gramTransfers.forEach((transfer, index) => {
+        if (transfer.code == String(this.inputTransferCode.value)) {
           const received = this.gramTransfers.splice(index, 1);
           this.addGram();
           this.userAccount.amount = String(
@@ -311,14 +343,12 @@ export class MoneytransfersComponent implements OnInit {
             amount: received[0].amount,
           });
           this.updateTransactions();
+          this.moneygram = false;
+          this.inputTransferCode.reset();
+          this.transferReceived = true;
         }
       });
     }
-    this.western = false;
-    this.ria = false;
-    this.moneygram = false;
-    this.inputValue.reset();
-    this.transferReceived = true;
   }
 
   // Methods

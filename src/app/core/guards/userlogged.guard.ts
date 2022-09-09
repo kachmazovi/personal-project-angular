@@ -16,6 +16,6 @@ export class UserloggedGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return true;
+    return this.login.userLogged;
   }
 }

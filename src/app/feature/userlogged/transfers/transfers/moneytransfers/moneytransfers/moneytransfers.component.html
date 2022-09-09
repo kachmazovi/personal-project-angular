@@ -34,6 +34,7 @@
             ? "შეიყვანეთ გზავნილის თანხა"
             : "Enter amount of transfer"
         }}:
+        <input type="number" [formControl]="inputAmount" />
       </ng-container>
       <ng-container *ngIf="!sentTransfer">
         {{
@@ -41,14 +42,37 @@
             ? "შეიყვანეთ გზავნილის კოდი"
             : "Enter code of transfer"
         }}:
+        <input type="number" [formControl]="inputTransferCode" />
       </ng-container>
-      <input type="number" [formControl]="inputValue" />
+      <h6>
+        <span *ngIf="notAnoughAmount">
+          {{
+            language == "geo"
+              ? "არასაკმარისი თანხა ანგარიშზე"
+              : "You don't have enough amount"
+          }}
+        </span>
+        <span *ngIf="wrongTransferCode">
+          {{
+            language == "geo"
+              ? "არასწორი გზავნილის კოდი"
+              : "Wrong code of money transfer"
+          }}
+        </span>
+      </h6>
     </div>
     <button
       [ngClass]="{
-        'not-allowed': inputValue.invalid || (!western && !ria && !moneygram)
+        'not-allowed':
+          inputAmount.invalid ||
+          notAnoughAmount ||
+          (!western && !ria && !moneygram)
       }"
-      [disabled]="inputValue.invalid || (!western && !ria && !moneygram)"
+      [disabled]="
+        inputAmount.invalid ||
+        notAnoughAmount ||
+        (!western && !ria && !moneygram)
+      "
       *ngIf="sentTransfer"
       (click)="send()"
     >
@@ -56,9 +80,10 @@
     </button>
     <button
       [ngClass]="{
-        'not-allowed': inputValue.invalid || (!western && !ria && !moneygram)
+        'not-allowed':
+          inputTransferCode.invalid || (!western && !ria && !moneygram)
       }"
-      [disabled]="inputValue.invalid || (!western && !ria && !moneygram)"
+      [disabled]="inputTransferCode.invalid || (!western && !ria && !moneygram)"
       *ngIf="!sentTransfer"
       (click)="receive()"
     >
