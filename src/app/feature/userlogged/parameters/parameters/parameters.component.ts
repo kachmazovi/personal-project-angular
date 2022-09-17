@@ -149,6 +149,7 @@ export class ParametersComponent implements OnInit {
     this.inputPassword.reset();
     this.inputCurrentPassword.reset();
     this.saved.next(true);
+    this.wrongCurrentPassword = false;
     setTimeout(() => {
       this.saved.next(false);
     }, 2000);

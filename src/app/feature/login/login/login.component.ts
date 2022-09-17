@@ -60,6 +60,10 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
+    const check = (user: registeredUser) => {
+      user.username == this.username.value;
+      user.password == this.password.value;
+    };
     this.loggedUser.forEach((user) => {
       if (
         user.username == this.username.value &&
@@ -69,8 +73,11 @@ export class LoginComponent implements OnInit {
         this.loginServ.loggedUserId.next(user.id);
         this.loginServ.loggedUserData.next(user);
         this.router.navigateByUrl('/userlogged/mainpage');
-      } else this.wrongData = true;
+      }
     });
+    if (!this.loggedUser.some(check)) {
+      this.wrongData = true;
+    }
   }
 
   private getUsers() {
