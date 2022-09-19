@@ -41,7 +41,9 @@ export class TakeloanComponent implements OnInit {
   public terms = true;
   public confirm = new BehaviorSubject(false);
   private getDate = new Date();
-  private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
+  private today = `${this.getDate.getDate()}/${
+    this.getDate.getMonth() + 1
+  }/${this.getDate.getFullYear()}`;
   public inputAmount = new FormControl('', [
     Validators.required,
     Validators.min(1),

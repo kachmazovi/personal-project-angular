@@ -137,9 +137,16 @@
         <button
           class="save"
           (click)="savePassword()"
-          [disabled]="inputPassword.invalid || wrongCurrentPassword"
+          [disabled]="
+            inputPassword.invalid ||
+            wrongCurrentPassword ||
+            inputCurrentPassword.invalid
+          "
           [ngClass]="{
-            'not-allowed': inputPassword.invalid || wrongCurrentPassword
+            'not-allowed':
+              inputPassword.invalid ||
+              wrongCurrentPassword ||
+              inputCurrentPassword.invalid
           }"
         >
           {{ language == "geo" ? "შენახვა" : "Save" }}

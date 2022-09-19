@@ -33,7 +33,9 @@ export class DepositComponent implements OnInit {
   public userDeposits: BehaviorSubject<dep[]> = new BehaviorSubject<dep[]>([]);
   public depositArr: dep[] = [];
   private getDate = new Date();
-  private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
+  private today = `${this.getDate.getDate()}/${
+    this.getDate.getMonth() + 1
+  }/${this.getDate.getFullYear()}`;
   private userAccount: accountId = {
     account: '',
     amount: '',

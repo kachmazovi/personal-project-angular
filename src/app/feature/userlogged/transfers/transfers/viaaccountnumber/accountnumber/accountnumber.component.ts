@@ -78,7 +78,9 @@ export class AccountnumberComponent implements OnInit {
     Validators.minLength(22),
   ]);
   private getDate = new Date();
-  private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
+  private today = `${this.getDate.getDate()}/${
+    this.getDate.getMonth() + 1
+  }/${this.getDate.getFullYear()}`;
   private receiverId = '';
 
   // Transferror account

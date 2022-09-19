@@ -34,7 +34,9 @@ export class LoanComponent implements OnInit {
   public userLoans: BehaviorSubject<loa[]> = new BehaviorSubject<loa[]>([]);
   public loanArr: loa[] = [];
   private getDate = new Date();
-  private today = `${this.getDate.getDate()}/${this.getDate.getMonth()}/${this.getDate.getFullYear()}`;
+  private today = `${this.getDate.getDate()}/${
+    this.getDate.getMonth() + 1
+  }/${this.getDate.getFullYear()}`;
   private userAccount: accountId = {
     account: '',
     amount: '',
